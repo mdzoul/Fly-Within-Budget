@@ -1,0 +1,1447 @@
+continent,region,country,city,iataCode,cityiataCode
+Africa,Northern Africa,Algeria,Adrar,AZR,Adrar-AZR
+Africa,Northern Africa,Algeria,Algiers,ALG,Algiers-ALG
+Africa,Northern Africa,Algeria,Annaba,AAE,Annaba-AAE
+Africa,Northern Africa,Algeria,Batna,BLJ,Batna-BLJ
+Africa,Northern Africa,Algeria,Béjaïa,BJA,Béjaïa-BJA
+Africa,Northern Africa,Algeria,Oumache,BSK,Oumache-BSK
+Africa,Northern Africa,Algeria,Chlef,CFK,Chlef-CFK
+Africa,Northern Africa,Algeria,Constantine,CZL,Constantine-CZL
+Africa,Northern Africa,Algeria,Hassi Messaoud,HME,Hassi Messaoud-HME
+Africa,Northern Africa,Algeria,Jijel,GJL,Jijel-GJL
+Africa,Northern Africa,Algeria,Oran,ORN,Oran-ORN
+Africa,Northern Africa,Algeria,Sétif,QSF,Sétif-QSF
+Africa,Northern Africa,Algeria,Tamanrasset,TMR,Tamanrasset-TMR
+Africa,Northern Africa,Algeria,Tlemcen,TLM,Tlemcen-TLM
+Africa,Northern Africa,Egypt,Alexandria,HBE,Alexandria-HBE
+Africa,Northern Africa,Egypt,Alexandria,ALY,Alexandria-ALY
+Africa,Northern Africa,Egypt,Asyut,ATZ,Asyut-ATZ
+Africa,Northern Africa,Egypt,Aswan,ASW,Aswan-ASW
+Africa,Northern Africa,Egypt,Cairo,CAI,Cairo-CAI
+Africa,Northern Africa,Egypt,El Arish,AAC,El Arish-AAC
+Africa,Northern Africa,Egypt,El Dabaa,DBB,El Dabaa-DBB
+Africa,Northern Africa,Egypt,Hurghada,HRG,Hurghada-HRG
+Africa,Northern Africa,Egypt,Luxor,LXR,Luxor-LXR
+Africa,Northern Africa,Egypt,Marsa Alam,RMF,Marsa Alam-RMF
+Africa,Northern Africa,Egypt,Mersa Matruh,MUH,Mersa Matruh-MUH
+Africa,Northern Africa,Egypt,Saint Catherine,SKV,Saint Catherine-SKV
+Africa,Northern Africa,Egypt,Sharm El Sheikh,SSH,Sharm El Sheikh-SSH
+Africa,Northern Africa,Egypt,Sohag,HMB,Sohag-HMB
+Africa,Northern Africa,Egypt,Taba,TCP,Taba-TCP
+Africa,Northern Africa,Libya,Benghazi,BEN,Benghazi-BEN
+Africa,Northern Africa,Libya,Sabha,SEB,Sabha-SEB
+Africa,Northern Africa,Libya,Tripoli,TIP,Tripoli-TIP
+Africa,Northern Africa,Libya,Tajoura,MJI,Tajoura-MJI
+Africa,Northern Africa,Morocco,Agadir,AGA,Agadir-AGA
+Africa,Northern Africa,Morocco,Casablanca,CMN,Casablanca-CMN
+Africa,Northern Africa,Morocco,Fes,FEZ,Fes-FEZ
+Africa,Northern Africa,Morocco,Marrakech,RAK,Marrakech-RAK
+Africa,Northern Africa,Morocco,Nador,NDR,Nador-NDR
+Africa,Northern Africa,Morocco,Oujda,OUD,Oujda-OUD
+Africa,Northern Africa,Morocco,Rabat,RBA,Rabat-RBA
+Africa,Northern Africa,Morocco,Tangier,TNG,Tangier-TNG
+Africa,Northern Africa,Morocco,Tetouan,TTU,Tetouan-TTU
+Africa,Northern Africa,Morocco,Dakhla,VIL,Dakhla-VIL
+Africa,Northern Africa,Morocco,Laayoune,EUN,Laayoune-EUN
+Africa,Northern Africa,Sudan,Khartoum,KRT,Khartoum-KRT
+Africa,Northern Africa,Sudan,Port Sudan,PZU,Port Sudan-PZU
+Africa,Northern Africa,Tunisia,Djerba,DJE,Djerba-DJE
+Africa,Northern Africa,Tunisia,Enfidha,NBE,Enfidha-NBE
+Africa,Northern Africa,Tunisia,Monastir,MIR,Monastir-MIR
+Africa,Northern Africa,Tunisia,Sfax,SFA,Sfax-SFA
+Africa,Northern Africa,Tunisia,Tabarka,TBJ,Tabarka-TBJ
+Africa,Northern Africa,Tunisia,Tozeur,TOE,Tozeur-TOE
+Africa,Northern Africa,Tunisia,Tunis,TUN,Tunis-TUN
+Africa,Western Africa,Benin,Cotonou,COO,Cotonou-COO
+Africa,Western Africa,Burkina Faso,Bobo-Dioulasso,BOY,Bobo-Dioulasso-BOY
+Africa,Western Africa,Burkina Faso,Ouagadougou,OUA,Ouagadougou-OUA
+Africa,Western Africa,Cape Verde,Boa Vista,BVC,Boa Vista-BVC
+Africa,Western Africa,Cape Verde,Sal Island,SID,Sal Island-SID
+Africa,Western Africa,Cape Verde,"Praia, Santiago Island",RAI,"Praia, Santiago Island-RAI"
+Africa,Western Africa,Cape Verde,São Vicente,VXE,São Vicente-VXE
+Africa,Western Africa,Côte d'Ivoire,Abidjan,ABJ,Abidjan-ABJ
+Africa,Western Africa,The Gambia,Banjul,BJL,Banjul-BJL
+Africa,Western Africa,Ghana,Accra,ACC,Accra-ACC
+Africa,Western Africa,Ghana,Kumasi,KMS,Kumasi-KMS
+Africa,Western Africa,Ghana,Takoradi,TKD,Takoradi-TKD
+Africa,Western Africa,Ghana,Sunyani,NYI,Sunyani-NYI
+Africa,Western Africa,Ghana,Ho,HZO,Ho-HZO
+Africa,Western Africa,Ghana,Wa,WZA,Wa-WZA
+Africa,Western Africa,Ghana,Tamale,TML,Tamale-TML
+Africa,Western Africa,Guinea,Conakry,CKY,Conakry-CKY
+Africa,Western Africa,Guinea-Bissau,Bissau,OXB,Bissau-OXB
+Africa,Western Africa,Guinea-Bissau,Bubaque,BQE,Bubaque-BQE
+Africa,Western Africa,Liberia,Monrovia,ROB,Monrovia-ROB
+Africa,Western Africa,Mali,Bamako,BKO,Bamako-BKO
+Africa,Western Africa,Mauritania,Nouakchott,NKC,Nouakchott-NKC
+Africa,Western Africa,Mauritania,Nouadhibou,NDB,Nouadhibou-NDB
+Africa,Western Africa,Mauritania,Atar,ATR,Atar-ATR
+Africa,Western Africa,Niger,Niamey,NIM,Niamey-NIM
+Africa,Western Africa,Nigeria,Abuja,ABV,Abuja-ABV
+Africa,Western Africa,Nigeria,Calabar,CBQ,Calabar-CBQ
+Africa,Western Africa,Nigeria,"Asaba, Delta",ABB,"Asaba, Delta-ABB"
+Africa,Western Africa,Nigeria,Kano,KAN,Kano-KAN
+Africa,Western Africa,Nigeria,Lagos,LOS,Lagos-LOS
+Africa,Western Africa,Nigeria,Port Harcourt,PHC,Port Harcourt-PHC
+Africa,Western Africa,Nigeria,Enugu,ENU,Enugu-ENU
+Africa,Western Africa,Nigeria,Sokoto,SKO,Sokoto-SKO
+Africa,Western Africa,"Saint Helena, Ascension and Tristan da Cunha",Saint Helena,HLE,Saint Helena-HLE
+Africa,Western Africa,Senegal,Dakar,DSS,Dakar-DSS
+Africa,Western Africa,Sierra Leone,Freetown,FNA,Freetown-FNA
+Africa,Western Africa,Togo,Lomé,LFW,Lomé-LFW
+Africa,Central Africa,Angola,Luanda,LAD,Luanda-LAD
+Africa,Central Africa,Angola,Lubango,SDD,Lubango-SDD
+Africa,Central Africa,Cameroon,Douala,DLA,Douala-DLA
+Africa,Central Africa,Cameroon,Yaoundé,NSI,Yaoundé-NSI
+Africa,Central Africa,Central African Republic,Bangui,BGF,Bangui-BGF
+Africa,Central Africa,Chad,N'Djamena,NDJ,N'Djamena-NDJ
+Africa,Central Africa,Democratic Republic of the Congo,Goma,GOM,Goma-GOM
+Africa,Central Africa,Democratic Republic of the Congo,Kinshasa,FIH,Kinshasa-FIH
+Africa,Central Africa,Democratic Republic of the Congo,Kisangani,FKI,Kisangani-FKI
+Africa,Central Africa,Democratic Republic of the Congo,Lubumbashi,FBM,Lubumbashi-FBM
+Africa,Central Africa,Republic of the Congo,Brazzaville,BZV,Brazzaville-BZV
+Africa,Central Africa,Republic of the Congo,Pointe-Noire,PNR,Pointe-Noire-PNR
+Africa,Central Africa,Equatorial Guinea,Malabo,SSG,Malabo-SSG
+Africa,Central Africa,Gabon,Franceville,MVB,Franceville-MVB
+Africa,Central Africa,Gabon,Libreville,LBV,Libreville-LBV
+Africa,Central Africa,Gabon,Port-Gentil,POG,Port-Gentil-POG
+Africa,Central Africa,São Tomé and Príncipe,São Tomé,TMS,São Tomé-TMS
+Africa,Southern Africa,Botswana,Gaborone,GBE,Gaborone-GBE
+Africa,Southern Africa,Botswana,Maun,MUB,Maun-MUB
+Africa,Southern Africa,Botswana,Francistown,FRW,Francistown-FRW
+Africa,Southern Africa,Botswana,Kasane,BBK,Kasane-BBK
+Africa,Southern Africa,Eswatini,Manzini,SHO,Manzini-SHO
+Africa,Southern Africa,Lesotho,Maseru,MSU,Maseru-MSU
+Africa,Southern Africa,Namibia,Windhoek,WDH,Windhoek-WDH
+Africa,Southern Africa,Namibia,Walvis Bay,WVB,Walvis Bay-WVB
+Africa,Southern Africa,South Africa,Cape Town,CPT,Cape Town-CPT
+Africa,Southern Africa,South Africa,Durban,DUR,Durban-DUR
+Africa,Southern Africa,South Africa,Johannesburg,JNB,Johannesburg-JNB
+Africa,Southern Africa,South Africa,Johannesburg,HLA,Johannesburg-HLA
+Africa,Southern Africa,South Africa,Nelspruit,MQP,Nelspruit-MQP
+Africa,Southern Africa,South Africa,Bloemfontein,BFN,Bloemfontein-BFN
+Africa,Southern Africa,South Africa,East London,ELS,East London-ELS
+Africa,Eastern Africa,Burundi,Bujumbura,BJM,Bujumbura-BJM
+Africa,Eastern Africa,Comoros,Moroni,HAH,Moroni-HAH
+Africa,Eastern Africa,Djibouti,Djibouti City,JIB,Djibouti City-JIB
+Africa,Eastern Africa,Eritrea,Asmara,ASM,Asmara-ASM
+Africa,Eastern Africa,Ethiopia,Addis Ababa,ADD,Addis Ababa-ADD
+Africa,Eastern Africa,Ethiopia,Dire Dawa,DIR,Dire Dawa-DIR
+Africa,Eastern Africa,Kenya,Eldoret,EDL,Eldoret-EDL
+Africa,Eastern Africa,Kenya,Mombasa,MBA,Mombasa-MBA
+Africa,Eastern Africa,Kenya,Kisumu,KIS,Kisumu-KIS
+Africa,Eastern Africa,Kenya,Nairobi,NBO,Nairobi-NBO
+Africa,Eastern Africa,Madagascar,Antananarivo,TNR,Antananarivo-TNR
+Africa,Eastern Africa,Madagascar,Antsiranana,DIE,Antsiranana-DIE
+Africa,Eastern Africa,Madagascar,Mahajanga,MJN,Mahajanga-MJN
+Africa,Eastern Africa,Madagascar,Nosy Be,NOS,Nosy Be-NOS
+Africa,Eastern Africa,Madagascar,Toamasina,TMM,Toamasina-TMM
+Africa,Eastern Africa,Madagascar,Tôlanaro,FTU,Tôlanaro-FTU
+Africa,Eastern Africa,Madagascar,Toliara,TLE,Toliara-TLE
+Africa,Eastern Africa,Malawi,Blantyre,BLZ,Blantyre-BLZ
+Africa,Eastern Africa,Malawi,Lilongwe,LLW,Lilongwe-LLW
+Africa,Eastern Africa,Mauritius,Plaine Magnien,MRU,Plaine Magnien-MRU
+Africa,Eastern Africa,Mayotte,Dzaoudzi,DZA,Dzaoudzi-DZA
+Africa,Eastern Africa,Mozambique,Maputo,MPM,Maputo-MPM
+Africa,Eastern Africa,Mozambique,Beira,BEW,Beira-BEW
+Africa,Eastern Africa,Mozambique,Inhambane,INH,Inhambane-INH
+Africa,Eastern Africa,Mozambique,Nampula,APL,Nampula-APL
+Africa,Eastern Africa,Mozambique,Pemba,POL,Pemba-POL
+Africa,Eastern Africa,Mozambique,Tete,TET,Tete-TET
+Africa,Eastern Africa,Mozambique,Vilankulo,VNX,Vilankulo-VNX
+Africa,Eastern Africa,Réunion,Saint-Denis,RUN,Saint-Denis-RUN
+Africa,Eastern Africa,Rwanda,Kigali,KGL,Kigali-KGL
+Africa,Eastern Africa,Seychelles,Victoria,SEZ,Victoria-SEZ
+Africa,Eastern Africa,Somalia,Bosaso,BSA,Bosaso-BSA
+Africa,Eastern Africa,Somalia,Galkayo,GBY,Galkayo-GBY
+Africa,Eastern Africa,Somalia,Garoowe,GGR,Garoowe-GGR
+Africa,Eastern Africa,Somalia,Hargeisa,HGA,Hargeisa-HGA
+Africa,Eastern Africa,Somalia,Kismayo,KMU,Kismayo-KMU
+Africa,Eastern Africa,Somalia,Mogadishu,MGQ,Mogadishu-MGQ
+Africa,Eastern Africa,South Sudan,Juba,JUB,Juba-JUB
+Africa,Eastern Africa,Tanzania,Arusha,ARK,Arusha-ARK
+Africa,Eastern Africa,Tanzania,Dar es Salaam,DAR,Dar es Salaam-DAR
+Africa,Eastern Africa,Tanzania,Hai District,JRO,Hai District-JRO
+Africa,Eastern Africa,Tanzania,Mwanza,MWZ,Mwanza-MWZ
+Africa,Eastern Africa,Tanzania,"Unguja, Zanzibar",ZNZ,"Unguja, Zanzibar-ZNZ"
+Africa,Eastern Africa,Uganda,Arua,RUA,Arua-RUA
+Africa,Eastern Africa,Uganda,Entebbe,EBB,Entebbe-EBB
+Africa,Eastern Africa,Uganda,Gulu,ULU,Gulu-ULU
+Africa,Eastern Africa,Zambia,Livingstone,LVI,Livingstone-LVI
+Africa,Eastern Africa,Zambia,Lusaka,LUN,Lusaka-LUN
+Africa,Eastern Africa,Zambia,Ndola,NLA,Ndola-NLA
+Africa,Eastern Africa,Zimbabwe,Harare,HRE,Harare-HRE
+Africa,Eastern Africa,Zimbabwe,Victoria Falls,VFA,Victoria Falls-VFA
+Africa,Eastern Africa,Zimbabwe,Bulawayo,BUQ,Bulawayo-BUQ
+Americas,Caribbean,Anguilla,The Valley,AXA,The Valley-AXA
+Americas,Caribbean,Antigua and Barbuda,Antigua,ANU,Antigua-ANU
+Americas,Caribbean,Aruba,Oranjestad,AUA,Oranjestad-AUA
+Americas,Caribbean,Bahamas,Nassau,NAS,Nassau-NAS
+Americas,Caribbean,Bahamas,Chub Cay,CCZ,Chub Cay-CCZ
+Americas,Caribbean,Bahamas,Exuma,GGT,Exuma-GGT
+Americas,Caribbean,Bahamas,Freeport,FPO,Freeport-FPO
+Americas,Caribbean,Bahamas,South Eleuthera,RSD,South Eleuthera-RSD
+Americas,Caribbean,Bahamas,Marsh Harbour,MHH,Marsh Harbour-MHH
+Americas,Caribbean,Barbados,Bridgetown,BGI,Bridgetown-BGI
+Americas,Caribbean,British Virgin Islands,Road Town,EIS,Road Town-EIS
+Americas,Caribbean,Caribbean Netherlands,"Kralendijk, Bonaire",BON,"Kralendijk, Bonaire-BON"
+Americas,Caribbean,Caribbean Netherlands,"Oranjestad, Sint Eustatius",EUX,"Oranjestad, Sint Eustatius-EUX"
+Americas,Caribbean,Caribbean Netherlands,Saba,SAB,Saba-SAB
+Americas,Caribbean,Cayman Islands,Cayman Brac,CYB,Cayman Brac-CYB
+Americas,Caribbean,Cayman Islands,Georgetown,GCM,Georgetown-GCM
+Americas,Caribbean,Cuba,Camagüey,CMW,Camagüey-CMW
+Americas,Caribbean,Cuba,Cayo Coco,CCC,Cayo Coco-CCC
+Americas,Caribbean,Cuba,Cayo Largo del Sur,CYO,Cayo Largo del Sur-CYO
+Americas,Caribbean,Cuba,Cienfuegos,CFG,Cienfuegos-CFG
+Americas,Caribbean,Cuba,Havana,HAV,Havana-HAV
+Americas,Caribbean,Cuba,Holguín,HOG,Holguín-HOG
+Americas,Caribbean,Cuba,Santa Clara,SNU,Santa Clara-SNU
+Americas,Caribbean,Cuba,Santiago de Cuba,SCU,Santiago de Cuba-SCU
+Americas,Caribbean,Cuba,Varadero,VRA,Varadero-VRA
+Americas,Caribbean,Curaçao,Willemstad,CUR,Willemstad-CUR
+Americas,Caribbean,Dominica,Roseau,DOM,Roseau-DOM
+Americas,Caribbean,Dominican Republic,Barahona,BRX,Barahona-BRX
+Americas,Caribbean,Dominican Republic,La Romana,LRM,La Romana-LRM
+Americas,Caribbean,Dominican Republic,Punta Cana,PUJ,Punta Cana-PUJ
+Americas,Caribbean,Dominican Republic,Samana,AZS,Samana-AZS
+Americas,Caribbean,Dominican Republic,San Felipe de Puerto Plata,POP,San Felipe de Puerto Plata-POP
+Americas,Caribbean,Dominican Republic,Santiago de los Caballeros,STI,Santiago de los Caballeros-STI
+Americas,Caribbean,Dominican Republic,Santo Domingo,SDQ,Santo Domingo-SDQ
+Americas,Caribbean,Grenada,Grenada,GND,Grenada-GND
+Americas,Caribbean,Guadeloupe,Pointe-à-Pitre,PTP,Pointe-à-Pitre-PTP
+Americas,Caribbean,Haiti,Cap-Haïtien,CAP,Cap-Haïtien-CAP
+Americas,Caribbean,Haiti,Port-au-Prince,PAP,Port-au-Prince-PAP
+Americas,Caribbean,Jamaica,Kingston,KIN,Kingston-KIN
+Americas,Caribbean,Jamaica,Montego Bay,MBJ,Montego Bay-MBJ
+Americas,Caribbean,Martinique,Fort-de-France,FDF,Fort-de-France-FDF
+Americas,Caribbean,Montserrat,Brades,MNI,Brades-MNI
+Americas,Caribbean,Puerto Rico,Aguadilla,BQN,Aguadilla-BQN
+Americas,Caribbean,Puerto Rico,San Juan,SJU,San Juan-SJU
+Americas,Caribbean,Saint Barthélemy,Saint Jean,SBH,Saint Jean-SBH
+Americas,Caribbean,Saint Kitts and Nevis,Saint Kitts,SKB,Saint Kitts-SKB
+Americas,Caribbean,Saint Lucia,Vieux Fort Quarter,UVF,Vieux Fort Quarter-UVF
+Americas,Caribbean,Saint Vincent and the Grenadines,Kingstown,SVD,Kingstown-SVD
+Americas,Caribbean,Saint Vincent and the Grenadines,Canouan,CIW,Canouan-CIW
+Americas,Caribbean,Sint Maarten,Philipsburg,SXM,Philipsburg-SXM
+Americas,Caribbean,Trinidad and Tobago,Port of Spain,POS,Port of Spain-POS
+Americas,Caribbean,Trinidad and Tobago,Tobago,TAB,Tobago-TAB
+Americas,Caribbean,Turks and Caicos Islands,Providenciales,PLS,Providenciales-PLS
+Americas,Caribbean,U.S. Virgin Islands,Saint Thomas,STT,Saint Thomas-STT
+Americas,Caribbean,U.S. Virgin Islands,Saint Croix,STX,Saint Croix-STX
+Americas,Central America,Belize,Belize City,BZE,Belize City-BZE
+Americas,Central America,Costa Rica,Liberia,LIR,Liberia-LIR
+Americas,Central America,Costa Rica,San José,SJO,San José-SJO
+Americas,Central America,El Salvador,San Salvador,SAL,San Salvador-SAL
+Americas,Central America,Guatemala,Flores,FRS,Flores-FRS
+Americas,Central America,Guatemala,Guatemala City,GUA,Guatemala City-GUA
+Americas,Central America,Honduras,La Ceiba,LCE,La Ceiba-LCE
+Americas,Central America,Honduras,Roatán,RTB,Roatán-RTB
+Americas,Central America,Honduras,San Pedro Sula,SAP,San Pedro Sula-SAP
+Americas,Central America,Honduras,Tegucigalpa,TGU,Tegucigalpa-TGU
+Americas,Central America,Honduras,Comayagua,XPL,Comayagua-XPL
+Americas,Central America,Nicaragua,Managua,MGA,Managua-MGA
+Americas,Central America,Nicaragua,Bluefields,BEF,Bluefields-BEF
+Americas,Central America,Nicaragua,Corn Island,RNI,Corn Island-RNI
+Americas,Central America,Panama,Bocas del Toro,BOC,Bocas del Toro-BOC
+Americas,Central America,Panama,"David, Chiriquí",DAV,"David, Chiriquí-DAV"
+Americas,Central America,Panama,Panama City,PAC,Panama City-PAC
+Americas,Central America,Panama,Panama City,BLB,Panama City-BLB
+Americas,Central America,Panama,Panama City,PTY,Panama City-PTY
+Americas,Central America,Panama,Rio Hato,RIH,Rio Hato-RIH
+Americas,North America,Bermuda,St. George's,BDA,St. George's-BDA
+Americas,North America,Canada,Abbotsford,YXX,Abbotsford-YXX
+Americas,North America,Canada,Calgary,YYC,Calgary-YYC
+Americas,North America,Canada,Edmonton,YEG,Edmonton-YEG
+Americas,North America,Canada,Fredericton,YFC,Fredericton-YFC
+Americas,North America,Canada,Gander,YQX,Gander-YQX
+Americas,North America,Canada,Halifax (Goffs),YHZ,Halifax (Goffs)-YHZ
+Americas,North America,Canada,Hamilton,YHM,Hamilton-YHM
+Americas,North America,Canada,Kelowna,YLW,Kelowna-YLW
+Americas,North America,Canada,Kitchener–Waterloo,YKF,Kitchener–Waterloo-YKF
+Americas,North America,Canada,London,YXU,London-YXU
+Americas,North America,Canada,Moncton (Dieppe),YQM,Moncton (Dieppe)-YQM
+Americas,North America,Canada,Montreal (Dorval),YUL,Montreal (Dorval)-YUL
+Americas,North America,Canada,Ottawa,YOW,Ottawa-YOW
+Americas,North America,Canada,Quebec City,YQB,Quebec City-YQB
+Americas,North America,Canada,Regina,YQR,Regina-YQR
+Americas,North America,Canada,Saskatoon,YXE,Saskatoon-YXE
+Americas,North America,Canada,St. John's,YYT,St. John's-YYT
+Americas,North America,Canada,Toronto (Mississauga),YYZ,Toronto (Mississauga)-YYZ
+Americas,North America,Canada,Vancouver (Richmond),YVR,Vancouver (Richmond)-YVR
+Americas,North America,Canada,Victoria,YYJ,Victoria-YYJ
+Americas,North America,Canada,Whitehorse,YXY,Whitehorse-YXY
+Americas,North America,Canada,Windsor,YQC,Windsor-YQC
+Americas,North America,Canada,Winnipeg,YWG,Winnipeg-YWG
+Americas,North America,Greenland,Kangerlussuaq,SFJ,Kangerlussuaq-SFJ
+Americas,North America,Greenland,Nuuk,GOH,Nuuk-GOH
+Americas,North America,Greenland,Ilulissat,JAV,Ilulissat-JAV
+Americas,North America,Greenland,Narsarsuaq,UAK,Narsarsuaq-UAK
+Americas,North America,Mexico,Acapulco,ACA,Acapulco-ACA
+Americas,North America,Mexico,Aguascalientes,AGU,Aguascalientes-AGU
+Americas,North America,Mexico,Cancún,CUN,Cancún-CUN
+Americas,North America,Mexico,Chihuahua City,CUU,Chihuahua City-CUU
+Americas,North America,Mexico,Ciudad del Carmen,CME,Ciudad del Carmen-CME
+Americas,North America,Mexico,Cozumel,CZM,Cozumel-CZM
+Americas,North America,Mexico,Culiacán,CUL,Culiacán-CUL
+Americas,North America,Mexico,Durango,DGO,Durango-DGO
+Americas,North America,Mexico,Guadalajara,GDL,Guadalajara-GDL
+Americas,North America,Mexico,Hermosillo,HMO,Hermosillo-HMO
+Americas,North America,Mexico,Huatulco,HUX,Huatulco-HUX
+Americas,North America,Mexico,Ixtapa,ZIH,Ixtapa-ZIH
+Americas,North America,Mexico,León,BJX,León-BJX
+Americas,North America,Mexico,Loreto,LTO,Loreto-LTO
+Americas,North America,Mexico,Los Cabos,SJD,Los Cabos-SJD
+Americas,North America,Mexico,Manzanillo,ZLO,Manzanillo-ZLO
+Americas,North America,Mexico,Mazatlán,MZT,Mazatlán-MZT
+Americas,North America,Mexico,Mérida,MID,Mérida-MID
+Americas,North America,Mexico,Mexico City,MEX,Mexico City-MEX
+Americas,North America,Mexico,Mexico City,NLU,Mexico City-NLU
+Americas,North America,Mexico,Monterrey,MTY,Monterrey-MTY
+Americas,North America,Mexico,Morelia,MLM,Morelia-MLM
+Americas,North America,Mexico,Oaxaca City,OAX,Oaxaca City-OAX
+Americas,North America,Mexico,Puebla,PBC,Puebla-PBC
+Americas,North America,Mexico,Puerto Escondido,PXM,Puerto Escondido-PXM
+Americas,North America,Mexico,Puerto Vallarta,PVR,Puerto Vallarta-PVR
+Americas,North America,Mexico,Querétaro City,QRO,Querétaro City-QRO
+Americas,North America,Mexico,Reynosa,REX,Reynosa-REX
+Americas,North America,Mexico,Saltillo,SLW,Saltillo-SLW
+Americas,North America,Mexico,San Luis Potosí City,SLP,San Luis Potosí City-SLP
+Americas,North America,Mexico,Tampico,TAM,Tampico-TAM
+Americas,North America,Mexico,Tijuana,TIJ,Tijuana-TIJ
+Americas,North America,Mexico,Toluca,TLC,Toluca-TLC
+Americas,North America,Mexico,Torreón,TRC,Torreón-TRC
+Americas,North America,Mexico,Tuxtla Gutiérrez,TGZ,Tuxtla Gutiérrez-TGZ
+Americas,North America,Mexico,Uruapan,UPN,Uruapan-UPN
+Americas,North America,Mexico,Veracruz,VER,Veracruz-VER
+Americas,North America,Mexico,Villahermosa,VSA,Villahermosa-VSA
+Americas,North America,Mexico,Zacatecas City,ZCL,Zacatecas City-ZCL
+Americas,North America,Saint Pierre and Miquelon,Saint-Pierre,FSP,Saint-Pierre-FSP
+Americas,North America,United States,Akron,AKC,Akron-AKC
+Americas,North America,United States,Albany,ALB,Albany-ALB
+Americas,North America,United States,Albuquerque,ABQ,Albuquerque-ABQ
+Americas,North America,United States,Anchorage,ANC,Anchorage-ANC
+Americas,North America,United States,Appleton,ATW,Appleton-ATW
+Americas,North America,United States,Atlanta,ATL,Atlanta-ATL
+Americas,North America,United States,Atlantic City,ACY,Atlantic City-ACY
+Americas,North America,United States,Austin (TX),AUS,Austin (TX)-AUS
+Americas,North America,United States,Baltimore,BWI,Baltimore-BWI
+Americas,North America,United States,Bangor,BGR,Bangor-BGR
+Americas,North America,United States,Bellingham,BLI,Bellingham-BLI
+Americas,North America,United States,Birmingham,BHM,Birmingham-BHM
+Americas,North America,United States,Boise,BOI,Boise-BOI
+Americas,North America,United States,Boston,BOS,Boston-BOS
+Americas,North America,United States,Buffalo,BUF,Buffalo-BUF
+Americas,North America,United States,Charlotte,CLT,Charlotte-CLT
+Americas,North America,United States,Charleston (SC),CHS,Charleston (SC)-CHS
+Americas,North America,United States,Chicago,MDW,Chicago-MDW
+Americas,North America,United States,Chicago,ORD,Chicago-ORD
+Americas,North America,United States,Cincinnati,CVG,Cincinnati-CVG
+Americas,North America,United States,Cleveland,CLE,Cleveland-CLE
+Americas,North America,United States,Columbus (OH),CMH,Columbus (OH)-CMH
+Americas,North America,United States,Columbus (OH),LCK,Columbus (OH)-LCK
+Americas,North America,United States,Dallas,DFW,Dallas-DFW
+Americas,North America,United States,Dayton (OH),DAY,Dayton (OH)-DAY
+Americas,North America,United States,Denver,DEN,Denver-DEN
+Americas,North America,United States,Des Moines (IA),DSM,Des Moines (IA)-DSM
+Americas,North America,United States,Detroit,DTW,Detroit-DTW
+Americas,North America,United States,El Paso,ELP,El Paso-ELP
+Americas,North America,United States,Fairbanks,FAI,Fairbanks-FAI
+Americas,North America,United States,Fort Lauderdale,FLL,Fort Lauderdale-FLL
+Americas,North America,United States,Fort Myers,RSW,Fort Myers-RSW
+Americas,North America,United States,Fresno,FAT,Fresno-FAT
+Americas,North America,United States,Grand Rapids,GRR,Grand Rapids-GRR
+Americas,North America,United States,Green Bay,GRB,Green Bay-GRB
+Americas,North America,United States,Greensboro,GSO,Greensboro-GSO
+Americas,North America,United States,Harrisburg,MDT,Harrisburg-MDT
+Americas,North America,United States,Hartford (CT),BDL,Hartford (CT)-BDL
+Americas,North America,United States,Hilo,ITO,Hilo-ITO
+Americas,North America,United States,Honolulu,HNL,Honolulu-HNL
+Americas,North America,United States,Houston,IAH,Houston-IAH
+Americas,North America,United States,Houston,HOU,Houston-HOU
+Americas,North America,United States,Huntsville (AL),HSV,Huntsville (AL)-HSV
+Americas,North America,United States,Indianapolis,IND,Indianapolis-IND
+Americas,North America,United States,Jackson (MS),JAN,Jackson (MS)-JAN
+Americas,North America,United States,Jacksonville,JAX,Jacksonville-JAX
+Americas,North America,United States,Juneau,JNU,Juneau-JNU
+Americas,North America,United States,Kansas City (MO),MCI,Kansas City (MO)-MCI
+Americas,North America,United States,Ketchikan,KTN,Ketchikan-KTN
+Americas,North America,United States,Key West,EYW,Key West-EYW
+Americas,North America,United States,Kailua-Kona,KOA,Kailua-Kona-KOA
+Americas,North America,United States,Knoxville,TYS,Knoxville-TYS
+Americas,North America,United States,Lakeland,LAL,Lakeland-LAL
+Americas,North America,United States,Lansing,LAN,Lansing-LAN
+Americas,North America,United States,Las Vegas,LAS,Las Vegas-LAS
+Americas,North America,United States,Little Rock,LIT,Little Rock-LIT
+Americas,North America,United States,Los Angeles,LAX,Los Angeles-LAX
+Americas,North America,United States,Louisville,SDF,Louisville-SDF
+Americas,North America,United States,Melbourne (FL),MLB,Melbourne (FL)-MLB
+Americas,North America,United States,Memphis,MEM,Memphis-MEM
+Americas,North America,United States,Miami,MIA,Miami-MIA
+Americas,North America,United States,Midland,MAF,Midland-MAF
+Americas,North America,United States,Milwaukee,MKE,Milwaukee-MKE
+Americas,North America,United States,Minneapolis/St. Paul,MSP,Minneapolis/St. Paul-MSP
+Americas,North America,United States,Myrtle Beach,MYR,Myrtle Beach-MYR
+Americas,North America,United States,Nashville,BNA,Nashville-BNA
+Americas,North America,United States,New Orleans,MSY,New Orleans-MSY
+Americas,North America,United States,New York City,JFK,New York City-JFK
+Americas,North America,United States,New York City,LGA,New York City-LGA
+Americas,North America,United States,Newark,EWR,Newark-EWR
+Americas,North America,United States,Newburgh,SWF,Newburgh-SWF
+Americas,North America,United States,Norfolk (VA),ORF,Norfolk (VA)-ORF
+Americas,North America,United States,Oakland,OAK,Oakland-OAK
+Americas,North America,United States,Oklahoma City,OKC,Oklahoma City-OKC
+Americas,North America,United States,Omaha,OMA,Omaha-OMA
+Americas,North America,United States,Ontario,ONT,Ontario-ONT
+Americas,North America,United States,Orange County,SNA,Orange County-SNA
+Americas,North America,United States,Orlando,MCO,Orlando-MCO
+Americas,North America,United States,Orlando/Sanford,SFB,Orlando/Sanford-SFB
+Americas,North America,United States,Palm Springs,PSP,Palm Springs-PSP
+Americas,North America,United States,Panama City (FL),ECP,Panama City (FL)-ECP
+Americas,North America,United States,Pensacola,PNS,Pensacola-PNS
+Americas,North America,United States,Philadelphia,PHL,Philadelphia-PHL
+Americas,North America,United States,Phoenix,PHX,Phoenix-PHX
+Americas,North America,United States,Phoenix/Mesa,AZA,Phoenix/Mesa-AZA
+Americas,North America,United States,Pittsburgh,PIT,Pittsburgh-PIT
+Americas,North America,United States,Portland (ME),PWM,Portland (ME)-PWM
+Americas,North America,United States,Portland (OR),PDX,Portland (OR)-PDX
+Americas,North America,United States,Providence,PVD,Providence-PVD
+Americas,North America,United States,Racine,RAC,Racine-RAC
+Americas,North America,United States,Raleigh/Durham,RDU,Raleigh/Durham-RDU
+Americas,North America,United States,Reno,RNO,Reno-RNO
+Americas,North America,United States,Richmond (VA) (Sandston),RIC,Richmond (VA) (Sandston)-RIC
+Americas,North America,United States,Rochester (MN),RST,Rochester (MN)-RST
+Americas,North America,United States,Rochester (NY),ROC,Rochester (NY)-ROC
+Americas,North America,United States,Rockford (IL),RFD,Rockford (IL)-RFD
+Americas,North America,United States,Sacramento,SMF,Sacramento-SMF
+Americas,North America,United States,Salt Lake City,SLC,Salt Lake City-SLC
+Americas,North America,United States,San Antonio,SAT,San Antonio-SAT
+Americas,North America,United States,San Bernardino,SBD,San Bernardino-SBD
+Americas,North America,United States,San Diego,SAN,San Diego-SAN
+Americas,North America,United States,San Francisco,SFO,San Francisco-SFO
+Americas,North America,United States,San Jose (CA),SJC,San Jose (CA)-SJC
+Americas,North America,United States,Sarasota/Bradenton,SRQ,Sarasota/Bradenton-SRQ
+Americas,North America,United States,Savannah (GA)/Hilton Head (SC),SAV,Savannah (GA)/Hilton Head (SC)-SAV
+Americas,North America,United States,Seattle,LKE,Seattle-LKE
+Americas,North America,United States,Seattle,BFI,Seattle-BFI
+Americas,North America,United States,Seattle,SEA,Seattle-SEA
+Americas,North America,United States,Sheboygan,SBM,Sheboygan-SBM
+Americas,North America,United States,Snohomish County (WA),PAE,Snohomish County (WA)-PAE
+Americas,North America,United States,Spokane,GEG,Spokane-GEG
+Americas,North America,United States,St. Louis,STL,St. Louis-STL
+Americas,North America,United States,St. Petersburg (FL),PIE,St. Petersburg (FL)-PIE
+Americas,North America,United States,Syracuse,SYR,Syracuse-SYR
+Americas,North America,United States,Tallahassee,TLH,Tallahassee-TLH
+Americas,North America,United States,Tampa,TPA,Tampa-TPA
+Americas,North America,United States,Tucson,TUS,Tucson-TUS
+Americas,North America,United States,Tulsa,TUL,Tulsa-TUL
+Americas,North America,United States,"Washington, D.C.",DCA,"Washington, D.C.-DCA"
+Americas,North America,United States,"Washington, D.C.",IAD,"Washington, D.C.-IAD"
+Americas,North America,United States,West Palm Beach,PBI,West Palm Beach-PBI
+Americas,North America,United States,Wilkes-Barre/Scranton,AVP,Wilkes-Barre/Scranton-AVP
+Americas,North America,United States,Wilmington (NC),ILM,Wilmington (NC)-ILM
+Americas,South America,Argentina,Buenos Aires,EZE,Buenos Aires-EZE
+Americas,South America,Argentina,Buenos Aires,AEP,Buenos Aires-AEP
+Americas,South America,Argentina,Bariloche,BRC,Bariloche-BRC
+Americas,South America,Argentina,Córdoba,COR,Córdoba-COR
+Americas,South America,Argentina,Mendoza,MDZ,Mendoza-MDZ
+Americas,South America,Argentina,Puerto Iguazú,IGR,Puerto Iguazú-IGR
+Americas,South America,Argentina,Resistencia,RES,Resistencia-RES
+Americas,South America,Argentina,Río Gallegos,RGL,Río Gallegos-RGL
+Americas,South America,Argentina,Ushuaia,USH,Ushuaia-USH
+Americas,South America,Bolivia,La Paz,LPB,La Paz-LPB
+Americas,South America,Bolivia,Santa Cruz de la Sierra,VVI,Santa Cruz de la Sierra-VVI
+Americas,South America,Bolivia,Cochabamba,CBB,Cochabamba-CBB
+Americas,South America,Brazil,Aracaju,AJU,Aracaju-AJU
+Americas,South America,Brazil,Belém,BEL,Belém-BEL
+Americas,South America,Brazil,Belo Horizonte,CNF,Belo Horizonte-CNF
+Americas,South America,Brazil,Boa Vista,BVB,Boa Vista-BVB
+Americas,South America,Brazil,Brasília,BSB,Brasília-BSB
+Americas,South America,Brazil,Campinas,VCP,Campinas-VCP
+Americas,South America,Brazil,Campo Grande,CGR,Campo Grande-CGR
+Americas,South America,Brazil,Cuiabá,CGB,Cuiabá-CGB
+Americas,South America,Brazil,Curitiba,CWB,Curitiba-CWB
+Americas,South America,Brazil,Florianópolis,FLN,Florianópolis-FLN
+Americas,South America,Brazil,Fortaleza,FOR,Fortaleza-FOR
+Americas,South America,Brazil,Foz do Iguaçu,IGU,Foz do Iguaçu-IGU
+Americas,South America,Brazil,Goiânia,GYN,Goiânia-GYN
+Americas,South America,Brazil,João Pessoa,JPA,João Pessoa-JPA
+Americas,South America,Brazil,Maceió,MCZ,Maceió-MCZ
+Americas,South America,Brazil,Manaus,MAO,Manaus-MAO
+Americas,South America,Brazil,Natal,NAT,Natal-NAT
+Americas,South America,Brazil,Petrolina,PNZ,Petrolina-PNZ
+Americas,South America,Brazil,Porto Alegre,POA,Porto Alegre-POA
+Americas,South America,Brazil,Porto Velho,PVH,Porto Velho-PVH
+Americas,South America,Brazil,Recife,REC,Recife-REC
+Americas,South America,Brazil,Rio Branco,RBR,Rio Branco-RBR
+Americas,South America,Brazil,Rio de Janeiro,GIG,Rio de Janeiro-GIG
+Americas,South America,Brazil,Rio de Janeiro,SDU,Rio de Janeiro-SDU
+Americas,South America,Brazil,Salvador,SSA,Salvador-SSA
+Americas,South America,Brazil,São Luís,SLZ,São Luís-SLZ
+Americas,South America,Brazil,São Paulo,CGH,São Paulo-CGH
+Americas,South America,Brazil,São Paulo,GRU,São Paulo-GRU
+Americas,South America,Brazil,Teresina,THE,Teresina-THE
+Americas,South America,Brazil,Uberlândia,UDI,Uberlândia-UDI
+Americas,South America,Brazil,Vitória,VIX,Vitória-VIX
+Americas,South America,Chile,Antofagasta,ANF,Antofagasta-ANF
+Americas,South America,Chile,Concepción,CCP,Concepción-CCP
+Americas,South America,Chile,Puerto Montt,PMC,Puerto Montt-PMC
+Americas,South America,Chile,Punta Arenas,PUQ,Punta Arenas-PUQ
+Americas,South America,Chile,Santiago,SCL,Santiago-SCL
+Americas,South America,Colombia,Armenia,AXM,Armenia-AXM
+Americas,South America,Colombia,Barranquilla,BAQ,Barranquilla-BAQ
+Americas,South America,Colombia,Bogotá,BOG,Bogotá-BOG
+Americas,South America,Colombia,Bucaramanga,BGA,Bucaramanga-BGA
+Americas,South America,Colombia,Buenaventura,BUN,Buenaventura-BUN
+Americas,South America,Colombia,Cali,CLO,Cali-CLO
+Americas,South America,Colombia,Cartagena,CTG,Cartagena-CTG
+Americas,South America,Colombia,Cúcuta,CUC,Cúcuta-CUC
+Americas,South America,Colombia,Ibagué,IBE,Ibagué-IBE
+Americas,South America,Colombia,Ipiales,IPI,Ipiales-IPI
+Americas,South America,Colombia,Florencia,FLA,Florencia-FLA
+Americas,South America,Colombia,Leticia,LET,Leticia-LET
+Americas,South America,Colombia,Maicao,MCJ,Maicao-MCJ
+Americas,South America,Colombia,Manizales,MZL,Manizales-MZL
+Americas,South America,Colombia,Medellín,MDE,Medellín-MDE
+Americas,South America,Colombia,Mitú,MVP,Mitú-MVP
+Americas,South America,Colombia,Montería,MTR,Montería-MTR
+Americas,South America,Colombia,Neiva,NVA,Neiva-NVA
+Americas,South America,Colombia,Pasto,PSO,Pasto-PSO
+Americas,South America,Colombia,Pereira,PEI,Pereira-PEI
+Americas,South America,Colombia,Popayán,PPN,Popayán-PPN
+Americas,South America,Colombia,Providence Island,PVA,Providence Island-PVA
+Americas,South America,Colombia,Quibdó,UIB,Quibdó-UIB
+Americas,South America,Colombia,Riohacha,RCH,Riohacha-RCH
+Americas,South America,Colombia,San Andrés,ADZ,San Andrés-ADZ
+Americas,South America,Colombia,Tolú,TLU,Tolú-TLU
+Americas,South America,Colombia,Tumaco,TCO,Tumaco-TCO
+Americas,South America,Colombia,Santa Marta,SMR,Santa Marta-SMR
+Americas,South America,Colombia,Sincelejo,CZU,Sincelejo-CZU
+Americas,South America,Colombia,Valledupar,VUP,Valledupar-VUP
+Americas,South America,Colombia,Villavicencio,VVC,Villavicencio-VVC
+Americas,South America,Colombia,Yopal,EYP,Yopal-EYP
+Americas,South America,Ecuador,Cuenca,CUE,Cuenca-CUE
+Americas,South America,Ecuador,Esmeraldas,ESM,Esmeraldas-ESM
+Americas,South America,Ecuador,Guayaquil,GYE,Guayaquil-GYE
+Americas,South America,Ecuador,Machala,ETR,Machala-ETR
+Americas,South America,Ecuador,Manta,MEC,Manta-MEC
+Americas,South America,Ecuador,Quito,UIO,Quito-UIO
+Americas,South America,Ecuador,Tulcán,TUA,Tulcán-TUA
+Americas,South America,Falkland Islands,Mount Pleasant,MPN,Mount Pleasant-MPN
+Americas,South America,French Guiana,Cayenne,CAY,Cayenne-CAY
+Americas,South America,Guyana,Georgetown,GEO,Georgetown-GEO
+Americas,South America,Paraguay,Asunción,ASU,Asunción-ASU
+Americas,South America,Paraguay,Ciudad del Este,AGT,Ciudad del Este-AGT
+Americas,South America,Peru,Arequipa,AQP,Arequipa-AQP
+Americas,South America,Peru,Cusco,CUZ,Cusco-CUZ
+Americas,South America,Peru,Lima,LIM,Lima-LIM
+Americas,South America,Suriname,Paramaribo,PBM,Paramaribo-PBM
+Americas,South America,Uruguay,Montevideo,MVD,Montevideo-MVD
+Americas,South America,Uruguay,Punta del Este,PDP,Punta del Este-PDP
+Americas,South America,Uruguay,Rivera,RVY,Rivera-RVY
+Americas,South America,Venezuela,Caracas,CCS,Caracas-CCS
+Americas,South America,Venezuela,Maracaibo,MAR,Maracaibo-MAR
+Americas,South America,Venezuela,Valencia,VLN,Valencia-VLN
+Asia,Central Asia,Kazakhstan,Aktau,SCO,Aktau-SCO
+Asia,Central Asia,Kazakhstan,Aktobe,AKX,Aktobe-AKX
+Asia,Central Asia,Kazakhstan,Almaty,ALA,Almaty-ALA
+Asia,Central Asia,Kazakhstan,Atyrau,GUW,Atyrau-GUW
+Asia,Central Asia,Kazakhstan,Karaganda,KGF,Karaganda-KGF
+Asia,Central Asia,Kazakhstan,Kokshetau,KOV,Kokshetau-KOV
+Asia,Central Asia,Kazakhstan,Kostanay,KSN,Kostanay-KSN
+Asia,Central Asia,Kazakhstan,Kyzylorda,KZO,Kyzylorda-KZO
+Asia,Central Asia,Kazakhstan,Nur-Sultan,NQZ,Nur-Sultan-NQZ
+Asia,Central Asia,Kazakhstan,Oral,URA,Oral-URA
+Asia,Central Asia,Kazakhstan,Oskemen,UKK,Oskemen-UKK
+Asia,Central Asia,Kazakhstan,Pavlodar,PWQ,Pavlodar-PWQ
+Asia,Central Asia,Kazakhstan,Petropavl,PPK,Petropavl-PPK
+Asia,Central Asia,Kazakhstan,Semey,PLX,Semey-PLX
+Asia,Central Asia,Kazakhstan,Shymkent,CIT,Shymkent-CIT
+Asia,Central Asia,Kazakhstan,Taraz,DMB,Taraz-DMB
+Asia,Central Asia,Kyrgyzstan,Bishkek,FRU,Bishkek-FRU
+Asia,Central Asia,Kyrgyzstan,Issyk-Kul,IKU,Issyk-Kul-IKU
+Asia,Central Asia,Kyrgyzstan,Osh,OSS,Osh-OSS
+Asia,Central Asia,Tajikistan,Bokhtar,KQT,Bokhtar-KQT
+Asia,Central Asia,Tajikistan,Dushanbe,DYU,Dushanbe-DYU
+Asia,Central Asia,Tajikistan,Khujand,LBD,Khujand-LBD
+Asia,Central Asia,Tajikistan,Kulob,TJU,Kulob-TJU
+Asia,Central Asia,Turkmenistan,Ashgabat,ASB,Ashgabat-ASB
+Asia,Central Asia,Turkmenistan,Daşoguz,TAZ,Daşoguz-TAZ
+Asia,Central Asia,Turkmenistan,Mary,MYP,Mary-MYP
+Asia,Central Asia,Turkmenistan,Turkmenbashi,KRW,Turkmenbashi-KRW
+Asia,Central Asia,Turkmenistan,Türkmenabat,CRZ,Türkmenabat-CRZ
+Asia,Central Asia,Uzbekistan,Andijan,AZN,Andijan-AZN
+Asia,Central Asia,Uzbekistan,Bukhara,BHK,Bukhara-BHK
+Asia,Central Asia,Uzbekistan,Fergana,FEG,Fergana-FEG
+Asia,Central Asia,Uzbekistan,Qarshi,KSQ,Qarshi-KSQ
+Asia,Central Asia,Uzbekistan,Namangan,NMA,Namangan-NMA
+Asia,Central Asia,Uzbekistan,Navoi,NVI,Navoi-NVI
+Asia,Central Asia,Uzbekistan,Nukus,NCU,Nukus-NCU
+Asia,Central Asia,Uzbekistan,Samarkand,SKD,Samarkand-SKD
+Asia,Central Asia,Uzbekistan,Tashkent,TAS,Tashkent-TAS
+Asia,Central Asia,Uzbekistan,Termez,TMJ,Termez-TMJ
+Asia,Central Asia,Uzbekistan,Urgench,UGC,Urgench-UGC
+Asia,East Asia,North Korea,Pyongyang,FNJ,Pyongyang-FNJ
+Asia,East Asia,Japan,Akita,AXT,Akita-AXT
+Asia,East Asia,Japan,Aomori,AOJ,Aomori-AOJ
+Asia,East Asia,Japan,Fukuoka,FUK,Fukuoka-FUK
+Asia,East Asia,Japan,Hakodate,HKD,Hakodate-HKD
+Asia,East Asia,Japan,Kagoshima,KOJ,Kagoshima-KOJ
+Asia,East Asia,Japan,Komatsu,KMQ,Komatsu-KMQ
+Asia,East Asia,Japan,Hiroshima,HIJ,Hiroshima-HIJ
+Asia,East Asia,Japan,Kitakyushu,KKJ,Kitakyushu-KKJ
+Asia,East Asia,Japan,Nagasaki,NGS,Nagasaki-NGS
+Asia,East Asia,Japan,Naha,OKA,Naha-OKA
+Asia,East Asia,Japan,Nagoya,NGO,Nagoya-NGO
+Asia,East Asia,Japan,Niigata,KIJ,Niigata-KIJ
+Asia,East Asia,Japan,Ōita,OIT,Ōita-OIT
+Asia,East Asia,Japan,Okayama,OKJ,Okayama-OKJ
+Asia,East Asia,Japan,Osaka,KIX,Osaka-KIX
+Asia,East Asia,Japan,Sapporo,CTS,Sapporo-CTS
+Asia,East Asia,Japan,Sendai,SDJ,Sendai-SDJ
+Asia,East Asia,Japan,Shizuoka,FSZ,Shizuoka-FSZ
+Asia,East Asia,Japan,Tokyo,HND,Tokyo-HND
+Asia,East Asia,Japan,Tokyo,NRT,Tokyo-NRT
+Asia,East Asia,Mongolia,Ulaanbaatar,ULN,Ulaanbaatar-ULN
+Asia,East Asia,China,Baotou,BAV,Baotou-BAV
+Asia,East Asia,China,Beihai,BHY,Beihai-BHY
+Asia,East Asia,China,Beijing,PEK,Beijing-PEK
+Asia,East Asia,China,Beijing,PKX,Beijing-PKX
+Asia,East Asia,China,Changchun,CGQ,Changchun-CGQ
+Asia,East Asia,China,Changsha,CSX,Changsha-CSX
+Asia,East Asia,China,Changzhou,CZX,Changzhou-CZX
+Asia,East Asia,China,Chengdu,CTU,Chengdu-CTU
+Asia,East Asia,China,Chengdu,TFU,Chengdu-TFU
+Asia,East Asia,China,Chongqing,CKG,Chongqing-CKG
+Asia,East Asia,China,Dalian,DLC,Dalian-DLC
+Asia,East Asia,China,Dandong,DDG,Dandong-DDG
+Asia,East Asia,China,Datong,DAT,Datong-DAT
+Asia,East Asia,China,Dunhuang,DNH,Dunhuang-DNH
+Asia,East Asia,China,Enshi City,ENH,Enshi City-ENH
+Asia,East Asia,China,Fuzhou,FOC,Fuzhou-FOC
+Asia,East Asia,China,Ganzhou,KOW,Ganzhou-KOW
+Asia,East Asia,China,Guangzhou,CAN,Guangzhou-CAN
+Asia,East Asia,China,Guilin,KWL,Guilin-KWL
+Asia,East Asia,China,Guiyang,KWE,Guiyang-KWE
+Asia,East Asia,China,Haikou,HAK,Haikou-HAK
+Asia,East Asia,China,Hangzhou,HGH,Hangzhou-HGH
+Asia,East Asia,China,Harbin,HRB,Harbin-HRB
+Asia,East Asia,China,Hefei,HFE,Hefei-HFE
+Asia,East Asia,China,Heihe,HEK,Heihe-HEK
+Asia,East Asia,China,Hohhot,HET,Hohhot-HET
+Asia,East Asia,China,Huai'an,HIA,Huai'an-HIA
+Asia,East Asia,China,Huangshan City,TXN,Huangshan City-TXN
+Asia,East Asia,China,Hulunbuir,HLD,Hulunbuir-HLD
+Asia,East Asia,China,Jiamusi,JMU,Jiamusi-JMU
+Asia,East Asia,China,Jieyang,SWA,Jieyang-SWA
+Asia,East Asia,China,Jinan,TNA,Jinan-TNA
+Asia,East Asia,China,Kunming,KMG,Kunming-KMG
+Asia,East Asia,China,Lanzhou,LHW,Lanzhou-LHW
+Asia,East Asia,China,Lhasa,LXA,Lhasa-LXA
+Asia,East Asia,China,Lianyungang,LYG,Lianyungang-LYG
+Asia,East Asia,China,Lijiang,LJG,Lijiang-LJG
+Asia,East Asia,China,Linyi,LYI,Linyi-LYI
+Asia,East Asia,China,Luoyang,LYA,Luoyang-LYA
+Asia,East Asia,China,Mangshi,LUM,Mangshi-LUM
+Asia,East Asia,China,Manzhouli,NZH,Manzhouli-NZH
+Asia,East Asia,China,Meizhou,MXZ,Meizhou-MXZ
+Asia,East Asia,China,Mudanjiang,MDG,Mudanjiang-MDG
+Asia,East Asia,China,Nanchang,KHN,Nanchang-KHN
+Asia,East Asia,China,Nanjing,NKG,Nanjing-NKG
+Asia,East Asia,China,Nanning,NNG,Nanning-NNG
+Asia,East Asia,China,Nantong,NTG,Nantong-NTG
+Asia,East Asia,China,Ningbo,NGB,Ningbo-NGB
+Asia,East Asia,China,Ordos City,DSN,Ordos City-DSN
+Asia,East Asia,China,Qingdao,TAO,Qingdao-TAO
+Asia,East Asia,China,Qinhuangdao,BPE,Qinhuangdao-BPE
+Asia,East Asia,China,Qiqihar,NDG,Qiqihar-NDG
+Asia,East Asia,China,Quanzhou,JJN,Quanzhou-JJN
+Asia,East Asia,China,Sanya,SYX,Sanya-SYX
+Asia,East Asia,China,Shanghai,SHA,Shanghai-SHA
+Asia,East Asia,China,Shanghai,PVG,Shanghai-PVG
+Asia,East Asia,China,Shenyang,SHE,Shenyang-SHE
+Asia,East Asia,China,Shenzhen,SZX,Shenzhen-SZX
+Asia,East Asia,China,Shijiazhuang,SJW,Shijiazhuang-SJW
+Asia,East Asia,China,Taiyuan,TYN,Taiyuan-TYN
+Asia,East Asia,China,Tianjin,TSN,Tianjin-TSN
+Asia,East Asia,China,Ulanqab,UCB,Ulanqab-UCB
+Asia,East Asia,China,Ürümqi,URC,Ürümqi-URC
+Asia,East Asia,China,Wanzhou,WXN,Wanzhou-WXN
+Asia,East Asia,China,Weihai,WEH,Weihai-WEH
+Asia,East Asia,China,Wenzhou,WNZ,Wenzhou-WNZ
+Asia,East Asia,China,Wuhan,WUH,Wuhan-WUH
+Asia,East Asia,China,Wuxi,WUX,Wuxi-WUX
+Asia,East Asia,China,Wuyishan,WUS,Wuyishan-WUS
+Asia,East Asia,China,Xiamen,XMN,Xiamen-XMN
+Asia,East Asia,China,Xi'an,XIY,Xi'an-XIY
+Asia,East Asia,China,Xining,XNN,Xining-XNN
+Asia,East Asia,China,Xinzhou,WUT,Xinzhou-WUT
+Asia,East Asia,China,Xishuangbanna,JHG,Xishuangbanna-JHG
+Asia,East Asia,China,Xuzhou,XUZ,Xuzhou-XUZ
+Asia,East Asia,China,Yancheng,YNZ,Yancheng-YNZ
+Asia,East Asia,China,Yangzhou,YTY,Yangzhou-YTY
+Asia,East Asia,China,Yanji,YNJ,Yanji-YNJ
+Asia,East Asia,China,Yantai,YNT,Yantai-YNT
+Asia,East Asia,China,Yichang,YIH,Yichang-YIH
+Asia,East Asia,China,Yinchuan,INC,Yinchuan-INC
+Asia,East Asia,China,Yiwu,YIW,Yiwu-YIW
+Asia,East Asia,China,Yuncheng,YCU,Yuncheng-YCU
+Asia,East Asia,China,Zhangjiajie,DYG,Zhangjiajie-DYG
+Asia,East Asia,China,Zhanjiang,ZHA,Zhanjiang-ZHA
+Asia,East Asia,China,Zhengzhou,CGO,Zhengzhou-CGO
+Asia,East Asia,China,Zhuhai,ZUH,Zhuhai-ZUH
+Asia,East Asia,China,Zunyi,ZYI,Zunyi-ZYI
+Asia,East Asia,Hong Kong,Hong Kong,HKG,Hong Kong-HKG
+Asia,East Asia,Macau,Macau,MFM,Macau-MFM
+Asia,East Asia,Taiwan,Hualien City,HUN,Hualien City-HUN
+Asia,East Asia,Taiwan,Kaohsiung,KHH,Kaohsiung-KHH
+Asia,East Asia,Taiwan,Taichung,RMQ,Taichung-RMQ
+Asia,East Asia,Taiwan,Tainan,TNN,Tainan-TNN
+Asia,East Asia,Taiwan,Taipei,TSA,Taipei-TSA
+Asia,East Asia,Taiwan,Taoyuan,TPE,Taoyuan-TPE
+Asia,East Asia,South Korea,Busan,PUS,Busan-PUS
+Asia,East Asia,South Korea,Daegu,TAE,Daegu-TAE
+Asia,East Asia,South Korea,Jeju,CJU,Jeju-CJU
+Asia,East Asia,South Korea,Seoul,GMP,Seoul-GMP
+Asia,East Asia,South Korea,Seoul,ICN,Seoul-ICN
+Asia,East Asia,South Korea,Cheongju,CJJ,Cheongju-CJJ
+Asia,East Asia,South Korea,Muan,MWX,Muan-MWX
+Asia,East Asia,South Korea,Yangyang,YNY,Yangyang-YNY
+Asia,South Asia,Bangladesh,Chittagong,CGP,Chittagong-CGP
+Asia,South Asia,Bangladesh,Dhaka,DAC,Dhaka-DAC
+Asia,South Asia,Bangladesh,Sylhet,ZYL,Sylhet-ZYL
+Asia,South Asia,Bhutan,Paro,PBH,Paro-PBH
+Asia,South Asia,India,Agartala,IXA,Agartala-IXA
+Asia,South Asia,India,Ahmedabad,AMD,Ahmedabad-AMD
+Asia,South Asia,India,Amritsar,ATQ,Amritsar-ATQ
+Asia,South Asia,India,Bangalore,BLR,Bangalore-BLR
+Asia,South Asia,India,Bhubaneswar,BBI,Bhubaneswar-BBI
+Asia,South Asia,India,Chennai,MAA,Chennai-MAA
+Asia,South Asia,India,Coimbatore,CJB,Coimbatore-CJB
+Asia,South Asia,India,Delhi,DEL,Delhi-DEL
+Asia,South Asia,India,Goa,GOI,Goa-GOI
+Asia,South Asia,India,Gaya,GAY,Gaya-GAY
+Asia,South Asia,India,Guwahati,GAU,Guwahati-GAU
+Asia,South Asia,India,Hyderabad,HYD,Hyderabad-HYD
+Asia,South Asia,India,Imphal,IMF,Imphal-IMF
+Asia,South Asia,India,Indore,IDR,Indore-IDR
+Asia,South Asia,India,Jaipur,JAI,Jaipur-JAI
+Asia,South Asia,India,Kannur,CNN,Kannur-CNN
+Asia,South Asia,India,Kochi,COK,Kochi-COK
+Asia,South Asia,India,Kolkata,CCU,Kolkata-CCU
+Asia,South Asia,India,Kozhikode,CCJ,Kozhikode-CCJ
+Asia,South Asia,India,Lucknow,LKO,Lucknow-LKO
+Asia,South Asia,India,Madurai,IXM,Madurai-IXM
+Asia,South Asia,India,Mangalore,IXE,Mangalore-IXE
+Asia,South Asia,India,Mumbai,BOM,Mumbai-BOM
+Asia,South Asia,India,Nagpur,NAG,Nagpur-NAG
+Asia,South Asia,India,Pune,PNQ,Pune-PNQ
+Asia,South Asia,India,Ranchi,IXR,Ranchi-IXR
+Asia,South Asia,India,Siliguri,IXB,Siliguri-IXB
+Asia,South Asia,India,Srinagar,SXR,Srinagar-SXR
+Asia,South Asia,India,Surat,STV,Surat-STV
+Asia,South Asia,India,Thiruvananthapuram,TRV,Thiruvananthapuram-TRV
+Asia,South Asia,India,Tirupati,TIR,Tirupati-TIR
+Asia,South Asia,India,Trichy,TRZ,Trichy-TRZ
+Asia,South Asia,India,Vadodara,BDQ,Vadodara-BDQ
+Asia,South Asia,India,Varanasi,VNS,Varanasi-VNS
+Asia,South Asia,India,Vijayawada,VGA,Vijayawada-VGA
+Asia,South Asia,India,Visakhapatnam,VTZ,Visakhapatnam-VTZ
+Asia,South Asia,Maldives,Malé,MLE,Malé-MLE
+Asia,South Asia,Maldives,Addu City,GAN,Addu City-GAN
+Asia,South Asia,Maldives,Hanimaadhoo,HAQ,Hanimaadhoo-HAQ
+Asia,South Asia,Maldives,Maamigili,VAM,Maamigili-VAM
+Asia,South Asia,Maldives,Maafaru,NMF,Maafaru-NMF
+Asia,South Asia,Nepal,Kathmandu,KTM,Kathmandu-KTM
+Asia,South Asia,Nepal,Bhairahawa,BWA,Bhairahawa-BWA
+Asia,South Asia,Nepal,Pokhara,PKR,Pokhara-PKR
+Asia,South Asia,Pakistan,Bahawalpur,BHV,Bahawalpur-BHV
+Asia,South Asia,Pakistan,Faisalabad,LYP,Faisalabad-LYP
+Asia,South Asia,Pakistan,Gwadar,GWD,Gwadar-GWD
+Asia,South Asia,Pakistan,Islamabad,ISB,Islamabad-ISB
+Asia,South Asia,Pakistan,Karachi,KHI,Karachi-KHI
+Asia,South Asia,Pakistan,Lahore,LHE,Lahore-LHE
+Asia,South Asia,Pakistan,Multan,MUX,Multan-MUX
+Asia,South Asia,Pakistan,Peshawar,PEW,Peshawar-PEW
+Asia,South Asia,Pakistan,Quetta,UET,Quetta-UET
+Asia,South Asia,Pakistan,Rahim Yar Khan,RYK,Rahim Yar Khan-RYK
+Asia,South Asia,Pakistan,Sialkot,SKT,Sialkot-SKT
+Asia,South Asia,Pakistan,Turbat,TUK,Turbat-TUK
+Asia,South Asia,Sri Lanka,Colombo,CMB,Colombo-CMB
+Asia,South Asia,Sri Lanka,Colombo,RML,Colombo-RML
+Asia,South Asia,Sri Lanka,Hambantota,HRI,Hambantota-HRI
+Asia,South Asia,Sri Lanka,Jaffna,JAF,Jaffna-JAF
+Asia,Southeast Asia,Brunei,Bandar Seri Begawan,BWN,Bandar Seri Begawan-BWN
+Asia,Southeast Asia,Cambodia,Phnom Penh,PNH,Phnom Penh-PNH
+Asia,Southeast Asia,Cambodia,Siem Reap,REP,Siem Reap-REP
+Asia,Southeast Asia,Cambodia,Sihanoukville,KOS,Sihanoukville-KOS
+Asia,Southeast Asia,East Timor,Dili,DIL,Dili-DIL
+Asia,Southeast Asia,Indonesia,Banda Aceh,BTJ,Banda Aceh-BTJ
+Asia,Southeast Asia,Indonesia,Bandung,BDO,Bandung-BDO
+Asia,Southeast Asia,Indonesia,Banjarmasin,BDJ,Banjarmasin-BDJ
+Asia,Southeast Asia,Indonesia,Batam,BTH,Batam-BTH
+Asia,Southeast Asia,Indonesia,Denpasar,DPS,Denpasar-DPS
+Asia,Southeast Asia,Indonesia,Jakarta,HLP,Jakarta-HLP
+Asia,Southeast Asia,Indonesia,Jakarta,CGK,Jakarta-CGK
+Asia,Southeast Asia,Indonesia,Kupang,KOE,Kupang-KOE
+Asia,Southeast Asia,Indonesia,Makassar,UPG,Makassar-UPG
+Asia,Southeast Asia,Indonesia,Manado,MDC,Manado-MDC
+Asia,Southeast Asia,Indonesia,Mataram,LOP,Mataram-LOP
+Asia,Southeast Asia,Indonesia,Medan,KNO,Medan-KNO
+Asia,Southeast Asia,Indonesia,Padang,PDG,Padang-PDG
+Asia,Southeast Asia,Indonesia,Palembang,PLM,Palembang-PLM
+Asia,Southeast Asia,Indonesia,Pekanbaru,PKU,Pekanbaru-PKU
+Asia,Southeast Asia,Indonesia,Semarang,SRG,Semarang-SRG
+Asia,Southeast Asia,Indonesia,Surabaya,SUB,Surabaya-SUB
+Asia,Southeast Asia,Indonesia,Surakarta,SOC,Surakarta-SOC
+Asia,Southeast Asia,Indonesia,Tarakan,TRK,Tarakan-TRK
+Asia,Southeast Asia,Indonesia,Yogyakarta,YIA,Yogyakarta-YIA
+Asia,Southeast Asia,Laos,Luang Prabang,LPQ,Luang Prabang-LPQ
+Asia,Southeast Asia,Laos,Pakse,PKZ,Pakse-PKZ
+Asia,Southeast Asia,Laos,Savannakhet,ZVK,Savannakhet-ZVK
+Asia,Southeast Asia,Laos,Vientiane,VTE,Vientiane-VTE
+Asia,Southeast Asia,Malaysia,Alor Setar,AOR,Alor Setar-AOR
+Asia,Southeast Asia,Malaysia,Ipoh,IPH,Ipoh-IPH
+Asia,Southeast Asia,Malaysia,Johor Bahru,JHB,Johor Bahru-JHB
+Asia,Southeast Asia,Malaysia,Kota Bharu,KBR,Kota Bharu-KBR
+Asia,Southeast Asia,Malaysia,Kota Kinabalu,BKI,Kota Kinabalu-BKI
+Asia,Southeast Asia,Malaysia,Kuala Lumpur,KUL,Kuala Lumpur-KUL
+Asia,Southeast Asia,Malaysia,Kuala Lumpur,SZB,Kuala Lumpur-SZB
+Asia,Southeast Asia,Malaysia,Kuala Terengganu,TGG,Kuala Terengganu-TGG
+Asia,Southeast Asia,Malaysia,Kuantan,KUA,Kuantan-KUA
+Asia,Southeast Asia,Malaysia,Kuching,KCH,Kuching-KCH
+Asia,Southeast Asia,Malaysia,Langkawi,LGK,Langkawi-LGK
+Asia,Southeast Asia,Malaysia,Penang,PEN,Penang-PEN
+Asia,Southeast Asia,Myanmar,Mandalay,MDL,Mandalay-MDL
+Asia,Southeast Asia,Myanmar,Yangon,RGN,Yangon-RGN
+Asia,Southeast Asia,Myanmar,Naypyidaw,NYT,Naypyidaw-NYT
+Asia,Southeast Asia,Philippines,Batanes,BSO,Batanes-BSO
+Asia,Southeast Asia,Philippines,Cagayan,LLC,Cagayan-LLC
+Asia,Southeast Asia,Philippines,Lapu-Lapu City,CEB,Lapu-Lapu City-CEB
+Asia,Southeast Asia,Philippines,Angeles City,CRK,Angeles City-CRK
+Asia,Southeast Asia,Philippines,Davao City,DVO,Davao City-DVO
+Asia,Southeast Asia,Philippines,General Santos,GES,General Santos-GES
+Asia,Southeast Asia,Philippines,Iloilo City,ILO,Iloilo City-ILO
+Asia,Southeast Asia,Philippines,Kalibo,KLO,Kalibo-KLO
+Asia,Southeast Asia,Philippines,Laoag,LAO,Laoag-LAO
+Asia,Southeast Asia,Philippines,Manila,MNL,Manila-MNL
+Asia,Southeast Asia,Philippines,Panglao Island,TAG,Panglao Island-TAG
+Asia,Southeast Asia,Philippines,Puerto Princesa,PPS,Puerto Princesa-PPS
+Asia,Southeast Asia,Philippines,Olongapo,SFS,Olongapo-SFS
+Asia,Southeast Asia,Philippines,Zamboanga City,ZAM,Zamboanga City-ZAM
+Asia,Southeast Asia,Singapore,Singapore,SIN,Singapore-SIN
+Asia,Southeast Asia,Singapore,Singapore,XSP,Singapore-XSP
+Asia,Southeast Asia,Thailand,Bangkok,BKK,Bangkok-BKK
+Asia,Southeast Asia,Thailand,Bangkok,DMK,Bangkok-DMK
+Asia,Southeast Asia,Thailand,Chiang Mai,CNX,Chiang Mai-CNX
+Asia,Southeast Asia,Thailand,Chiang Rai,CEI,Chiang Rai-CEI
+Asia,Southeast Asia,Thailand,Rayong/Pattaya,UTP,Rayong/Pattaya-UTP
+Asia,Southeast Asia,Thailand,Hat Yai,HDY,Hat Yai-HDY
+Asia,Southeast Asia,Thailand,Krabi,KBV,Krabi-KBV
+Asia,Southeast Asia,Thailand,Phuket,HKT,Phuket-HKT
+Asia,Southeast Asia,Thailand,Surat Thani,URT,Surat Thani-URT
+Asia,Southeast Asia,Thailand,Ko Samui,USM,Ko Samui-USM
+Asia,Southeast Asia,Thailand,Udon Thani,UTH,Udon Thani-UTH
+Asia,Southeast Asia,Vietnam,Da Nang,DAD,Da Nang-DAD
+Asia,Southeast Asia,Vietnam,Hanoi,HAN,Hanoi-HAN
+Asia,Southeast Asia,Vietnam,Ho Chi Minh City,SGN,Ho Chi Minh City-SGN
+Asia,Southeast Asia,Vietnam,Can Tho,VCA,Can Tho-VCA
+Asia,Southeast Asia,Vietnam,Haiphong,HPH,Haiphong-HPH
+Asia,Southeast Asia,Vietnam,Huế,HUI,Huế-HUI
+Asia,Southeast Asia,Vietnam,Phu Quoc,PQC,Phu Quoc-PQC
+Asia,Southeast Asia,Vietnam,Nha Trang,CXR,Nha Trang-CXR
+Asia,Southeast Asia,Vietnam,Quảng Nam,VCL,Quảng Nam-VCL
+Asia,Southeast Asia,Vietnam,Vân Đồn,VDO,Vân Đồn-VDO
+Asia,Southwest Asia and the Middle East,Afghanistan,Kabul,KBL,Kabul-KBL
+Asia,Southwest Asia and the Middle East,Afghanistan,Herat,HEA,Herat-HEA
+Asia,Southwest Asia and the Middle East,Afghanistan,Kandahar,KDH,Kandahar-KDH
+Asia,Southwest Asia and the Middle East,Afghanistan,Mazar-i-Sharif,MZR,Mazar-i-Sharif-MZR
+Asia,Southwest Asia and the Middle East,Bahrain,Manama,BAH,Manama-BAH
+Asia,Southwest Asia and the Middle East,Iran,Abadan,ABD,Abadan-ABD
+Asia,Southwest Asia and the Middle East,Iran,Ahvaz,AWZ,Ahvaz-AWZ
+Asia,Southwest Asia and the Middle East,Iran,Arak,AJK,Arak-AJK
+Asia,Southwest Asia and the Middle East,Iran,Ardabil,ADU,Ardabil-ADU
+Asia,Southwest Asia and the Middle East,Iran,Asaluyeh,PGU,Asaluyeh-PGU
+Asia,Southwest Asia and the Middle East,Iran,Bandar Abbas,BND,Bandar Abbas-BND
+Asia,Southwest Asia and the Middle East,Iran,Birjand,XBJ,Birjand-XBJ
+Asia,Southwest Asia and the Middle East,Iran,Bushehr,BUZ,Bushehr-BUZ
+Asia,Southwest Asia and the Middle East,Iran,Gorgan,GBT,Gorgan-GBT
+Asia,Southwest Asia and the Middle East,Iran,Hamadan,HDM,Hamadan-HDM
+Asia,Southwest Asia and the Middle East,Iran,Ilam,IIL,Ilam-IIL
+Asia,Southwest Asia and the Middle East,Iran,Isfahan,IFN,Isfahan-IFN
+Asia,Southwest Asia and the Middle East,Iran,Kerman,KER,Kerman-KER
+Asia,Southwest Asia and the Middle East,Iran,Kermanshah,KSH,Kermanshah-KSH
+Asia,Southwest Asia and the Middle East,Iran,Kish Island,KIH,Kish Island-KIH
+Asia,Southwest Asia and the Middle East,Iran,Konarak,ZBR,Konarak-ZBR
+Asia,Southwest Asia and the Middle East,Iran,Lamerd,LFM,Lamerd-LFM
+Asia,Southwest Asia and the Middle East,Iran,Lar,LRR,Lar-LRR
+Asia,Southwest Asia and the Middle East,Iran,Mashhad,MHD,Mashhad-MHD
+Asia,Southwest Asia and the Middle East,Iran,Qeshm Island,GSM,Qeshm Island-GSM
+Asia,Southwest Asia and the Middle East,Iran,Rasht,RAS,Rasht-RAS
+Asia,Southwest Asia and the Middle East,Iran,Sari,SRY,Sari-SRY
+Asia,Southwest Asia and the Middle East,Iran,Shiraz,SYZ,Shiraz-SYZ
+Asia,Southwest Asia and the Middle East,Iran,Tabriz,TBZ,Tabriz-TBZ
+Asia,Southwest Asia and the Middle East,Iran,Tehran,IKA,Tehran-IKA
+Asia,Southwest Asia and the Middle East,Iran,Tehran,THR,Tehran-THR
+Asia,Southwest Asia and the Middle East,Iran,Urmia,OMH,Urmia-OMH
+Asia,Southwest Asia and the Middle East,Iran,Yazd,AZD,Yazd-AZD
+Asia,Southwest Asia and the Middle East,Iran,Zahedan,ZAH,Zahedan-ZAH
+Asia,Southwest Asia and the Middle East,Iraq,Al Najaf,NJF,Al Najaf-NJF
+Asia,Southwest Asia and the Middle East,Iraq,Baghdad,BGW,Baghdad-BGW
+Asia,Southwest Asia and the Middle East,Iraq,Basra,BSR,Basra-BSR
+Asia,Southwest Asia and the Middle East,Iraq,Erbil,EBL,Erbil-EBL
+Asia,Southwest Asia and the Middle East,Iraq,Mosul,OSM,Mosul-OSM
+Asia,Southwest Asia and the Middle East,Iraq,Nasiriyah,XNH,Nasiriyah-XNH
+Asia,Southwest Asia and the Middle East,Iraq,Sulaymaniyah,ISU,Sulaymaniyah-ISU
+Asia,Southwest Asia and the Middle East,Israel,Eilat,ETM,Eilat-ETM
+Asia,Southwest Asia and the Middle East,Israel,Haifa,HFA,Haifa-HFA
+Asia,Southwest Asia and the Middle East,Israel,Tel Aviv,TLV,Tel Aviv-TLV
+Asia,Southwest Asia and the Middle East,Jordan,Aqaba,AQJ,Aqaba-AQJ
+Asia,Southwest Asia and the Middle East,Jordan,Amman,AMM,Amman-AMM
+Asia,Southwest Asia and the Middle East,Kuwait,Kuwait City,KWI,Kuwait City-KWI
+Asia,Southwest Asia and the Middle East,Lebanon,Beirut,BEY,Beirut-BEY
+Asia,Southwest Asia and the Middle East,Oman,Muscat,MCT,Muscat-MCT
+Asia,Southwest Asia and the Middle East,Oman,Salalah,SLL,Salalah-SLL
+Asia,Southwest Asia and the Middle East,Oman,Sohar,OHS,Sohar-OHS
+Asia,Southwest Asia and the Middle East,Qatar,Doha,DOH,Doha-DOH
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Abha,AHB,Abha-AHB
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Al-Ahsa,HOF,Al-Ahsa-HOF
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Al-Jawf,AJF,Al-Jawf-AJF
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Buraydah,ELQ,Buraydah-ELQ
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Dammam,DMM,Dammam-DMM
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Ha'il,HAS,Ha'il-HAS
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Jeddah,JED,Jeddah-JED
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Jizan,GIZ,Jizan-GIZ
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Medina,MED,Medina-MED
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Najran,EAM,Najran-EAM
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Riyadh,RUH,Riyadh-RUH
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Tabuk,TUU,Tabuk-TUU
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Ta'if,TIF,Ta'if-TIF
+Asia,Southwest Asia and the Middle East,Saudi Arabia,Yanbu,YNB,Yanbu-YNB
+Asia,Southwest Asia and the Middle East,Syria,Aleppo,ALP,Aleppo-ALP
+Asia,Southwest Asia and the Middle East,Syria,Damascus,DAM,Damascus-DAM
+Asia,Southwest Asia and the Middle East,Syria,Latakia,LTK,Latakia-LTK
+Asia,Southwest Asia and the Middle East,Syria,Qamishli,KAC,Qamishli-KAC
+Asia,Southwest Asia and the Middle East,United Arab Emirates,Abu Dhabi,AUH,Abu Dhabi-AUH
+Asia,Southwest Asia and the Middle East,United Arab Emirates,Al Ain,AAN,Al Ain-AAN
+Asia,Southwest Asia and the Middle East,United Arab Emirates,Dubai,DWC,Dubai-DWC
+Asia,Southwest Asia and the Middle East,United Arab Emirates,Dubai,DXB,Dubai-DXB
+Asia,Southwest Asia and the Middle East,United Arab Emirates,Ras Al Khaimah,RKT,Ras Al Khaimah-RKT
+Asia,Southwest Asia and the Middle East,United Arab Emirates,Sharjah,SHJ,Sharjah-SHJ
+Asia,Southwest Asia and the Middle East,Yemen,Aden,ADE,Aden-ADE
+Asia,Southwest Asia and the Middle East,Yemen,Sanaa,SAH,Sanaa-SAH
+Asia,Southwest Asia and the Middle East,Yemen,Seiyun,GXF,Seiyun-GXF
+Europe,United Kingdom,England and Wales,Birmingham,BHX,Birmingham-BHX
+Europe,United Kingdom,England and Wales,Bournemouth,BOH,Bournemouth-BOH
+Europe,United Kingdom,England and Wales,Bristol,BRS,Bristol-BRS
+Europe,United Kingdom,England and Wales,Cardiff,CWL,Cardiff-CWL
+Europe,United Kingdom,England and Wales,Doncaster/Sheffield,DSA,Doncaster/Sheffield-DSA
+Europe,United Kingdom,England and Wales,Middlesbrough,MME,Middlesbrough-MME
+Europe,United Kingdom,England and Wales,Nottingham,EMA,Nottingham-EMA
+Europe,United Kingdom,England and Wales,Exeter,EXT,Exeter-EXT
+Europe,United Kingdom,England and Wales,Leeds/Bradford,LBA,Leeds/Bradford-LBA
+Europe,United Kingdom,England and Wales,Liverpool,LPL,Liverpool-LPL
+Europe,United Kingdom,England and Wales,London,LCY,London-LCY
+Europe,United Kingdom,England and Wales,London,LGW,London-LGW
+Europe,United Kingdom,England and Wales,London,LHR,London-LHR
+Europe,United Kingdom,England and Wales,London,LTN,London-LTN
+Europe,United Kingdom,England and Wales,London,SEN,London-SEN
+Europe,United Kingdom,England and Wales,London,STN,London-STN
+Europe,United Kingdom,England and Wales,Manchester,MAN,Manchester-MAN
+Europe,United Kingdom,England and Wales,Newcastle upon Tyne,NCL,Newcastle upon Tyne-NCL
+Europe,United Kingdom,England and Wales,Newquay,NQY,Newquay-NQY
+Europe,United Kingdom,England and Wales,Norwich,NWI,Norwich-NWI
+Europe,United Kingdom,England and Wales,Southampton,SOU,Southampton-SOU
+Europe,United Kingdom,Scotland,Aberdeen,ABZ,Aberdeen-ABZ
+Europe,United Kingdom,Scotland,Edinburgh,EDI,Edinburgh-EDI
+Europe,United Kingdom,Scotland,Glasgow,GLA,Glasgow-GLA
+Europe,United Kingdom,Scotland,Glasgow,PIK,Glasgow-PIK
+Europe,United Kingdom,Scotland,Inverness,INV,Inverness-INV
+Europe,United Kingdom,Northern Ireland,Belfast,BFS,Belfast-BFS
+Europe,United Kingdom,Northern Ireland,Belfast,BHD,Belfast-BHD
+Europe,United Kingdom,Northern Ireland,Derry,LDY,Derry-LDY
+Europe,Western Europe,Belgium,Antwerp,ANR,Antwerp-ANR
+Europe,Western Europe,Belgium,Brussels,BRU,Brussels-BRU
+Europe,Western Europe,Belgium,Brussels,CRL,Brussels-CRL
+Europe,Western Europe,Belgium,Liège,LGG,Liège-LGG
+Europe,Western Europe,Belgium,Ostend/Bruges,OST,Ostend/Bruges-OST
+Europe,Western Europe,France,Ajaccio,AJA,Ajaccio-AJA
+Europe,Western Europe,France,Bastia,BIA,Bastia-BIA
+Europe,Western Europe,France,Beauvais,BVA,Beauvais-BVA
+Europe,Western Europe,France,Bergerac,EGC,Bergerac-EGC
+Europe,Western Europe,France,Béziers,BZR,Béziers-BZR
+Europe,Western Europe,France,Biarritz,BIQ,Biarritz-BIQ
+Europe,Western Europe,France,Bordeaux,BOD,Bordeaux-BOD
+Europe,Western Europe,France,Brest,BES,Brest-BES
+Europe,Western Europe,France,Carcassonne,CCF,Carcassonne-CCF
+Europe,Western Europe,France,Châlons-en-Champagne,XCR,Châlons-en-Champagne-XCR
+Europe,Western Europe,France,Chambéry,CMF,Chambéry-CMF
+Europe,Western Europe,France,Dinard,DNR,Dinard-DNR
+Europe,Western Europe,France,Figari,FSC,Figari-FSC
+Europe,Western Europe,France,Grenoble,GNB,Grenoble-GNB
+Europe,Western Europe,France,Île de Ré,LRH,Île de Ré-LRH
+Europe,Western Europe,France,Lille,LIL,Lille-LIL
+Europe,Western Europe,France,Limoges,LIG,Limoges-LIG
+Europe,Western Europe,France,Lyon,LYS,Lyon-LYS
+Europe,Western Europe,France,Marseille,MRS,Marseille-MRS
+Europe,Western Europe,France,Mulhouse,BSL,Mulhouse-BSL
+Europe,Western Europe,France,Nantes,NTE,Nantes-NTE
+Europe,Western Europe,France,Nice,NCE,Nice-NCE
+Europe,Western Europe,France,Nîmes,FNI,Nîmes-FNI
+Europe,Western Europe,France,Paris,CDG,Paris-CDG
+Europe,Western Europe,France,Paris,ORY,Paris-ORY
+Europe,Western Europe,France,Pau,PUF,Pau-PUF
+Europe,Western Europe,France,Perpignan,PGF,Perpignan-PGF
+Europe,Western Europe,France,Poitiers,PIS,Poitiers-PIS
+Europe,Western Europe,France,Rodez,RDZ,Rodez-RDZ
+Europe,Western Europe,France,Saint-Étienne,EBU,Saint-Étienne-EBU
+Europe,Western Europe,France,Strasbourg,SXB,Strasbourg-SXB
+Europe,Western Europe,France,Toulon,TLN,Toulon-TLN
+Europe,Western Europe,France,Toulouse,TLS,Toulouse-TLS
+Europe,Western Europe,France,Tours,TUF,Tours-TUF
+Europe,Western Europe,Gibraltar,Gibraltar,GIB,Gibraltar-GIB
+Europe,Western Europe,Guernsey,Alderney,ACI,Alderney-ACI
+Europe,Western Europe,Guernsey,Guernsey,GCI,Guernsey-GCI
+Europe,Western Europe,Jersey,Jersey,JER,Jersey-JER
+Europe,Western Europe,Ireland,Cork,ORK,Cork-ORK
+Europe,Western Europe,Ireland,Dublin,DUB,Dublin-DUB
+Europe,Western Europe,Ireland,Kerry,KIR,Kerry-KIR
+Europe,Western Europe,Ireland,Knock,NOC,Knock-NOC
+Europe,Western Europe,Ireland,Shannon,SNN,Shannon-SNN
+Europe,Western Europe,Isle of Man,Isle of Man,IOM,Isle of Man-IOM
+Europe,Western Europe,Luxembourg,Luxembourg City,LUX,Luxembourg City-LUX
+Europe,Western Europe,Netherlands,Amsterdam,AMS,Amsterdam-AMS
+Europe,Western Europe,Netherlands,Eindhoven,EIN,Eindhoven-EIN
+Europe,Western Europe,Netherlands,Groningen,GRQ,Groningen-GRQ
+Europe,Western Europe,Netherlands,Maastricht,MST,Maastricht-MST
+Europe,Western Europe,Netherlands,Rotterdam,RTM,Rotterdam-RTM
+Europe,Central Europe,Austria,Graz,GRZ,Graz-GRZ
+Europe,Central Europe,Austria,Klagenfurt,KLU,Klagenfurt-KLU
+Europe,Central Europe,Austria,Innsbruck,INN,Innsbruck-INN
+Europe,Central Europe,Austria,Linz,LNZ,Linz-LNZ
+Europe,Central Europe,Austria,Salzburg,SZG,Salzburg-SZG
+Europe,Central Europe,Austria,Vienna,VIE,Vienna-VIE
+Europe,Central Europe,Czech Republic,Brno,BRQ,Brno-BRQ
+Europe,Central Europe,Czech Republic,Karlovy Vary,KLV,Karlovy Vary-KLV
+Europe,Central Europe,Czech Republic,Ostrava,OSR,Ostrava-OSR
+Europe,Central Europe,Czech Republic,Prague,PRG,Prague-PRG
+Europe,Central Europe,Czech Republic,Pardubice,PED,Pardubice-PED
+Europe,Central Europe,Germany,Baden-Baden/Karlsruhe,FKB,Baden-Baden/Karlsruhe-FKB
+Europe,Central Europe,Germany,Berlin,BER,Berlin-BER
+Europe,Central Europe,Germany,Bremen,BRE,Bremen-BRE
+Europe,Central Europe,Germany,Cologne/Bonn,CGN,Cologne/Bonn-CGN
+Europe,Central Europe,Germany,Dortmund,DTM,Dortmund-DTM
+Europe,Central Europe,Germany,Düsseldorf,DUS,Düsseldorf-DUS
+Europe,Central Europe,Germany,Frankfurt,FRA,Frankfurt-FRA
+Europe,Central Europe,Germany,Frankfurt,HHN,Frankfurt-HHN
+Europe,Central Europe,Germany,Freiburg im Breisgau,MLH/BSL/EAP,Freiburg im Breisgau-MLH/BSL/EAP
+Europe,Central Europe,Germany,Friedrichshafen,FDH,Friedrichshafen-FDH
+Europe,Central Europe,Germany,Hamburg,HAM,Hamburg-HAM
+Europe,Central Europe,Germany,Hanover,HAJ,Hanover-HAJ
+Europe,Central Europe,Germany,Leipzig,LEJ,Leipzig-LEJ
+Europe,Central Europe,Germany,Lübeck,LBC,Lübeck-LBC
+Europe,Central Europe,Germany,Memmingen,FMM,Memmingen-FMM
+Europe,Central Europe,Germany,Munich,MUC,Munich-MUC
+Europe,Central Europe,Germany,Nuremberg,NUE,Nuremberg-NUE
+Europe,Central Europe,Germany,Stuttgart,STR,Stuttgart-STR
+Europe,Central Europe,Germany,Weeze,NRN,Weeze-NRN
+Europe,Central Europe,Hungary,Budapest,BUD,Budapest-BUD
+Europe,Central Europe,Hungary,Debrecen,DEB,Debrecen-DEB
+Europe,Central Europe,Hungary,Hévíz,SOB,Hévíz-SOB
+Europe,Central Europe,Hungary,Győr,QGY,Győr-QGY
+Europe,Central Europe,Hungary,Pécs,QPJ,Pécs-QPJ
+Europe,Central Europe,Slovakia,Bratislava,BTS,Bratislava-BTS
+Europe,Central Europe,Slovakia,Košice,KSC,Košice-KSC
+Europe,Central Europe,Slovakia,Piešťany,PZY,Piešťany-PZY
+Europe,Central Europe,Slovakia,Poprad,TAT,Poprad-TAT
+Europe,Central Europe,Slovakia,Sliač,SLD,Sliač-SLD
+Europe,Central Europe,Slovakia,Žilina,ILZ,Žilina-ILZ
+Europe,Central Europe,Switzerland,Basel,BSL,Basel-BSL
+Europe,Central Europe,Switzerland,Bern,BRN,Bern-BRN
+Europe,Central Europe,Switzerland,Geneva,GVA,Geneva-GVA
+Europe,Central Europe,Switzerland,Lugano,LUG,Lugano-LUG
+Europe,Central Europe,Switzerland,St. Gallen,ACH,St. Gallen-ACH
+Europe,Central Europe,Switzerland,Zürich,ZRH,Zürich-ZRH
+Europe,Central Europe,Poland,Bydgoszcz,BZG,Bydgoszcz-BZG
+Europe,Central Europe,Poland,Gdańsk,GDN,Gdańsk-GDN
+Europe,Central Europe,Poland,Katowice,KTW,Katowice-KTW
+Europe,Central Europe,Poland,Kraków,KRK,Kraków-KRK
+Europe,Central Europe,Poland,Lublin,LUZ,Lublin-LUZ
+Europe,Central Europe,Poland,Łódź,LCJ,Łódź-LCJ
+Europe,Central Europe,Poland,Poznań,POZ,Poznań-POZ
+Europe,Central Europe,Poland,Rzeszów,RZE,Rzeszów-RZE
+Europe,Central Europe,Poland,Szczecin,SZZ,Szczecin-SZZ
+Europe,Central Europe,Poland,Warsaw,WAW,Warsaw-WAW
+Europe,Central Europe,Poland,Warsaw,WMI,Warsaw-WMI
+Europe,Central Europe,Poland,Wrocław,WRO,Wrocław-WRO
+Europe,Southern Europe,Croatia,Brač,BWK,Brač-BWK
+Europe,Southern Europe,Croatia,Dubrovnik,DBV,Dubrovnik-DBV
+Europe,Southern Europe,Croatia,Mali Lošinj,LSZ,Mali Lošinj-LSZ
+Europe,Southern Europe,Croatia,Osijek,OSI,Osijek-OSI
+Europe,Southern Europe,Croatia,Pula,PUY,Pula-PUY
+Europe,Southern Europe,Croatia,Rijeka,RJK,Rijeka-RJK
+Europe,Southern Europe,Croatia,Split,SPU,Split-SPU
+Europe,Southern Europe,Croatia,Zadar,ZAD,Zadar-ZAD
+Europe,Southern Europe,Croatia,Zagreb,ZAG,Zagreb-ZAG
+Europe,Southern Europe,Cyprus,Larnaca,LCA,Larnaca-LCA
+Europe,Southern Europe,Cyprus,Paphos,PFO,Paphos-PFO
+Europe,Southern Europe,Cyprus,North Nicosia,ECN,North Nicosia-ECN
+Europe,Southern Europe,Greece,Athens,ATH,Athens-ATH
+Europe,Southern Europe,Greece,Cephalonia,EFL,Cephalonia-EFL
+Europe,Southern Europe,Greece,Chania,CHQ,Chania-CHQ
+Europe,Southern Europe,Greece,Chios,JKH,Chios-JKH
+Europe,Southern Europe,Greece,Corfu,CFU,Corfu-CFU
+Europe,Southern Europe,Greece,Heraklion,HER,Heraklion-HER
+Europe,Southern Europe,Greece,Kalamata,KLX,Kalamata-KLX
+Europe,Southern Europe,Greece,Karpathos,AOK,Karpathos-AOK
+Europe,Southern Europe,Greece,Kavala,KVA,Kavala-KVA
+Europe,Southern Europe,Greece,Kos,KGS,Kos-KGS
+Europe,Southern Europe,Greece,Mykonos,JMK,Mykonos-JMK
+Europe,Southern Europe,Greece,Mytilene,MJT,Mytilene-MJT
+Europe,Southern Europe,Greece,Preveza,PVK,Preveza-PVK
+Europe,Southern Europe,Greece,Rhodes,RHO,Rhodes-RHO
+Europe,Southern Europe,Greece,Samos,SMI,Samos-SMI
+Europe,Southern Europe,Greece,Santorini,JTR,Santorini-JTR
+Europe,Southern Europe,Greece,Skiathos,JSI,Skiathos-JSI
+Europe,Southern Europe,Greece,Skyros,SKU,Skyros-SKU
+Europe,Southern Europe,Greece,Thessaloniki,SKG,Thessaloniki-SKG
+Europe,Southern Europe,Greece,Volos,VOL,Volos-VOL
+Europe,Southern Europe,Greece,Zakynthos,ZTH,Zakynthos-ZTH
+Europe,Southern Europe,Italy,Alghero,AHO,Alghero-AHO
+Europe,Southern Europe,Italy,Ancona,AOI,Ancona-AOI
+Europe,Southern Europe,Italy,Bari,BRI,Bari-BRI
+Europe,Southern Europe,Italy,Bergamo,BGY,Bergamo-BGY
+Europe,Southern Europe,Italy,Bologna,BLQ,Bologna-BLQ
+Europe,Southern Europe,Italy,Brescia,VBS,Brescia-VBS
+Europe,Southern Europe,Italy,Brindisi,BDS,Brindisi-BDS
+Europe,Southern Europe,Italy,Cagliari,CAG,Cagliari-CAG
+Europe,Southern Europe,Italy,Catania,CTA,Catania-CTA
+Europe,Southern Europe,Italy,Cuneo,CUF,Cuneo-CUF
+Europe,Southern Europe,Italy,Florence,FLR,Florence-FLR
+Europe,Southern Europe,Italy,Genoa,GOA,Genoa-GOA
+Europe,Southern Europe,Italy,Lamezia,SUF,Lamezia-SUF
+Europe,Southern Europe,Italy,Milan,LIN,Milan-LIN
+Europe,Southern Europe,Italy,Milan,MXP,Milan-MXP
+Europe,Southern Europe,Italy,Naples,NAP,Naples-NAP
+Europe,Southern Europe,Italy,Olbia,OLB,Olbia-OLB
+Europe,Southern Europe,Italy,Palermo,PMO,Palermo-PMO
+Europe,Southern Europe,Italy,Parma,PMF,Parma-PMF
+Europe,Southern Europe,Italy,Perugia,PEG,Perugia-PEG
+Europe,Southern Europe,Italy,Pescara,PSR,Pescara-PSR
+Europe,Southern Europe,Italy,Pisa,PSA,Pisa-PSA
+Europe,Southern Europe,Italy,Rimini,RMI,Rimini-RMI
+Europe,Southern Europe,Italy,Rome,FCO,Rome-FCO
+Europe,Southern Europe,Italy,Rome,CIA,Rome-CIA
+Europe,Southern Europe,Italy,Trapani,TPS,Trapani-TPS
+Europe,Southern Europe,Italy,Trieste,TRS,Trieste-TRS
+Europe,Southern Europe,Italy,Turin,TRN,Turin-TRN
+Europe,Southern Europe,Italy,Venice,VCE,Venice-VCE
+Europe,Southern Europe,Italy,Verona,VRN,Verona-VRN
+Europe,Southern Europe,Malta,Valletta,MLA,Valletta-MLA
+Europe,Southern Europe,Portugal,Beja,BYJ,Beja-BYJ
+Europe,Southern Europe,Portugal,Faro,FAO,Faro-FAO
+Europe,Southern Europe,Portugal,Funchal,FNC,Funchal-FNC
+Europe,Southern Europe,Portugal,Porto Santo Island,PXO,Porto Santo Island-PXO
+Europe,Southern Europe,Portugal,Lisbon,LIS,Lisbon-LIS
+Europe,Southern Europe,Portugal,Porto,OPO,Porto-OPO
+Europe,Southern Europe,Portugal,Ponta Delgada,PDL,Ponta Delgada-PDL
+Europe,Southern Europe,Portugal,Terceira Island,TER,Terceira Island-TER
+Europe,Southern Europe,Slovenia,Ljubljana,LJU,Ljubljana-LJU
+Europe,Southern Europe,Slovenia,Maribor,MBX,Maribor-MBX
+Europe,Southern Europe,Slovenia,Portorož,POW,Portorož-POW
+Europe,Southern Europe,Spain,A Coruña,LCG,A Coruña-LCG
+Europe,Southern Europe,Spain,Alicante,ALC,Alicante-ALC
+Europe,Southern Europe,Spain,Almería,LEI,Almería-LEI
+Europe,Southern Europe,Spain,Asturias,OVD,Asturias-OVD
+Europe,Southern Europe,Spain,Barcelona,BCN,Barcelona-BCN
+Europe,Southern Europe,Spain,Bilbao,BIO,Bilbao-BIO
+Europe,Southern Europe,Spain,Castellón de la Plana,CDT,Castellón de la Plana-CDT
+Europe,Southern Europe,Spain,Fuerteventura,FUE,Fuerteventura-FUE
+Europe,Southern Europe,Spain,Girona,GRO,Girona-GRO
+Europe,Southern Europe,Spain,Gran Canaria,LPA,Gran Canaria-LPA
+Europe,Southern Europe,Spain,Granada,GRX,Granada-GRX
+Europe,Southern Europe,Spain,Huesca,HSK,Huesca-HSK
+Europe,Southern Europe,Spain,Ibiza,IBZ,Ibiza-IBZ
+Europe,Southern Europe,Spain,Jerez de la Frontera,XRY,Jerez de la Frontera-XRY
+Europe,Southern Europe,Spain,La Palma,SPC,La Palma-SPC
+Europe,Southern Europe,Spain,Lanzarote,ACE,Lanzarote-ACE
+Europe,Southern Europe,Spain,Lleida,ILD,Lleida-ILD
+Europe,Southern Europe,Spain,Madrid,MAD,Madrid-MAD
+Europe,Southern Europe,Spain,Málaga,AGP,Málaga-AGP
+Europe,Southern Europe,Spain,Menorca,MAH,Menorca-MAH
+Europe,Southern Europe,Spain,Murcia,RMU,Murcia-RMU
+Europe,Southern Europe,Spain,Palma de Mallorca,PMI,Palma de Mallorca-PMI
+Europe,Southern Europe,Spain,Pamplona,PNA,Pamplona-PNA
+Europe,Southern Europe,Spain,Reus,REU,Reus-REU
+Europe,Southern Europe,Spain,Santander,SDR,Santander-SDR
+Europe,Southern Europe,Spain,Santiago de Compostela,SCQ,Santiago de Compostela-SCQ
+Europe,Southern Europe,Spain,Seville,SVQ,Seville-SVQ
+Europe,Southern Europe,Spain,Tenerife,TFN,Tenerife-TFN
+Europe,Southern Europe,Spain,Tenerife,TFS,Tenerife-TFS
+Europe,Southern Europe,Spain,Valencia,VLC,Valencia-VLC
+Europe,Southern Europe,Spain,Valladolid,VLL,Valladolid-VLL
+Europe,Southern Europe,Spain,Vigo,VGO,Vigo-VGO
+Europe,Southern Europe,Spain,Vitoria-Gasteiz,VIT,Vitoria-Gasteiz-VIT
+Europe,Southern Europe,Spain,Zaragoza,ZAZ,Zaragoza-ZAZ
+Europe,Eastern Europe,Albania,Tirana,TIA,Tirana-TIA
+Europe,Eastern Europe,Albania,Kukes,KFZ,Kukes-KFZ
+Europe,Eastern Europe,Armenia,Yerevan,EVN,Yerevan-EVN
+Europe,Eastern Europe,Armenia,Gyumri,LWN,Gyumri-LWN
+Europe,Eastern Europe,Azerbaijan,Baku,GYD,Baku-GYD
+Europe,Eastern Europe,Azerbaijan,Ganja,KVD,Ganja-KVD
+Europe,Eastern Europe,Azerbaijan,Nakhchivan,NAJ,Nakhchivan-NAJ
+Europe,Eastern Europe,Azerbaijan,Qabala,GBB,Qabala-GBB
+Europe,Eastern Europe,Azerbaijan,Lankaran,LLK,Lankaran-LLK
+Europe,Eastern Europe,Azerbaijan,Zaqatala,ZTU,Zaqatala-ZTU
+Europe,Eastern Europe,Belarus,Grodno,GNA,Grodno-GNA
+Europe,Eastern Europe,Belarus,Gomel,GME,Gomel-GME
+Europe,Eastern Europe,Belarus,Minsk,MSQ,Minsk-MSQ
+Europe,Eastern Europe,Bosnia and Herzegovina,Banja Luka,BNX,Banja Luka-BNX
+Europe,Eastern Europe,Bosnia and Herzegovina,Sarajevo,SJJ,Sarajevo-SJJ
+Europe,Eastern Europe,Bosnia and Herzegovina,Tuzla,TZL,Tuzla-TZL
+Europe,Eastern Europe,Bosnia and Herzegovina,Mostar,OMO,Mostar-OMO
+Europe,Eastern Europe,Bulgaria,Burgas,BOJ,Burgas-BOJ
+Europe,Eastern Europe,Bulgaria,Plovdiv,PDV,Plovdiv-PDV
+Europe,Eastern Europe,Bulgaria,Sofia,SOF,Sofia-SOF
+Europe,Eastern Europe,Bulgaria,Varna,VAR,Varna-VAR
+Europe,Eastern Europe,Georgia,Batumi,BUS,Batumi-BUS
+Europe,Eastern Europe,Georgia,Kutaisi,KUT,Kutaisi-KUT
+Europe,Eastern Europe,Georgia,Sokhumi,SUI,Sokhumi-SUI
+Europe,Eastern Europe,Georgia,Tbilisi,TBS,Tbilisi-TBS
+Europe,Eastern Europe,Kosovo,Pristina,PRN,Pristina-PRN
+Europe,Eastern Europe,Moldova,Chişinău,KIV,Chişinău-KIV
+Europe,Eastern Europe,Romania,Arad,ARW,Arad-ARW
+Europe,Eastern Europe,Romania,Bacau,BCM,Bacau-BCM
+Europe,Eastern Europe,Romania,Baia Mare,BAY,Baia Mare-BAY
+Europe,Eastern Europe,Romania,Bucharest,OTP,Bucharest-OTP
+Europe,Eastern Europe,Romania,Bucharest,BBU,Bucharest-BBU
+Europe,Eastern Europe,Romania,Cluj-Napoca,CLJ,Cluj-Napoca-CLJ
+Europe,Eastern Europe,Romania,Constanța,CND,Constanța-CND
+Europe,Eastern Europe,Romania,Craiova,CRA,Craiova-CRA
+Europe,Eastern Europe,Romania,Iași,IAS,Iași-IAS
+Europe,Eastern Europe,Romania,Oradea,OMR,Oradea-OMR
+Europe,Eastern Europe,Romania,Satu Mare,SUJ,Satu Mare-SUJ
+Europe,Eastern Europe,Romania,Sibiu,SBZ,Sibiu-SBZ
+Europe,Eastern Europe,Romania,Suceava,SCV,Suceava-SCV
+Europe,Eastern Europe,Romania,Târgu Mureș,TGM,Târgu Mureș-TGM
+Europe,Eastern Europe,Romania,Timișoara,TSR,Timișoara-TSR
+Europe,Eastern Europe,Montenegro,Podgorica,TGD,Podgorica-TGD
+Europe,Eastern Europe,Montenegro,Tivat,TIV,Tivat-TIV
+Europe,Eastern Europe,North Macedonia,Ohrid,OHD,Ohrid-OHD
+Europe,Eastern Europe,North Macedonia,Skopje,SKP,Skopje-SKP
+Europe,Eastern Europe,Russia,Abakan,ABA,Abakan-ABA
+Europe,Eastern Europe,Russia,Anadyr,DYR,Anadyr-DYR
+Europe,Eastern Europe,Russia,Anapa,AAQ,Anapa-AAQ
+Europe,Eastern Europe,Russia,Arkhangelsk,ARH,Arkhangelsk-ARH
+Europe,Eastern Europe,Russia,Astrakhan,ASF,Astrakhan-ASF
+Europe,Eastern Europe,Russia,Barnaul,BAX,Barnaul-BAX
+Europe,Eastern Europe,Russia,Belgorod,EGO,Belgorod-EGO
+Europe,Eastern Europe,Russia,Blagoveshchensk,BQS,Blagoveshchensk-BQS
+Europe,Eastern Europe,Russia,Bratsk,BTK,Bratsk-BTK
+Europe,Eastern Europe,Russia,Bryansk,BZK,Bryansk-BZK
+Europe,Eastern Europe,Russia,Cheboksary,CSY,Cheboksary-CSY
+Europe,Eastern Europe,Russia,Chelyabinsk,CEK,Chelyabinsk-CEK
+Europe,Eastern Europe,Russia,Cherepovets,CEE,Cherepovets-CEE
+Europe,Eastern Europe,Russia,Chita,HTA,Chita-HTA
+Europe,Eastern Europe,Russia,Elista,ESL,Elista-ESL
+Europe,Eastern Europe,Russia,Irkutsk,IKT,Irkutsk-IKT
+Europe,Eastern Europe,Russia,Grozny,GRV,Grozny-GRV
+Europe,Eastern Europe,Russia,Kaliningrad,KGD,Kaliningrad-KGD
+Europe,Eastern Europe,Russia,Kazan,KZN,Kazan-KZN
+Europe,Eastern Europe,Russia,Khabarovsk,KHV,Khabarovsk-KHV
+Europe,Eastern Europe,Russia,Komsomolsk-on-Amur,KXK,Komsomolsk-on-Amur-KXK
+Europe,Eastern Europe,Russia,Krasnodar,KRR,Krasnodar-KRR
+Europe,Eastern Europe,Russia,Krasnoyarsk,KJA,Krasnoyarsk-KJA
+Europe,Eastern Europe,Russia,Kursk,URS,Kursk-URS
+Europe,Eastern Europe,Russia,Magadan,GDX,Magadan-GDX
+Europe,Eastern Europe,Russia,Magnitogorsk,MQF,Magnitogorsk-MQF
+Europe,Eastern Europe,Russia,Makhachkala,MCX,Makhachkala-MCX
+Europe,Eastern Europe,Russia,Mineralnye Vody,MRV,Mineralnye Vody-MRV
+Europe,Eastern Europe,Russia,Moscow,DME,Moscow-DME
+Europe,Eastern Europe,Russia,Moscow,SVO,Moscow-SVO
+Europe,Eastern Europe,Russia,Moscow,VKO,Moscow-VKO
+Europe,Eastern Europe,Russia,Murmansk,MMK,Murmansk-MMK
+Europe,Eastern Europe,Russia,Nalchik,NAL,Nalchik-NAL
+Europe,Eastern Europe,Russia,Nizhnevartovsk,NJC,Nizhnevartovsk-NJC
+Europe,Eastern Europe,Russia,Nizhnekamsk,NBC,Nizhnekamsk-NBC
+Europe,Eastern Europe,Russia,Nizhny Novgorod,GOJ,Nizhny Novgorod-GOJ
+Europe,Eastern Europe,Russia,Novokuznetsk,NOZ,Novokuznetsk-NOZ
+Europe,Eastern Europe,Russia,Novosibirsk,OVB,Novosibirsk-OVB
+Europe,Eastern Europe,Russia,Omsk,OMS,Omsk-OMS
+Europe,Eastern Europe,Russia,Orenburg,REN,Orenburg-REN
+Europe,Eastern Europe,Russia,Orsk,OSW,Orsk-OSW
+Europe,Eastern Europe,Russia,Perm,PEE,Perm-PEE
+Europe,Eastern Europe,Russia,Petrozavodsk,PES,Petrozavodsk-PES
+Europe,Eastern Europe,Russia,Provideniya,PVS,Provideniya-PVS
+Europe,Eastern Europe,Russia,Petropavlovsk-Kamchatsky,PKC,Petropavlovsk-Kamchatsky-PKC
+Europe,Eastern Europe,Russia,Pskov,PKV,Pskov-PKV
+Europe,Eastern Europe,Russia,Rostov-on-Don,ROV,Rostov-on-Don-ROV
+Europe,Eastern Europe,Russia,Saint Petersburg,LED,Saint Petersburg-LED
+Europe,Eastern Europe,Russia,Samara,KUF,Samara-KUF
+Europe,Eastern Europe,Russia,Saratov,GSV,Saratov-GSV
+Europe,Eastern Europe,Russia,Sochi,AER,Sochi-AER
+Europe,Eastern Europe,Russia,Stavropol,STW,Stavropol-STW
+Europe,Eastern Europe,Russia,Surgut,SGC,Surgut-SGC
+Europe,Eastern Europe,Russia,Syktyvkar,SCW,Syktyvkar-SCW
+Europe,Eastern Europe,Russia,Tomsk,TOF,Tomsk-TOF
+Europe,Eastern Europe,Russia,Tyumen,TJM,Tyumen-TJM
+Europe,Eastern Europe,Russia,Ulan-Ude,UUD,Ulan-Ude-UUD
+Europe,Eastern Europe,Russia,Ulyanovsk,ULV,Ulyanovsk-ULV
+Europe,Eastern Europe,Russia,Ufa,UFA,Ufa-UFA
+Europe,Eastern Europe,Russia,Vladivostok,VVO,Vladivostok-VVO
+Europe,Eastern Europe,Russia,Vladikavkaz,OGZ,Vladikavkaz-OGZ
+Europe,Eastern Europe,Russia,Volgograd,VOG,Volgograd-VOG
+Europe,Eastern Europe,Russia,Voronezh,VOZ,Voronezh-VOZ
+Europe,Eastern Europe,Russia,Yakutsk,YKS,Yakutsk-YKS
+Europe,Eastern Europe,Russia,Yaroslavl,IAR,Yaroslavl-IAR
+Europe,Eastern Europe,Russia,Yekaterinburg,SVX,Yekaterinburg-SVX
+Europe,Eastern Europe,Russia,Yuzhno-Sakhalinsk,UUS,Yuzhno-Sakhalinsk-UUS
+Europe,Eastern Europe,Serbia,Belgrade,BEG,Belgrade-BEG
+Europe,Eastern Europe,Serbia,Niš,INI,Niš-INI
+Europe,Eastern Europe,Serbia,Kraljevo,KVO,Kraljevo-KVO
+Europe,Eastern Europe,Turkey,Adana,ADA,Adana-ADA
+Europe,Eastern Europe,Turkey,Alanya,GZP,Alanya-GZP
+Europe,Eastern Europe,Turkey,Ankara,ESB,Ankara-ESB
+Europe,Eastern Europe,Turkey,Antalya,AYT,Antalya-AYT
+Europe,Eastern Europe,Turkey,Bodrum,BJV,Bodrum-BJV
+Europe,Eastern Europe,Turkey,Bursa,YEI,Bursa-YEI
+Europe,Eastern Europe,Turkey,Dalaman,DLM,Dalaman-DLM
+Europe,Eastern Europe,Turkey,Denizli,DNZ,Denizli-DNZ
+Europe,Eastern Europe,Turkey,Diyarbakır,DIY,Diyarbakır-DIY
+Europe,Eastern Europe,Turkey,Elazığ,EZS,Elazığ-EZS
+Europe,Eastern Europe,Turkey,Gaziantep,GZT,Gaziantep-GZT
+Europe,Eastern Europe,Turkey,Istanbul,IST,Istanbul-IST
+Europe,Eastern Europe,Turkey,Istanbul,SAW,Istanbul-SAW
+Europe,Eastern Europe,Turkey,İzmir,ADB,İzmir-ADB
+Europe,Eastern Europe,Turkey,Kayseri,ASR,Kayseri-ASR
+Europe,Eastern Europe,Turkey,Konya,KYA,Konya-KYA
+Europe,Eastern Europe,Turkey,Kütahya,KZR,Kütahya-KZR
+Europe,Eastern Europe,Turkey,Malatya,MLX,Malatya-MLX
+Europe,Eastern Europe,Turkey,Nevşehir,NAV,Nevşehir-NAV
+Europe,Eastern Europe,Turkey,Samsun,SZF,Samsun-SZF
+Europe,Eastern Europe,Turkey,Trabzon,TZX,Trabzon-TZX
+Europe,Eastern Europe,Turkey,Zonguldak,ONQ,Zonguldak-ONQ
+Europe,Eastern Europe,Ukraine,Chernivtsi,CWC,Chernivtsi-CWC
+Europe,Eastern Europe,Ukraine,Dnipro,DNK,Dnipro-DNK
+Europe,Eastern Europe,Ukraine,Ivano-Frankivsk,IFO,Ivano-Frankivsk-IFO
+Europe,Eastern Europe,Ukraine,Kharkiv,HRK,Kharkiv-HRK
+Europe,Eastern Europe,Ukraine,Kryvyi Rih,KWG,Kryvyi Rih-KWG
+Europe,Eastern Europe,Ukraine,Kyiv,KBP,Kyiv-KBP
+Europe,Eastern Europe,Ukraine,Kyiv,IEV,Kyiv-IEV
+Europe,Eastern Europe,Ukraine,Lviv,LWO,Lviv-LWO
+Europe,Eastern Europe,Ukraine,Mykolaiv,NLV,Mykolaiv-NLV
+Europe,Eastern Europe,Ukraine,Odesa,ODS,Odesa-ODS
+Europe,Eastern Europe,Ukraine,Poltava,PLV,Poltava-PLV
+Europe,Eastern Europe,Ukraine,Simferopol,SIP,Simferopol-SIP
+Europe,Eastern Europe,Ukraine,Uzhhorod,UDJ,Uzhhorod-UDJ
+Europe,Eastern Europe,Ukraine,Zaporizhzhia,OZH,Zaporizhzhia-OZH
+Europe,Nordic Region,Denmark,Aalborg,AAL,Aalborg-AAL
+Europe,Nordic Region,Denmark,Aarhus,AAR,Aarhus-AAR
+Europe,Nordic Region,Denmark,Billund,BLL,Billund-BLL
+Europe,Nordic Region,Denmark,Copenhagen,CPH,Copenhagen-CPH
+Europe,Nordic Region,Estonia,Tallinn,TLL,Tallinn-TLL
+Europe,Nordic Region,Estonia,Tartu,TAY,Tartu-TAY
+Europe,Nordic Region,Estonia,Pärnu,EPU,Pärnu-EPU
+Europe,Nordic Region,Faroe Islands,Vágar,FAE,Vágar-FAE
+Europe,Nordic Region,Finland,Åland,MHQ,Åland-MHQ
+Europe,Nordic Region,Finland,Helsinki,HEL,Helsinki-HEL
+Europe,Nordic Region,Finland,Kittilä,KTT,Kittilä-KTT
+Europe,Nordic Region,Finland,Kuopio,KUO,Kuopio-KUO
+Europe,Nordic Region,Finland,Kuusamo,KAO,Kuusamo-KAO
+Europe,Nordic Region,Finland,Lappeenranta,LPP,Lappeenranta-LPP
+Europe,Nordic Region,Finland,Oulu,OUL,Oulu-OUL
+Europe,Nordic Region,Finland,Rovaniemi,RVN,Rovaniemi-RVN
+Europe,Nordic Region,Finland,Savonlinna,SVL,Savonlinna-SVL
+Europe,Nordic Region,Finland,Tampere,TMP,Tampere-TMP
+Europe,Nordic Region,Finland,Turku,TKU,Turku-TKU
+Europe,Nordic Region,Finland,Vaasa,VAA,Vaasa-VAA
+Europe,Nordic Region,Iceland,Akureyri,AEY,Akureyri-AEY
+Europe,Nordic Region,Iceland,Egilsstaðir,EGS,Egilsstaðir-EGS
+Europe,Nordic Region,Iceland,Reykjavík,KEF,Reykjavík-KEF
+Europe,Nordic Region,Iceland,Reykjavík,RKV,Reykjavík-RKV
+Europe,Nordic Region,Latvia,Riga,RIX,Riga-RIX
+Europe,Nordic Region,Latvia,Ventspils,VNT,Ventspils-VNT
+Europe,Nordic Region,Lithuania,Kaunas,KUN,Kaunas-KUN
+Europe,Nordic Region,Lithuania,Palanga,PLQ,Palanga-PLQ
+Europe,Nordic Region,Lithuania,Šiauliai,SQQ,Šiauliai-SQQ
+Europe,Nordic Region,Lithuania,Vilnius,VNO,Vilnius-VNO
+Europe,Nordic Region,Norway,Ålesund,AES,Ålesund-AES
+Europe,Nordic Region,Norway,Bergen,BGO,Bergen-BGO
+Europe,Nordic Region,Norway,Bodø,BOO,Bodø-BOO
+Europe,Nordic Region,Norway,Haugesund,HAU,Haugesund-HAU
+Europe,Nordic Region,Norway,Kristiansand,KRS,Kristiansand-KRS
+Europe,Nordic Region,Norway,Kristiansand,KSU,Kristiansand-KSU
+Europe,Nordic Region,Norway,Oslo,OSL,Oslo-OSL
+Europe,Nordic Region,Norway,Oslo,TRF,Oslo-TRF
+Europe,Nordic Region,Norway,Stavanger,SVG,Stavanger-SVG
+Europe,Nordic Region,Norway,Tromsø,TOS,Tromsø-TOS
+Europe,Nordic Region,Norway,Trondheim,TRD,Trondheim-TRD
+Europe,Nordic Region,Sweden,Gothenburg,GOT,Gothenburg-GOT
+Europe,Nordic Region,Sweden,Luleå,LLA,Luleå-LLA
+Europe,Nordic Region,Sweden,Malmö,MMX,Malmö-MMX
+Europe,Nordic Region,Sweden,Norrköping,NRK,Norrköping-NRK
+Europe,Nordic Region,Sweden,Östersund,OSD,Östersund-OSD
+Europe,Nordic Region,Sweden,Stockholm,ARN,Stockholm-ARN
+Europe,Nordic Region,Sweden,Stockholm,BMA,Stockholm-BMA
+Europe,Nordic Region,Sweden,Stockholm,NYO,Stockholm-NYO
+Europe,Nordic Region,Sweden,Stockholm,VST,Stockholm-VST
+Europe,Nordic Region,Sweden,Sundsvall,SDL,Sundsvall-SDL
+Europe,Nordic Region,Sweden,Umeå,UME,Umeå-UME
+Europe,Nordic Region,Sweden,Växjö,VXO,Växjö-VXO
+Europe,Nordic Region,Sweden,Visby,VBY,Visby-VBY
+Oceania,Oceania,American Samoa,Pago Pago,PPG,Pago Pago-PPG
+Oceania,Oceania,Australia,Adelaide,ADL,Adelaide-ADL
+Oceania,Oceania,Australia,Brisbane,BNE,Brisbane-BNE
+Oceania,Oceania,Australia,Broome,BME,Broome-BME
+Oceania,Oceania,Australia,Cairns,CNS,Cairns-CNS
+Oceania,Oceania,Australia,Canberra,CBR,Canberra-CBR
+Oceania,Oceania,Australia,Darwin,DRW,Darwin-DRW
+Oceania,Oceania,Australia,Geelong,AVV,Geelong-AVV
+Oceania,Oceania,Australia,Gold Coast,OOL,Gold Coast-OOL
+Oceania,Oceania,Australia,Hobart,HBA,Hobart-HBA
+Oceania,Oceania,Australia,Melbourne,MEL,Melbourne-MEL
+Oceania,Oceania,Australia,Newcastle,NTL,Newcastle-NTL
+Oceania,Oceania,Australia,Perth,PER,Perth-PER
+Oceania,Oceania,Australia,Port Hedland,PHE,Port Hedland-PHE
+Oceania,Oceania,Australia,Sunshine Coast,MCY,Sunshine Coast-MCY
+Oceania,Oceania,Australia,Sydney,SYD,Sydney-SYD
+Oceania,Oceania,Australia,Townsville,TSV,Townsville-TSV
+Oceania,Oceania,Christmas Island,Christmas Island,XCH,Christmas Island-XCH
+Oceania,Oceania,Cocos (Keeling) Islands,Cocos (Keeling) Islands,CCK,Cocos (Keeling) Islands-CCK
+Oceania,Oceania,Cook Islands,Rarotonga,RAR,Rarotonga-RAR
+Oceania,Oceania,Easter Island,Hanga Roa,IPC,Hanga Roa-IPC
+Oceania,Oceania,Fiji,Nadi,NAN,Nadi-NAN
+Oceania,Oceania,Fiji,Suva,SUV,Suva-SUV
+Oceania,Oceania,French Polynesia,Papeete,PPT,Papeete-PPT
+Oceania,Oceania,Guam,Hagåtña,GUM,Hagåtña-GUM
+Oceania,Oceania,Kiribati,Kiritimati,CXI,Kiritimati-CXI
+Oceania,Oceania,Kiribati,Tarawa,TRW,Tarawa-TRW
+Oceania,Oceania,Marshall Islands,Kwajalein,KWA,Kwajalein-KWA
+Oceania,Oceania,Marshall Islands,Majuro,MAJ,Majuro-MAJ
+Oceania,Oceania,Federated States of Micronesia,Chuuk,TKK,Chuuk-TKK
+Oceania,Oceania,Federated States of Micronesia,Kosrae,KSA,Kosrae-KSA
+Oceania,Oceania,Federated States of Micronesia,Pohnpei,PNI,Pohnpei-PNI
+Oceania,Oceania,Federated States of Micronesia,Yap,YAP,Yap-YAP
+Oceania,Oceania,Nauru,Yaren District,INU,Yaren District-INU
+Oceania,Oceania,New Caledonia,Nouméa,NOU,Nouméa-NOU
+Oceania,Oceania,New Zealand,Auckland,AKL,Auckland-AKL
+Oceania,Oceania,New Zealand,Christchurch,CHC,Christchurch-CHC
+Oceania,Oceania,New Zealand,Dunedin,DUD,Dunedin-DUD
+Oceania,Oceania,New Zealand,Queenstown,ZQN,Queenstown-ZQN
+Oceania,Oceania,New Zealand,Wellington,WLG,Wellington-WLG
+Oceania,Oceania,Norfolk Island,Norfolk Island,NLK,Norfolk Island-NLK
+Oceania,Oceania,Northern Mariana Islands,Rota,ROP,Rota-ROP
+Oceania,Oceania,Northern Mariana Islands,Saipan,SPN,Saipan-SPN
+Oceania,Oceania,Northern Mariana Islands,Tinian,TIQ,Tinian-TIQ
+Oceania,Oceania,Niue,Alofi,IUE,Alofi-IUE
+Oceania,Oceania,Palau,Koror,ROR,Koror-ROR
+Oceania,Oceania,Papua New Guinea,Port Moresby,POM,Port Moresby-POM
+Oceania,Oceania,Papua New Guinea,Mount Hagen,HGU,Mount Hagen-HGU
+Oceania,Oceania,Samoa,Apia,APW,Apia-APW
+Oceania,Oceania,Solomon Islands,Honiara,HIR,Honiara-HIR
+Oceania,Oceania,Tonga,Nukuʻalofa,TBU,Nukuʻalofa-TBU
+Oceania,Oceania,Tonga,Vavaʻu,VAV,Vavaʻu-VAV
+Oceania,Oceania,Tuvalu,Funafuti,FUN,Funafuti-FUN
+Oceania,Oceania,Vanuatu,Luganville,SON,Luganville-SON
+Oceania,Oceania,Vanuatu,Port Vila,VLI,Port Vila-VLI
+Oceania,Oceania,Wallis and Futuna,Futuna,FUT,Futuna-FUT
+Oceania,Oceania,Wallis and Futuna,Wallis,WLS,Wallis-WLS
