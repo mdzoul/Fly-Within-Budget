@@ -13,7 +13,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
-# TODO: FIX ALL RETURN FLIGHTS
+
 SEARCH_HEADERS = {
     "apikey": "fi7uUtSyu4MjJmFs_fBdi2PQu3nfj0GD",
 }
@@ -21,15 +21,15 @@ SEARCH_HEADERS = {
 TODAY = datetime.datetime.now()
 SIX_MONTHS_FROM_TODAY = TODAY + relativedelta(months=6)
 
+
 # ----------------------- GEOLOCATION_SEARCH ----------------------- #
-location_list = []
-with open("location.csv", "r") as csvfile:
-    location = csv.DictReader(csvfile)
-    for line in location:
-        location_list.append(line)
-
-
 def search_geolocation(category, user_input=None):
+    location_list = []
+    with open("location.csv", "r") as csvfile:
+        location = csv.DictReader(csvfile)
+        for line in location:
+            location_list.append(line)
+
     if category == "continent":
         countries = []
         for i in location_list:
@@ -158,11 +158,6 @@ def flight_response(fly_from, fly_to,
 
 
 # ----------------------- MULTICITY_SEARCH ----------------------- #
-MULTICITY_HEADERS = {
-    "apikey": "4deR5aEQSpH_f3xlA1iRhaIgXi8FQc1s",
-    "Content-Type": "application/json",
-}
-
 city_list = ["SIN"]
 departure_list = []
 
@@ -193,7 +188,10 @@ def multicity_search():
     r = requests.post(
         url="https://api.tequila.kiwi.com/v2/flights_multi",
         json=parameters,
-        headers=MULTICITY_HEADERS
+        headers={
+            "apikey": "4deR5aEQSpH_f3xlA1iRhaIgXi8FQc1s",
+            "Content-Type": "application/json",
+        }
     ).json()
 
     price = r[0]["price"]
@@ -436,6 +434,9 @@ class Form(StatesGroup):
     user_input = State()
     multi_city = State()
     multi_date = State()
+    airline_city = State()
+    airline_d_date = State()
+    airline_r_date = State()
 
 
 btn_direct_yes = InlineKeyboardButton(text="Yes", callback_data="yes")
@@ -566,7 +567,7 @@ async def searchflight(message: types.Message):
 
             if len(data["airline"]) == 2:
                 if data["airline"] in airline_iata_list:
-                    await Form.city.set()
+                    await Form.airline_city.set()
                     await message.answer("Please input destination city")
                 else:
                     await message.answer(f"'{data['airline']}' does not exist. Please restart")
@@ -577,16 +578,16 @@ async def searchflight(message: types.Message):
                         if data['airline'] == value:
                             async with state.proxy() as data:
                                 data['airline'] = key
-                            await Form.city.set()
+                            await Form.airline_city.set()
                             await message.answer("Please input destination city")
                 else:
                     await message.answer(f"'{data['airline']}' does not exist. Please restart")
                     await state.finish()
 
-        @dp.message_handler(state=Form.city)
+        @dp.message_handler(state=Form.airline_city)
         async def searchairline_flight(message: types.Message, state: FSMContext):
             async with state.proxy() as data:
-                data['city'] = message.text.upper()
+                data['airline_city'] = message.text.upper()
 
             btn_airline_oneway = InlineKeyboardButton(text="One-way", callback_data="airline_oneway")
             btn_airline_return = InlineKeyboardButton(text="Return", callback_data="airline_return")
@@ -596,21 +597,21 @@ async def searchflight(message: types.Message):
             await message.answer("Choose one-way or return flight",
                                  reply_markup=keyboard_airline)
 
-        @dp.callback_query_handler(text=["airline_oneway", "airline_return"], state=Form.city)
+        @dp.callback_query_handler(text=["airline_oneway", "airline_return"], state=Form.airline_city)
         async def airline_oneway_callback(query: types.CallbackQuery, state: FSMContext):
             if query.data == "airline_oneway":
-                await Form.d_date.set()
+                await Form.airline_d_date.set()
                 await query.message.answer("One-way flight:")
                 await query.message.answer("Please input date in the format:\nDD/MM/YYYY")
 
-                @dp.message_handler(state=Form.d_date)
+                @dp.message_handler(state=Form.airline_d_date)
                 async def airline_oneway_query(message: types.Message, state: FSMContext):
                     load_msg = await message.answer("Fetching data...")
                     async with state.proxy() as data:
-                        data['d_date'] = message.text
+                        data['airline_d_date'] = message.text
 
                         try:
-                            city_code = location_search(data["city"])
+                            city_code = location_search(data["airline_city"])
                         except KeyError or json.decoder.JSONDecodeError:
                             asyncio.create_task(delete_message(load_msg))
                             await message.answer("Invalid date. Please restart")
@@ -625,10 +626,10 @@ async def searchflight(message: types.Message):
                                     "airline_oneway",
                                     data["airline"],
                                     city_code,
-                                    data["d_date"])
+                                    data["airline_d_date"])
                             except IndexError:
                                 await message.answer(
-                                    f"{name_iata_dict[data['airline']].title()} does not fly to {data['city'].title()}"
+                                    f"{name_iata_dict[data['airline']].title()} does not fly to {data['airline_city'].title()}"
                                 )
                             else:
                                 asyncio.create_task(delete_message(load_msg))
@@ -640,54 +641,54 @@ async def searchflight(message: types.Message):
                     await state.finish()
 
             elif query.data == "airline_return":
-                await Form.d_date.set()
+                await Form.airline_d_date.set()
                 await query.message.answer("Return flight:")
                 await query.message.answer("Please input departure date in the format:\nDD/MM/YYYY")
 
-                @dp.message_handler(state=Form.d_date)
+                @dp.message_handler(state=Form.airline_d_date)
                 async def airline_r_search(message: types.Message, state: FSMContext):
                     async with state.proxy() as data:
-                        data['d_date'] = message.text
-                    await Form.r_date.set()
+                        data['airline_d_date'] = message.text
+                    await Form.airline_r_date.set()
                     await message.answer("Please input return date in the format:\nDD/MM/YYYY")
 
-                @dp.message_handler(state=Form.r_date)
-                async def airline_return_query(message: types.Message, state: FSMContext):
-                    load_msg = await message.answer("Fetching data...")
-                    async with state.proxy() as data:
-                        data['r_date'] = message.text
+                    @dp.message_handler(state=Form.airline_r_date)
+                    async def airline_return_query(message: types.Message, state: FSMContext):
+                        load_msg = await message.answer("Fetching data...")
+                        async with state.proxy() as data:
+                            data['airline_r_date'] = message.text
 
-                        try:
-                            city_code = location_search(data["city"])
-                        except KeyError or json.decoder.JSONDecodeError:
-                            asyncio.create_task(delete_message(load_msg))
-                            await message.answer("Invalid date. Please restart")
-                            await state.finish()
-                        except IndexError:
-                            asyncio.create_task(delete_message(load_msg))
-                            await message.answer("Invalid destination city. Please restart")
-                            await state.finish()
-                        else:
                             try:
-                                airline_response(
-                                    "airline_return",
-                                    data["airline"],
-                                    city_code,
-                                    data["d_date"],
-                                    data["r_date"]
-                                )
-                            except IndexError:
-                                await message.answer(
-                                    f"{name_iata_dict[data['airline']].title()} does not fly to {data['city'].title()}"
-                                )
-                            else:
+                                city_code = location_search(data["airline_city"])
+                            except KeyError or json.decoder.JSONDecodeError:
                                 asyncio.create_task(delete_message(load_msg))
-                                for flight in flight_deals:
-                                    await bot.send_message(message.chat.id, md.text(f"{flight}"))
-                        finally:
-                            flight_deals.clear()
+                                await message.answer("Invalid date. Please restart")
+                                await state.finish()
+                            except IndexError:
+                                asyncio.create_task(delete_message(load_msg))
+                                await message.answer("Invalid destination city. Please restart")
+                                await state.finish()
+                            else:
+                                try:
+                                    airline_response(
+                                        "airline_return",
+                                        data["airline"],
+                                        city_code,
+                                        data["airline_d_date"],
+                                        data["airline_r_date"]
+                                    )
+                                except IndexError:
+                                    await message.answer(
+                                        f"{name_iata_dict[data['airline']].title()} does not fly to {data['airline_city'].title()}"
+                                    )
+                                else:
+                                    asyncio.create_task(delete_message(load_msg))
+                                    for flight in flight_deals:
+                                        await bot.send_message(message.chat.id, md.text(f"{flight}"))
+                            finally:
+                                flight_deals.clear()
 
-                    await state.finish()
+                        await state.finish()
 
 
 @dp.message_handler(commands="browse")
@@ -776,11 +777,11 @@ async def open_input(message: types.Message, state: FSMContext):
                             flight_response("SIN", city_code, data["d_date"], None, baggage, stopover)
                         except KeyError or json.decoder.JSONDecodeError:
                             asyncio.create_task(delete_message(load_msg))
-                            await message.answer("Invalid date. Please input city.")
+                            await message.answer("Invalid date. Please restart")
                             await state.finish()
                         except IndexError:
                             asyncio.create_task(delete_message(load_msg))
-                            await message.answer(f"No direct flights to {data['city']}. Please input city.")
+                            await message.answer(f"No direct flights to {data['city']}. Please restart")
                             await state.finish()
                         else:
                             asyncio.create_task(delete_message(load_msg))
