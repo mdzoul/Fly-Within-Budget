@@ -20,6 +20,9 @@ SEARCH_HEADERS = {
 
 TODAY = datetime.datetime.now()
 SIX_MONTHS_FROM_TODAY = TODAY + relativedelta(months=6)
+# TODO: GLOBAL VARIABLES WON'T WORK BECAUSE ALL USERS WILL HAVE THE SAME USERNAME AND ORIGIN
+USERNAME = "User"
+ORIGIN = None
 
 
 # ----------------------- GEOLOCATION_SEARCH ----------------------- #
@@ -285,9 +288,9 @@ def cheapest_return(fly_to):
 
 
 # ----------------------- LOCATION_SEARCH ----------------------- #
-def location_search(fly_to):
+def location_search(loc):
     parameters = {
-        "term": fly_to,
+        "term": loc,
         "location_types": tuple(location_type for location_type in ["airport", "city", "country"]),
     }
 
@@ -423,6 +426,8 @@ dp = Dispatcher(bot, storage=storage)
 
 
 class Form(StatesGroup):
+    user = State()
+    origin = State()
     airline = State()
     search_direct_flight_qn = State()
     incl_baggage = State()
@@ -451,7 +456,7 @@ async def delete_message(message: types.Message):
 
 @dp.message_handler(commands="start")
 async def welcome(message: types.Message):
-    btn_about = InlineKeyboardButton(text="About FWB", callback_data="about")
+    btn_about = InlineKeyboardButton(text="About Fly Within Budget (FWB)", callback_data="about")
     keyboard_about = InlineKeyboardMarkup().add(btn_about)
     await bot.send_message(
         message.chat.id,
@@ -471,16 +476,62 @@ async def welcome(message: types.Message):
             "\n\nDeals shown are flights that originate from Singapore\nDo report any bugs experienced or "
             "features you want to see implemented @zoulaimi")
 
-    await bot.send_message(
-        message.chat.id,
-        md.text("Type a city or country to get the cheapest return flights\n\n"
-                "Type /help to see available commands"))
+    await Form.user.set()
+    await message.answer("What's your name?")
 
+    @dp.message_handler(state=Form.user)
+    async def city_search(message: types.Message, state: FSMContext):
+        global USERNAME
+        USERNAME = message.text.title()
+        await Form.origin.set()
+        await message.answer(f"And which city are you in now, {USERNAME}?")
+
+    @dp.message_handler(state=Form.origin)
+    async def city_search(message: types.Message, state: FSMContext):
+        global ORIGIN
+        ORIGIN = message.text.title()
+        await message.answer(f"Ah, beautiful place. I have set {ORIGIN} as your city of origin\n\n"
+                             f"To change your name or city of origin, you can type /profile")
+        await message.answer("You can start typing a city or country to search for flights\n\n"
+                             "You can also type /help to see available commands")
+        await message.answer(f"Happy travels, {USERNAME}!")
+        await state.finish()
+
+# TODO: Fix the global variable issue first, then /profile will be easy to update
+# @dp.message_handler(commands="profile")
+# async def city_search(message: types.Message, state: FSMContext):
+#     await message.answer(f"Hi {USERNAME}. Your current city of origin has been set to {ORIGIN}")
+#     await message.answer(f"Would you like to change your name and city of origin?", reply_markup=keyboard_yes_no)
+#
+#     @dp.callback_query_handler(text=("yes", "no"))
+#     async def change_name(query: types.CallbackQuery, state: FSMContext):
+#         if query.data == "yes":
+#             await Form.user.set()
+#             await message.answer("What name shall I address you?")
+#
+#             @dp.message_handler(state=Form.user)
+#             async def change_city(message: types.Message, state: FSMContext):
+#                 global USERNAME
+#                 USERNAME = message.text.title()
+#                 await Form.origin.set()
+#                 await message.answer(f"And which city are you in now, {USERNAME}?")
+#
+#             @dp.message_handler(state=Form.origin)
+#             async def city_search(message: types.Message, state: FSMContext):
+#                 global ORIGIN
+#                 ORIGIN = message.text.title()
+#                 await message.answer(f"ALright. Your name has been changed to {USERNAME} "
+#                                      f"and city of origin is now {ORIGIN}")
+#
+#         elif query.data == "no":
+#             await message.answer(f"Wanderlust is calling you, {USERNAME}\n\n"
+#                                  "Time to book tickets!")
 
 @dp.message_handler(commands="help")
 async def help_(message: types.Message):
     await message.answer(
         "Available commands:\n"
+        # "/profile - See and edit your profile\n"
         "/browse - Find your next travel destination\n"
         "/search - Search flights by airline or multi-city flights\n"
         "/cancel - Cancel any action")
@@ -733,7 +784,7 @@ async def open_input(message: types.Message, state: FSMContext):
 
     keyboard_other = InlineKeyboardMarkup().add(btn_airline_oneway, btn_airline_return).add(btn_deals)
 
-    await message.answer("Choose one-way or return flight, or see current deals to city",
+    await message.answer(f"Choose one-way or return flight, or see current deals to {data['city']}",
                          reply_markup=keyboard_other)
 
     @dp.callback_query_handler(text=["oneway", "return", "deals"], state=Form.city)
