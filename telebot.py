@@ -39,7 +39,7 @@ def search_geolocation(category, user_input=None):
             if i[category] == user_input:
                 countries.append(i["country"])
         country_list = '\n'.join(sorted(list(dict.fromkeys(countries))))
-        return f"{country_list}\n\nEnter a country"
+        return f"{country_list}"
 
     elif category == "country":
         cities = []
@@ -47,7 +47,7 @@ def search_geolocation(category, user_input=None):
             if i[category].lower() == user_input.lower():
                 cities.append(i["cityiataCode"])
         cityiata_list = '\n'.join(sorted(list(dict.fromkeys(cities))))
-        return f"{cityiata_list}\n\nEnter the 3-character city code"
+        return f"{cityiata_list}"
 
 
 # ----------------------- FLIGHT_SEARCH ----------------------- #
@@ -218,7 +218,7 @@ def multicity_search():
 
 
 # ----------------------- CURRENT_DEALS ----------------------- #
-def cheapest_return(fly_to):
+def cheapest_return(fly_from, fly_to):
     def msg():
         return f"Only SGD{price}\n\n" \
                f"From {city_from}-{fly_from} " \
@@ -229,7 +229,7 @@ def cheapest_return(fly_to):
                f"Departing on {destination_depart} (local time)."
 
     parameters = {
-        "fly_from": "SIN",
+        "fly_from": fly_from,
         "fly_to": fly_to,
         "date_from": TODAY.strftime("%d/%m/%Y"),
         "date_to": SIX_MONTHS_FROM_TODAY.strftime("%d/%m/%Y"),
@@ -444,10 +444,12 @@ class Form(StatesGroup):
     airline_r_date = State()
 
 
+btn_cancel = InlineKeyboardButton(text="Cancel", callback_data="cancel")
+keyboard_cancel = InlineKeyboardMarkup().add(btn_cancel)
+
 btn_direct_yes = InlineKeyboardButton(text="Yes", callback_data="yes")
 btn_direct_no = InlineKeyboardButton(text="No", callback_data="no")
-keyboard_yes_no = InlineKeyboardMarkup().add(btn_direct_no, btn_direct_yes)
-
+keyboard_yes_no = InlineKeyboardMarkup().add(btn_direct_no, btn_direct_yes).add(btn_cancel)
 
 async def delete_message(message: types.Message):
     with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
@@ -496,6 +498,7 @@ async def welcome(message: types.Message):
                              "You can also type /help to see available commands")
         await message.answer(f"Happy travels, {USERNAME}!")
         await state.finish()
+
 
 # TODO: Fix the global variable issue first, then /profile will be easy to update
 # @dp.message_handler(commands="profile")
@@ -552,9 +555,7 @@ async def cancel_handler(message: types.Message, state: FSMContext):
 async def searchflight(message: types.Message):
     btn_airline = InlineKeyboardButton(text="Preferred Airline", callback_data="airline")
     btn_multi = InlineKeyboardButton(text="Multi-city", callback_data="multi")
-
-    keyboard_search = InlineKeyboardMarkup().add(btn_airline).add(btn_multi)
-
+    keyboard_search = InlineKeyboardMarkup().add(btn_airline).add(btn_multi).add(btn_cancel)
     await message.answer("Search flights by airline or multi-city flights",
                          reply_markup=keyboard_search)
 
@@ -567,13 +568,12 @@ async def searchflight(message: types.Message):
                                    "For example, assuming you are visiting 2 cities and returning back to Singapore:\n"
                                    "Kuala Lumpur>Jakarta>Singapore\n"
                                    "01/01/2023>09/01/2023>16/01/2023")
-        await query.message.answer("Please input list of destination cities")
+        await query.message.answer("Please input list of destination cities", reply_markup=keyboard_cancel)
 
         @dp.message_handler(state=Form.multi_city)
         async def city_search(message: types.Message, state: FSMContext):
             async with state.proxy() as data:
                 data['multi_city'] = message.text
-
             await Form.next()
             await message.answer("Please input departure dates")
 
@@ -582,26 +582,23 @@ async def searchflight(message: types.Message):
             load_msg = await message.answer("Fetching data...")
             async with state.proxy() as data:
                 data['multi_date'] = message.text
-                city_names = data['multi_city'].split(">")
-                for city in city_names:
-                    try:
-                        iata_code = location_search(city)
-                    except IndexError:
-                        asyncio.create_task(delete_message(load_msg))
-                        await message.answer("Invalid destination city. Please restart")
-                        await state.finish()
-                    else:
-                        city_list.append(iata_code)
-                departure_list.extend(data['multi_date'].split(">"))
-                result = multicity_search()
-
-                asyncio.create_task(delete_message(load_msg))
-                await bot.send_message(message.chat.id, md.text(f"{result}"))
-
-                flight_deals.clear()
-                del city_list[1:]
-                departure_list.clear()
-
+            city_names = data['multi_city'].split(">")
+            for city in city_names:
+                try:
+                    iata_code = location_search(city)
+                except IndexError:
+                    asyncio.create_task(delete_message(load_msg))
+                    await message.answer("Invalid destination city. Please restart")
+                    await state.finish()
+                else:
+                    city_list.append(iata_code)
+            departure_list.extend(data['multi_date'].split(">"))
+            result = multicity_search()
+            asyncio.create_task(delete_message(load_msg))
+            await bot.send_message(message.chat.id, md.text(f"{result}"))
+            flight_deals.clear()
+            del city_list[1:]
+            departure_list.clear()
             await state.finish()
 
     # TODO: Include airline query to the last open input
@@ -609,7 +606,7 @@ async def searchflight(message: types.Message):
     async def search_airline(query: types.CallbackQuery):
         await Form.airline.set()
         await query.message.answer("Please input full airline name (e.g. Singapore Airlines) "
-                                   "or airline code (e.g. SQ)")
+                                   "or airline code (e.g. SQ)", reply_markup=keyboard_cancel)
 
         @dp.message_handler(state=Form.airline)
         async def airline_city(message: types.Message, state: FSMContext):
@@ -746,58 +743,67 @@ async def searchflight(message: types.Message):
 async def continent(message: types.Message):
     await Form.continent.set()
     await message.answer("Browse and find your next travel destination\n\n"
-                         "IMPORTANT:\nType the exact word for results\n"
-                         "If no results appear, type /cancel to restart")
-    await message.answer("Continents:\n\n"
-                         "Africa 🌍\nAmericas 🌎\nAsia 🌏\nEurope 🌍\nOceania 🌏\n\n"
-                         "Enter a continent")
+                         "IMPORTANT:\nType the exact word for results")
+    await message.answer("Available continents:\n\n"
+                         "Africa 🌍\nAmericas 🌎\nAsia 🌏\nEurope 🌍\nOceania 🌏\n\n")
+    await message.answer("Enter a continent:", reply_markup=keyboard_cancel)
 
     @dp.message_handler(state=Form.continent)
     async def country(message: types.Message, state: FSMContext):
         async with state.proxy() as data:
             data['continent'] = message.text.title()
-        await Form.next()
-        await message.answer(f"Countries in {data['continent']}:\n\n"
+        await Form.country.set()
+        await message.answer(f"Available countries in {data['continent']}:\n\n"
                              f"{search_geolocation('continent', data['continent'])}")
+        await message.answer("Enter a country:", reply_markup=keyboard_cancel)
 
     @dp.message_handler(state=Form.country)
     async def country(message: types.Message, state: FSMContext):
         async with state.proxy() as data:
             data['country'] = message.text.title()
-        await Form.next()
-        await message.answer(f"Cities in {data['country']}:\n\n"
-                             f"{search_geolocation('country', data['country'])}")
+        await message.answer(f"Available cities in {data['country']}:\n\n"
+                             f"{search_geolocation('country', data['country'])}",
+                             reply_markup=keyboard_cancel)
+        await message.answer("Enter the 3-character city code:", reply_markup=keyboard_cancel)
         await state.finish()
 
 
 # TODO: Figure out a way to filter through valid and invalid inputs
-# TODO: Allow users to input departing country
 @dp.message_handler()
 async def open_input(message: types.Message, state: FSMContext):
     await Form.city.set()
     async with state.proxy() as data:
         data['city'] = message.text.upper()
+    await Form.origin.set()
+    await message.answer("Which city are you departing from?")
 
-    btn_airline_oneway = InlineKeyboardButton(text="One-way", callback_data="oneway")
-    btn_airline_return = InlineKeyboardButton(text="Return", callback_data="return")
-    btn_deals = InlineKeyboardButton(text="Current Deals", callback_data="deals")
+    @dp.message_handler(state=Form.origin)
+    async def oneway_d_date(message: types.Message, state: FSMContext):
+        async with state.proxy() as data:
+            data['origin'] = message.text.upper()
 
-    keyboard_other = InlineKeyboardMarkup().add(btn_airline_oneway, btn_airline_return).add(btn_deals)
+        btn_airline_oneway = InlineKeyboardButton(text="One-way", callback_data="oneway")
+        btn_airline_return = InlineKeyboardButton(text="Return", callback_data="return")
+        btn_deals = InlineKeyboardButton(text="Current Deals", callback_data="deals")
 
-    await message.answer(f"Choose one-way or return flight, or see current deals to {data['city']}",
-                         reply_markup=keyboard_other)
+        keyboard_other = InlineKeyboardMarkup().add(btn_airline_oneway).add(btn_airline_return).add(btn_deals).add(
+            btn_cancel)
 
-    @dp.callback_query_handler(text=["oneway", "return", "deals"], state=Form.city)
-    async def callback(query: types.CallbackQuery, state: FSMContext):
-        if query.data == "oneway":
-            await Form.d_date.set()
-            await query.message.answer("One-way flight:")
-            await query.message.answer("Please input date in the format:\nDD/MM/YYYY")
+        await message.answer(
+            f"Choose one-way or return flight, or see current deals from {data['origin']} to {data['city']}",
+            reply_markup=keyboard_other)
 
-            @dp.message_handler(state=Form.d_date)
-            async def oneway_d_date(message: types.Message, state: FSMContext):
-                async with state.proxy() as data:
-                    data['d_date'] = message.text
+        @dp.callback_query_handler(text=["oneway", "return", "deals"], state=Form.origin)
+        async def callback(query: types.CallbackQuery, state: FSMContext):
+            if query.data == "oneway":
+                await Form.d_date.set()
+                await query.message.answer("One-way flight:")
+                await query.message.answer("Please input date in the format:\nDD/MM/YYYY")
+
+                @dp.message_handler(state=Form.d_date)
+                async def oneway_d_date(message: types.Message, state: FSMContext):
+                    async with state.proxy() as data:
+                        data['d_date'] = message.text
                     await Form.incl_baggage.set()
                     await message.answer("Include checked baggage?", reply_markup=keyboard_yes_no)
 
@@ -805,60 +811,61 @@ async def open_input(message: types.Message, state: FSMContext):
                 async def oneway_baggage_query(query: types.CallbackQuery, state: FSMContext):
                     async with state.proxy() as data:
                         data["incl_baggage"] = query.data
-                        await Form.search_direct_flight_qn.set()
-                        await message.answer("Search for direct flights only?", reply_markup=keyboard_yes_no)
+                    await Form.search_direct_flight_qn.set()
+                    await message.answer("Search for direct flights only?", reply_markup=keyboard_yes_no)
 
                 @dp.callback_query_handler(text=("yes", "no"), state=Form.search_direct_flight_qn)
                 async def oneway_direct_flight_query(query: types.CallbackQuery, state: FSMContext):
                     load_msg = await query.message.answer("Fetching data...")
                     async with state.proxy() as data:
                         data["search_direct_flight_qn"] = query.data
-                        if data["search_direct_flight_qn"] == "yes":
-                            stopover = 0
-                        else:
-                            stopover = None
+                    if data["search_direct_flight_qn"] == "yes":
+                        stopover = 0
+                    else:
+                        stopover = None
 
-                        if data["incl_baggage"] == "yes":
-                            baggage = 1
-                        else:
-                            baggage = 0
+                    if data["incl_baggage"] == "yes":
+                        baggage = 1
+                    else:
+                        baggage = 0
 
-                        try:
-                            city_code = location_search(data["city"])
-                            flight_response("SIN", city_code, data["d_date"], None, baggage, stopover)
-                        except KeyError or json.decoder.JSONDecodeError:
-                            asyncio.create_task(delete_message(load_msg))
-                            await message.answer("Invalid date. Please restart")
-                            await state.finish()
-                        except IndexError:
-                            asyncio.create_task(delete_message(load_msg))
-                            await message.answer(f"No direct flights to {data['city']}. Please restart")
-                            await state.finish()
-                        else:
-                            asyncio.create_task(delete_message(load_msg))
-                            for flight in flight_deals:
-                                await bot.send_message(message.chat.id, md.text(f"{flight}"))
-                        finally:
-                            flight_deals.clear()
+                    try:
+                        origin_code = location_search(data["origin"])
+                        city_code = location_search(data["city"])
+                        flight_response(origin_code, city_code, data["d_date"], None, baggage, stopover)
+                    except KeyError or json.decoder.JSONDecodeError:
+                        asyncio.create_task(delete_message(load_msg))
+                        await message.answer("Invalid date. Please restart")
+                        await state.finish()
+                    except IndexError:
+                        asyncio.create_task(delete_message(load_msg))
+                        await message.answer(f"No direct flights to {data['city']}. Please restart")
+                        await state.finish()
+                    else:
+                        asyncio.create_task(delete_message(load_msg))
+                        for flight in flight_deals:
+                            await bot.send_message(message.chat.id, md.text(f"{flight}"))
+                    finally:
+                        flight_deals.clear()
 
                     await state.finish()
 
-        elif query.data == "return":
-            await Form.d_date.set()
-            await query.message.answer("Return flight:")
-            await query.message.answer("Please input departure date in the format:\nDD/MM/YYYY")
+            elif query.data == "return":
+                await Form.d_date.set()
+                await query.message.answer("Return flight:")
+                await query.message.answer("Please input departure date in the format:\nDD/MM/YYYY")
 
-            @dp.message_handler(state=Form.d_date)
-            async def return_d_date(message: types.Message, state: FSMContext):
-                async with state.proxy() as data:
-                    data['d_date'] = message.text
-                await Form.r_date.set()
-                await message.answer("Please input return date in the format:\nDD/MM/YYYY")
+                @dp.message_handler(state=Form.d_date)
+                async def return_d_date(message: types.Message, state: FSMContext):
+                    async with state.proxy() as data:
+                        data['d_date'] = message.text
+                    await Form.r_date.set()
+                    await message.answer("Please input return date in the format:\nDD/MM/YYYY")
 
-            @dp.message_handler(state=Form.r_date)
-            async def return_r_date(message: types.Message, state: FSMContext):
-                async with state.proxy() as data:
-                    data['r_date'] = message.text
+                @dp.message_handler(state=Form.r_date)
+                async def return_r_date(message: types.Message, state: FSMContext):
+                    async with state.proxy() as data:
+                        data['r_date'] = message.text
                     await Form.incl_baggage.set()
                     await message.answer("Include checked baggage?", reply_markup=keyboard_yes_no)
 
@@ -866,61 +873,68 @@ async def open_input(message: types.Message, state: FSMContext):
                 async def oneway_baggage_query(query: types.CallbackQuery, state: FSMContext):
                     async with state.proxy() as data:
                         data["incl_baggage"] = query.data
-                        await Form.search_direct_flight_qn.set()
-                        await message.answer("Search for direct flights only?", reply_markup=keyboard_yes_no)
+                    await Form.search_direct_flight_qn.set()
+                    await message.answer("Search for direct flights only?", reply_markup=keyboard_yes_no)
 
                 @dp.callback_query_handler(text=("yes", "no"), state=Form.search_direct_flight_qn)
                 async def return_query(query: types.CallbackQuery, state: FSMContext):
                     load_msg = await query.message.answer("Fetching data...")
                     async with state.proxy() as data:
                         data["search_direct_flight_qn"] = query.data
-                        if data["search_direct_flight_qn"] == "yes":
-                            stopover = 0
-                        else:
-                            stopover = None
+                    if data["search_direct_flight_qn"] == "yes":
+                        stopover = 0
+                    else:
+                        stopover = None
 
-                        if data["incl_baggage"] == "yes":
-                            baggage = 1
-                        else:
-                            baggage = 0
+                    if data["incl_baggage"] == "yes":
+                        baggage = 1
+                    else:
+                        baggage = 0
 
-                        try:
-                            city_code = location_search(data["city"])
-                            flight_response("SIN", city_code, data["d_date"], data["r_date"], 1, stopover)
-                        except KeyError or json.decoder.JSONDecodeError:
-                            asyncio.create_task(delete_message(load_msg))
-                            await message.answer("Invalid date. Please restart")
-                            await state.finish()
-                        except IndexError:
-                            asyncio.create_task(delete_message(load_msg))
-                            await message.answer("Invalid destination city. Please restart")
-                            await state.finish()
-                        else:
-                            asyncio.create_task(delete_message(load_msg))
-                            for flight in flight_deals:
-                                await bot.send_message(message.chat.id, md.text(f"{flight}"))
-                        finally:
-                            flight_deals.clear()
+                    try:
+                        origin_code = location_search(data["origin"])
+                        city_code = location_search(data["city"])
+                        flight_response(origin_code, city_code, data["d_date"], data["r_date"], baggage, stopover)
+                    except KeyError or json.decoder.JSONDecodeError:
+                        asyncio.create_task(delete_message(load_msg))
+                        await message.answer("Invalid date. Please restart")
+                        await state.finish()
+                    except IndexError:
+                        asyncio.create_task(delete_message(load_msg))
+                        await message.answer("Invalid destination city. Please restart")
+                        await state.finish()
+                    else:
+                        asyncio.create_task(delete_message(load_msg))
+                        for flight in flight_deals:
+                            await bot.send_message(message.chat.id, md.text(f"{flight}"))
+                    finally:
+                        flight_deals.clear()
 
                     await state.finish()
 
-        elif query.data == "deals":
-            load_msg = await query.message.answer("Fetching data...")
-            async with state.proxy() as data:
-                data['city'] = data['city']
-            try:
-                cheapest_return(location_search(data['city']))
-            except IndexError:
-                asyncio.create_task(delete_message(load_msg))
-                await query.message.answer(f"No current deals to {data['city']}")
+            elif query.data == "deals":
+                load_msg = await query.message.answer("Fetching data...")
+                async with state.proxy() as data:
+                    data['city'] = data['city']
+                try:
+                    cheapest_return(location_search(data['origin']), location_search(data['city']))
+                except IndexError:
+                    asyncio.create_task(delete_message(load_msg))
+                    await query.message.answer(f"No current deals to {data['city']}")
+                    await state.finish()
+                else:
+                    asyncio.create_task(delete_message(load_msg))
+                    for flight in flight_deals:
+                        await bot.send_message(query.message.chat.id, md.text(f"{flight}"))
+                finally:
+                    flight_deals.clear()
                 await state.finish()
-            else:
-                asyncio.create_task(delete_message(load_msg))
-                for flight in flight_deals:
-                    await bot.send_message(query.message.chat.id, md.text(f"{flight}"))
-            finally:
-                flight_deals.clear()
-            await state.finish()
+
+
+@dp.callback_query_handler(state='*', text='cancel')
+async def cancel_handler(query: types.CallbackQuery, state: FSMContext):
+    await state.finish()
+    await query.message.answer('Action cancelled')
 
 
 executor.start_polling(dp)
