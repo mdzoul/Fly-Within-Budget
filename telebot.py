@@ -20,12 +20,9 @@ SEARCH_HEADERS = {
 
 TODAY = datetime.datetime.now()
 SIX_MONTHS_FROM_TODAY = TODAY + relativedelta(months=6)
-# TODO: GLOBAL VARIABLES WON'T WORK BECAUSE ALL USERS WILL HAVE THE SAME USERNAME AND ORIGIN
-USERNAME = "User"
-ORIGIN = None
 
 
-# ----------------------- GEOLOCATION_SEARCH ----------------------- #
+# ----------------------- BROWSE ----------------------- #
 def search_geolocation(category, user_input=None):
     location_list = []
     with open("location.csv", "r") as csvfile:
@@ -451,6 +448,7 @@ btn_direct_yes = InlineKeyboardButton(text="Yes", callback_data="yes")
 btn_direct_no = InlineKeyboardButton(text="No", callback_data="no")
 keyboard_yes_no = InlineKeyboardMarkup().add(btn_direct_no, btn_direct_yes).add(btn_cancel)
 
+
 async def delete_message(message: types.Message):
     with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
         await message.delete()
@@ -462,7 +460,7 @@ async def welcome(message: types.Message):
     keyboard_about = InlineKeyboardMarkup().add(btn_about)
     await bot.send_message(
         message.chat.id,
-        md.text("Welcome to FWB (Fly Within Budget)"),
+        md.text("Welcome to Fly Within Budget (FWB)"),
         reply_markup=keyboard_about
     )
 
@@ -470,71 +468,23 @@ async def welcome(message: types.Message):
     async def about(query: types.CallbackQuery):
         await query.message.answer(
             "This service is currently in its alpha phase"
-            "\n\nFWB shows the cheapest flight deals as of the current search"
+            "\n\nFly Within Budget (FWB) shows the cheapest flight deals as of the current search"
             "\n\nYou can search by airline, destination city/country, "
             "and one-way, return or multi-city flights"
             "\n\nThinking of going someplace new on your next travel? "
             "Try /browse and see all available international airports"
-            "\n\nDeals shown are flights that originate from Singapore\nDo report any bugs experienced or "
-            "features you want to see implemented @zoulaimi")
+            "\n\nDo report any bugs experienced or features you want to see implemented @zoulaimi")
 
-    await Form.user.set()
-    await message.answer("What's your name?")
+    await bot.send_message(
+        message.chat.id,
+        md.text("Type a city or country to search for flights\n\n"
+                "Type /help to see available commands"))
 
-    @dp.message_handler(state=Form.user)
-    async def city_search(message: types.Message, state: FSMContext):
-        global USERNAME
-        USERNAME = message.text.title()
-        await Form.origin.set()
-        await message.answer(f"And which city are you in now, {USERNAME}?")
-
-    @dp.message_handler(state=Form.origin)
-    async def city_search(message: types.Message, state: FSMContext):
-        global ORIGIN
-        ORIGIN = message.text.title()
-        await message.answer(f"Ah, beautiful place. I have set {ORIGIN} as your city of origin\n\n"
-                             f"To change your name or city of origin, you can type /profile")
-        await message.answer("You can start typing a city or country to search for flights\n\n"
-                             "You can also type /help to see available commands")
-        await message.answer(f"Happy travels, {USERNAME}!")
-        await state.finish()
-
-
-# TODO: Fix the global variable issue first, then /profile will be easy to update
-# @dp.message_handler(commands="profile")
-# async def city_search(message: types.Message, state: FSMContext):
-#     await message.answer(f"Hi {USERNAME}. Your current city of origin has been set to {ORIGIN}")
-#     await message.answer(f"Would you like to change your name and city of origin?", reply_markup=keyboard_yes_no)
-#
-#     @dp.callback_query_handler(text=("yes", "no"))
-#     async def change_name(query: types.CallbackQuery, state: FSMContext):
-#         if query.data == "yes":
-#             await Form.user.set()
-#             await message.answer("What name shall I address you?")
-#
-#             @dp.message_handler(state=Form.user)
-#             async def change_city(message: types.Message, state: FSMContext):
-#                 global USERNAME
-#                 USERNAME = message.text.title()
-#                 await Form.origin.set()
-#                 await message.answer(f"And which city are you in now, {USERNAME}?")
-#
-#             @dp.message_handler(state=Form.origin)
-#             async def city_search(message: types.Message, state: FSMContext):
-#                 global ORIGIN
-#                 ORIGIN = message.text.title()
-#                 await message.answer(f"ALright. Your name has been changed to {USERNAME} "
-#                                      f"and city of origin is now {ORIGIN}")
-#
-#         elif query.data == "no":
-#             await message.answer(f"Wanderlust is calling you, {USERNAME}\n\n"
-#                                  "Time to book tickets!")
 
 @dp.message_handler(commands="help")
 async def help_(message: types.Message):
     await message.answer(
         "Available commands:\n"
-        # "/profile - See and edit your profile\n"
         "/browse - Find your next travel destination\n"
         "/search - Search flights by airline or multi-city flights\n"
         "/cancel - Cancel any action")
@@ -560,7 +510,7 @@ async def searchflight(message: types.Message):
                          reply_markup=keyboard_search)
 
     @dp.callback_query_handler(text="multi")
-    async def search_multi(query: types.CallbackQuery):
+    async def multi_search(query: types.CallbackQuery):
         await Form.multi_city.set()
         await query.message.answer("You will be asked to input a list of destination cities and "
                                    "the corresponding departure dates for each city\n\n"
@@ -571,14 +521,14 @@ async def searchflight(message: types.Message):
         await query.message.answer("Please input list of destination cities", reply_markup=keyboard_cancel)
 
         @dp.message_handler(state=Form.multi_city)
-        async def city_search(message: types.Message, state: FSMContext):
+        async def multi_city(message: types.Message, state: FSMContext):
             async with state.proxy() as data:
                 data['multi_city'] = message.text
             await Form.next()
             await message.answer("Please input departure dates")
 
         @dp.message_handler(state=Form.multi_date)
-        async def oneway_query(message: types.Message, state: FSMContext):
+        async def multi_date(message: types.Message, state: FSMContext):
             load_msg = await message.answer("Fetching data...")
             async with state.proxy() as data:
                 data['multi_date'] = message.text
@@ -603,7 +553,7 @@ async def searchflight(message: types.Message):
 
     # TODO: Include airline query to the last open input
     @dp.callback_query_handler(text="airline")
-    async def search_airline(query: types.CallbackQuery):
+    async def airline_search(query: types.CallbackQuery):
         await Form.airline.set()
         await query.message.answer("Please input full airline name (e.g. Singapore Airlines) "
                                    "or airline code (e.g. SQ)", reply_markup=keyboard_cancel)
@@ -633,7 +583,7 @@ async def searchflight(message: types.Message):
                     await state.finish()
 
         @dp.message_handler(state=Form.airline_city)
-        async def searchairline_flight(message: types.Message, state: FSMContext):
+        async def airline_flight(message: types.Message, state: FSMContext):
             async with state.proxy() as data:
                 data['airline_city'] = message.text.upper()
 
@@ -646,14 +596,14 @@ async def searchflight(message: types.Message):
                                  reply_markup=keyboard_airline)
 
         @dp.callback_query_handler(text=["airline_oneway", "airline_return"], state=Form.airline_city)
-        async def airline_oneway_callback(query: types.CallbackQuery, state: FSMContext):
+        async def airline_oneway(query: types.CallbackQuery, state: FSMContext):
             if query.data == "airline_oneway":
                 await Form.airline_d_date.set()
                 await query.message.answer("One-way flight:")
                 await query.message.answer("Please input date in the format:\nDD/MM/YYYY")
 
                 @dp.message_handler(state=Form.airline_d_date)
-                async def airline_oneway_query(message: types.Message, state: FSMContext):
+                async def airline_oneway_d_date(message: types.Message, state: FSMContext):
                     load_msg = await message.answer("Fetching data...")
                     async with state.proxy() as data:
                         data['airline_d_date'] = message.text
@@ -749,22 +699,22 @@ async def continent(message: types.Message):
     await message.answer("Enter a continent:", reply_markup=keyboard_cancel)
 
     @dp.message_handler(state=Form.continent)
-    async def country(message: types.Message, state: FSMContext):
+    async def country(message_country: types.Message, state: FSMContext):
         async with state.proxy() as data:
-            data['continent'] = message.text.title()
+            data['continent'] = message_country.text.title()
         await Form.country.set()
-        await message.answer(f"Available countries in {data['continent']}:\n\n"
+        await message_country.answer(f"Available countries in {data['continent']}:\n\n"
                              f"{search_geolocation('continent', data['continent'])}")
-        await message.answer("Enter a country:", reply_markup=keyboard_cancel)
+        await message_country.answer("Enter a country:", reply_markup=keyboard_cancel)
 
     @dp.message_handler(state=Form.country)
-    async def country(message: types.Message, state: FSMContext):
+    async def city(message_city: types.Message, state: FSMContext):
         async with state.proxy() as data:
-            data['country'] = message.text.title()
-        await message.answer(f"Available cities in {data['country']}:\n\n"
+            data['country'] = message_city.text.title()
+        await message_city.answer(f"Available cities in {data['country']}:\n\n"
                              f"{search_geolocation('country', data['country'])}",
-                             reply_markup=keyboard_cancel)
-        await message.answer("Enter the 3-character city code:", reply_markup=keyboard_cancel)
+                                  reply_markup=keyboard_cancel)
+        await message_city.answer("Enter the 3-character city code:", reply_markup=keyboard_cancel)
         await state.finish()
 
 
