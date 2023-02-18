@@ -862,6 +862,7 @@ async def open_input(message: types.Message, state: FSMContext):
 
                     await state.finish()
 
+            # TODO: Allow users to input month of interest + period of travel
             elif query.data == "deals":
                 load_msg = await query.message.answer("Fetching data...")
                 async with state.proxy() as data:
