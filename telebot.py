@@ -21,6 +21,8 @@ SEARCH_HEADERS = {
 TODAY = datetime.datetime.now()
 SIX_MONTHS_FROM_TODAY = TODAY + relativedelta(months=6)
 
+FLIGHT_DEALS = []
+
 
 # ----------------------- BROWSE ----------------------- #
 def search_geolocation(category, user_input=None):
@@ -48,8 +50,6 @@ def search_geolocation(category, user_input=None):
 
 
 # ----------------------- FLIGHT_SEARCH ----------------------- #
-flight_deals = []
-
 
 def flight_response(fly_from, fly_to,
                     departure_date=TODAY.strftime("%d/%m/%Y"),
@@ -118,12 +118,11 @@ def flight_response(fly_from, fly_to,
                         break
 
             url = rebrandly_link(link)
-            flight_deals.append(f"{msg()}"
-                                f"\n\nClick on the link to book now!\n{url}")
+            FLIGHT_DEALS.append({f"{url}": f"{msg()}"})
 
     elif return_date is None:
         def msg():
-            return f"Only SGD{price}\n" \
+            return f"Only SGD{price}\n\n" \
                    f"From {city_from}-{fly_from} " \
                    f"to {city_to}-{fly_to}\n" \
                    f"Departing on {local_depart}."
@@ -145,16 +144,16 @@ def flight_response(fly_from, fly_to,
 
             if len(flight_check["route"]) == 1:
                 url = rebrandly_link(link)
-                flight_deals.append(f"{msg()}\nDirect flight. No stopovers.\n\nClick on the link to book now!\n{url}")
+                FLIGHT_DEALS.append({f"{url}": f"{msg()}\n\nDirect flight. No stopovers."})
 
             elif len(flight_check["route"]) == 2:
                 url = rebrandly_link(link)
-                flight_deals.append(
-                    f"{msg()}\nFlight has 1 stopover, via {stopover}.\n\nClick on the link to book now!\n{url}")
+                FLIGHT_DEALS.append({f"{url}": f"{msg()}\n\nFlight has 1 stopover, via {stopover}."})
 
             else:
                 url = rebrandly_link(link)
-                flight_deals.append(f"{msg()}\nMultiple stopovers.\n\nClick on the link to book now!\n{url}")
+                FLIGHT_DEALS.append({f"{url}": f"{msg()}\n\nMultiple stopovers."})
+
 
 
 # ----------------------- MULTICITY_SEARCH ----------------------- #
@@ -206,9 +205,9 @@ def multicity_search():
             r[0]["route"][i]["route"][0]["local_departure"],
             '%Y-%m-%dT%H:%M:%S.%fZ')
 
-        flight_deals.append(f"{msg()}")
+        FLIGHT_DEALS.append(f"{msg()}")
 
-    multicity_msg = '\n\n'.join(flight_deals)
+    multicity_msg = '\n\n'.join(FLIGHT_DEALS)
 
     return f"Only SGD{price}\n\n{multicity_msg}" \
            f"\n\nClick on the link to book now!\n{url} "
@@ -280,8 +279,7 @@ def cheapest_return(fly_from, fly_to):
                     break
 
         url = rebrandly_link(link)
-        flight_deals.append(f"{msg()}"
-                            f"\n\nClick on the link to book now!\n{url}")
+        FLIGHT_DEALS.append({f"{url}": f"{msg()}"})
 
 
 # ----------------------- LOCATION_SEARCH ----------------------- #
@@ -384,10 +382,10 @@ def airline_response(
 
         url = rebrandly_link(link)
         if flight_type == "airline_oneway":
-            flight_deals.append(f"{msg_oneway()}"
+            FLIGHT_DEALS.append(f"{msg_oneway()}"
                                 f"\n\nClick on the link to book now!\n{url}")
         elif flight_type == "airline_return":
-            flight_deals.append(f"{msg_return()}"
+            FLIGHT_DEALS.append(f"{msg_return()}"
                                 f"\n\nClick on the link to book now!\n{url}")
 
 
@@ -546,7 +544,7 @@ async def searchflight(message: types.Message):
             result = multicity_search()
             asyncio.create_task(delete_message(load_msg))
             await bot.send_message(message.chat.id, md.text(f"{result}"))
-            flight_deals.clear()
+            FLIGHT_DEALS.clear()
             del city_list[1:]
             departure_list.clear()
             await state.finish()
@@ -631,10 +629,10 @@ async def searchflight(message: types.Message):
                                 )
                             else:
                                 asyncio.create_task(delete_message(load_msg))
-                                for flight in flight_deals:
+                                for flight in FLIGHT_DEALS:
                                     await bot.send_message(message.chat.id, md.text(f"{flight}"))
                         finally:
-                            flight_deals.clear()
+                            FLIGHT_DEALS.clear()
 
                     await state.finish()
 
@@ -681,10 +679,10 @@ async def searchflight(message: types.Message):
                                     )
                                 else:
                                     asyncio.create_task(delete_message(load_msg))
-                                    for flight in flight_deals:
+                                    for flight in FLIGHT_DEALS:
                                         await bot.send_message(message.chat.id, md.text(f"{flight}"))
                             finally:
-                                flight_deals.clear()
+                                FLIGHT_DEALS.clear()
 
                         await state.finish()
 
@@ -793,10 +791,15 @@ async def open_input(message: types.Message, state: FSMContext):
                         await state.finish()
                     else:
                         asyncio.create_task(delete_message(load_msg))
-                        for flight in flight_deals:
-                            await bot.send_message(message.chat.id, md.text(f"{flight}"))
+                        for flight in FLIGHT_DEALS:
+                            for link, text in flight.items():
+                                keyboard = InlineKeyboardMarkup()
+                                button = InlineKeyboardButton(link, url=link)
+                                keyboard.add(button)
+                                await message.answer(text, reply_markup=keyboard)
+                        await message.answer("Enjoy your travels, fellow wanderer!")
                     finally:
-                        flight_deals.clear()
+                        FLIGHT_DEALS.clear()
 
                     await state.finish()
 
@@ -855,10 +858,15 @@ async def open_input(message: types.Message, state: FSMContext):
                         await state.finish()
                     else:
                         asyncio.create_task(delete_message(load_msg))
-                        for flight in flight_deals:
-                            await bot.send_message(message.chat.id, md.text(f"{flight}"))
+                        for flight in FLIGHT_DEALS:
+                            for link, text in flight.items():
+                                keyboard = InlineKeyboardMarkup()
+                                button = InlineKeyboardButton(link, url=link)
+                                keyboard.add(button)
+                                await message.answer(text, reply_markup=keyboard)
+                        await message.answer("Enjoy your travels, fellow wanderer!")
                     finally:
-                        flight_deals.clear()
+                        FLIGHT_DEALS.clear()
 
                     await state.finish()
 
@@ -875,10 +883,15 @@ async def open_input(message: types.Message, state: FSMContext):
                     await state.finish()
                 else:
                     asyncio.create_task(delete_message(load_msg))
-                    for flight in flight_deals:
-                        await bot.send_message(query.message.chat.id, md.text(f"{flight}"))
+                    for flight in FLIGHT_DEALS:
+                        for link, text in flight.items():
+                            keyboard = InlineKeyboardMarkup()
+                            button = InlineKeyboardButton(link, url=link)
+                            keyboard.add(button)
+                            await message.answer(text, reply_markup=keyboard)
+                    await message.answer("Enjoy your travels, fellow wanderer!")
                 finally:
-                    flight_deals.clear()
+                    FLIGHT_DEALS.clear()
                 await state.finish()
 
 
