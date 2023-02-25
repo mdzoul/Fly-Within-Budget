@@ -1,9 +1,9 @@
 import requests
 import json
-import datetime
 import asyncio
 import csv
 import aiogram.utils.markdown as md
+from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from contextlib import suppress
 from aiogram import Bot, Dispatcher, executor, types
@@ -18,7 +18,7 @@ SEARCH_HEADERS = {
     "apikey": "fi7uUtSyu4MjJmFs_fBdi2PQu3nfj0GD",
 }
 
-TODAY = datetime.datetime.now()
+TODAY = datetime.now()
 SIX_MONTHS_FROM_TODAY = TODAY + relativedelta(months=6)
 
 FLIGHT_DEALS = []
@@ -90,7 +90,7 @@ def flight_response(fly_from, fly_to,
             fly_from = flight_check["flyFrom"]
             city_to = flight_check["cityTo"]
             fly_to = flight_check["flyTo"]
-            origin_depart = datetime.datetime.strptime(
+            origin_depart = datetime.strptime(
                 flight_check["route"][0]["local_departure"],
                 '%Y-%m-%dT%H:%M:%S.%fZ')
             destination_depart = "[Error retrieving data]"
@@ -99,7 +99,7 @@ def flight_response(fly_from, fly_to,
             for route in flight_check["route"]:
                 if route["cityFrom"] == city_to:
                     i = flight_check["route"].index(route)
-                    destination_depart = datetime.datetime.strptime(
+                    destination_depart = datetime.strptime(
                         flight_check["route"][i]["local_departure"],
                         '%Y-%m-%dT%H:%M:%S.%fZ'
                     )
@@ -111,7 +111,7 @@ def flight_response(fly_from, fly_to,
                         j = flight_check["route"].index(route) + 1
                         city_from_r = flight_check["route"][j]["cityFrom"]
                         fly_from_r = flight_check["route"][j]["flyFrom"]
-                        destination_depart = datetime.datetime.strptime(
+                        destination_depart = datetime.strptime(
                             flight_check["route"][j]["local_departure"],
                             '%Y-%m-%dT%H:%M:%S.%fZ'
                         )
@@ -135,7 +135,7 @@ def flight_response(fly_from, fly_to,
             fly_from = flight_check["flyFrom"]
             city_to = flight_check["cityTo"]
             fly_to = flight_check["flyTo"]
-            local_depart = datetime.datetime.strptime(
+            local_depart = datetime.strptime(
                 flight_check["local_departure"],
                 '%Y-%m-%dT%H:%M:%S.%fZ'
             )
@@ -201,7 +201,7 @@ def multicity_search():
         fly_from = r[0]["route"][i]["cityCodeFrom"]
         city_to = r[0]["route"][i]["cityTo"]
         fly_to = r[0]["route"][i]["cityCodeTo"]
-        local_depart = datetime.datetime.strptime(
+        local_depart = datetime.strptime(
             r[0]["route"][i]["route"][0]["local_departure"],
             '%Y-%m-%dT%H:%M:%S.%fZ')
 
@@ -214,7 +214,7 @@ def multicity_search():
 
 
 # ----------------------- CURRENT_DEALS ----------------------- #
-def cheapest_return(fly_from, fly_to):
+def cheapest_return(fly_from, fly_to, month, year):
     def msg():
         return f"Only SGD{price}\n\n" \
                f"From {city_from}-{fly_from} " \
@@ -224,13 +224,15 @@ def cheapest_return(fly_from, fly_to):
                f"to {city_from}-{fly_from}\n" \
                f"Departing on {destination_depart} (local time)."
 
+    ONE_MONTH_FROM_TODAY =  date(year, month, 1) + relativedelta(months=1)
+
     parameters = {
         "fly_from": fly_from,
         "fly_to": fly_to,
-        "date_from": TODAY.strftime("%d/%m/%Y"),
-        "date_to": SIX_MONTHS_FROM_TODAY.strftime("%d/%m/%Y"),
-        "return_from": SIX_MONTHS_FROM_TODAY.strftime("%d/%m/%Y"),
-        "return_to": SIX_MONTHS_FROM_TODAY.strftime("%d/%m/%Y"),
+        "date_from": f"01/{month}/{year}",
+        "date_to": ONE_MONTH_FROM_TODAY.strftime("%d/%m/%Y"),
+        "return_from": ONE_MONTH_FROM_TODAY.strftime("%d/%m/%Y"),
+        "return_to": ONE_MONTH_FROM_TODAY.strftime("%d/%m/%Y"),
         "adult_hold_bag": 1,
         "curr": "SGD",
     }
@@ -252,7 +254,7 @@ def cheapest_return(fly_from, fly_to):
         city_to = flight_check["cityTo"]
         fly_to = flight_check["flyTo"]
 
-        origin_depart = datetime.datetime.strptime(
+        origin_depart = datetime.strptime(
             flight_check["route"][0]["local_departure"],
             '%Y-%m-%dT%H:%M:%S.%fZ'
         )
@@ -260,7 +262,7 @@ def cheapest_return(fly_from, fly_to):
         for route in flight_check["route"]:
             if route["cityFrom"] == city_to:
                 i = flight_check["route"].index(route)
-                destination_depart = datetime.datetime.strptime(
+                destination_depart = datetime.strptime(
                     flight_check["route"][i]["local_departure"],
                     '%Y-%m-%dT%H:%M:%S.%fZ'
                 )
@@ -272,7 +274,7 @@ def cheapest_return(fly_from, fly_to):
                     j = flight_check["route"].index(route) + 1
                     city_from_r = flight_check["route"][j]["cityFrom"]
                     fly_from_r = flight_check["route"][j]["flyFrom"]
-                    destination_depart = datetime.datetime.strptime(
+                    destination_depart = datetime.strptime(
                         flight_check["route"][j]["local_departure"],
                         '%Y-%m-%dT%H:%M:%S.%fZ'
                     )
@@ -366,7 +368,7 @@ def airline_response(
         city_to = flight_check["cityTo"]
         fly_to = flight_check["flyTo"]
 
-        origin_depart = datetime.datetime.strptime(
+        origin_depart = datetime.strptime(
             flight_check["route"][0]["local_departure"],
             '%Y-%m-%dT%H:%M:%S.%fZ'
         )
@@ -374,7 +376,7 @@ def airline_response(
         for route in flight_check["route"]:
             if route["flyFrom"] == fly_to:
                 i = flight_check["route"].index(route)
-                destination_depart = datetime.datetime.strptime(
+                destination_depart = datetime.strptime(
                     flight_check["route"][i]["local_departure"],
                     '%Y-%m-%dT%H:%M:%S.%fZ'
                 )
@@ -429,6 +431,7 @@ class Form(StatesGroup):
     city = State()
     d_date = State()
     r_date = State()
+    month_year = State()
     continent = State()
     country = State()
     user_input = State()
@@ -872,27 +875,38 @@ async def open_input(message: types.Message, state: FSMContext):
 
             # TODO: Allow users to input month of interest + period of travel
             elif query.data == "deals":
-                load_msg = await query.message.answer("Fetching data...")
-                async with state.proxy() as data:
-                    data['city'] = data['city']
-                try:
-                    cheapest_return(location_search(data['origin']), location_search(data['city']))
-                except IndexError:
-                    asyncio.create_task(delete_message(load_msg))
-                    await query.message.answer(f"No current deals to {data['city']}")
+                await Form.month_year.set()
+                await query.message.answer("Current deals:")
+                await query.message.answer("Please input month and year of interest:\nMM/YYYY")
+
+                @dp.message_handler(state=Form.month_year)
+                async def return_d_date(message: types.Message, state: FSMContext):
+                    load_msg = await query.message.answer("Fetching data...")
+                    async with state.proxy() as data:
+                        data['month_year'] = message.text
+                        data['city'] = data['city']
+
+                    month = int(data['month_year'].split("/")[0])
+                    year = int(data['month_year'].split("/")[1])
+
+                    try:
+                        cheapest_return(location_search(data['origin']), location_search(data['city']), month, year)
+                    except IndexError:
+                        asyncio.create_task(delete_message(load_msg))
+                        await query.message.answer(f"No current deals to {data['city']}")
+                        await state.finish()
+                    else:
+                        asyncio.create_task(delete_message(load_msg))
+                        for flight in FLIGHT_DEALS:
+                            for link, text in flight.items():
+                                keyboard = InlineKeyboardMarkup()
+                                button = InlineKeyboardButton(link, url=link)
+                                keyboard.add(button)
+                                await message.answer(text, reply_markup=keyboard)
+                        await message.answer("Enjoy your travels, fellow wanderer!")
+                    finally:
+                        FLIGHT_DEALS.clear()
                     await state.finish()
-                else:
-                    asyncio.create_task(delete_message(load_msg))
-                    for flight in FLIGHT_DEALS:
-                        for link, text in flight.items():
-                            keyboard = InlineKeyboardMarkup()
-                            button = InlineKeyboardButton(link, url=link)
-                            keyboard.add(button)
-                            await message.answer(text, reply_markup=keyboard)
-                    await message.answer("Enjoy your travels, fellow wanderer!")
-                finally:
-                    FLIGHT_DEALS.clear()
-                await state.finish()
 
 
 @dp.callback_query_handler(state='*', text='cancel')
