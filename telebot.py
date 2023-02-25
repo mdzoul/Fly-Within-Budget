@@ -214,7 +214,7 @@ def multicity_search():
 
 
 # ----------------------- CURRENT_DEALS ----------------------- #
-def cheapest_return(fly_from, fly_to, month, year):
+def cheapest_return(fly_from, fly_to, month, year, stay_len):
     def msg():
         return f"Only SGD{price}\n\n" \
                f"From {city_from}-{fly_from} " \
@@ -224,15 +224,15 @@ def cheapest_return(fly_from, fly_to, month, year):
                f"to {city_from}-{fly_from}\n" \
                f"Departing on {destination_depart} (local time)."
 
-    ONE_MONTH_FROM_TODAY =  date(year, month, 1) + relativedelta(months=1)
+    one_month_from_date = date(year, month, 1) + relativedelta(months=1)
 
     parameters = {
         "fly_from": fly_from,
         "fly_to": fly_to,
         "date_from": f"01/{month}/{year}",
-        "date_to": ONE_MONTH_FROM_TODAY.strftime("%d/%m/%Y"),
-        "return_from": ONE_MONTH_FROM_TODAY.strftime("%d/%m/%Y"),
-        "return_to": ONE_MONTH_FROM_TODAY.strftime("%d/%m/%Y"),
+        "date_to": one_month_from_date.strftime("%d/%m/%Y"),
+        "nights_in_dst_from": stay_len,
+        "nights_in_dst_to": stay_len,
         "adult_hold_bag": 1,
         "curr": "SGD",
     }
@@ -432,6 +432,7 @@ class Form(StatesGroup):
     d_date = State()
     r_date = State()
     month_year = State()
+    stay_length = State()
     continent = State()
     country = State()
     user_input = State()
@@ -873,24 +874,30 @@ async def open_input(message: types.Message, state: FSMContext):
 
                     await state.finish()
 
-            # TODO: Allow users to input month of interest + period of travel
             elif query.data == "deals":
                 await Form.month_year.set()
                 await query.message.answer("Current deals:")
                 await query.message.answer("Please input month and year of interest:\nMM/YYYY")
 
                 @dp.message_handler(state=Form.month_year)
-                async def return_d_date(message: types.Message, state: FSMContext):
-                    load_msg = await query.message.answer("Fetching data...")
+                async def month_year(message: types.Message, state: FSMContext):
                     async with state.proxy() as data:
                         data['month_year'] = message.text
                         data['city'] = data['city']
+                    await Form.stay_length.set()
+                    await message.answer(f"Number of days staying in {data['city']}")
+                    
+                @dp.message_handler(state=Form.stay_length)
+                async def return_d_date(message: types.Message, state: FSMContext):
+                    load_msg = await query.message.answer("Fetching data...")
+                    async with state.proxy() as data:
+                        data['stay_length'] = int(message.text)
 
                     month = int(data['month_year'].split("/")[0])
                     year = int(data['month_year'].split("/")[1])
 
                     try:
-                        cheapest_return(location_search(data['origin']), location_search(data['city']), month, year)
+                        cheapest_return(location_search(data['origin']), location_search(data['city']), month, year, data['stay_length'])
                     except IndexError:
                         asyncio.create_task(delete_message(load_msg))
                         await query.message.answer(f"No current deals to {data['city']}")
