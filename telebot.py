@@ -430,6 +430,8 @@ class Form(StatesGroup):
     city = State()
     d_date = State()
     r_date = State()
+    rd_date = State()
+    rr_date = State()
     month_year = State()
     stay_length = State()
     continent = State()
@@ -800,21 +802,21 @@ async def open_input(message: types.Message, state: FSMContext):
                     await state.finish()
 
             elif query.data == "return":
-                await Form.d_date.set()
+                await Form.rd_date.set()
                 await query.message.answer("Return flight:")
                 await query.message.answer("Please input departure date in the format:\nDD/MM/YYYY")
 
-                @dp.message_handler(state=Form.d_date)
+                @dp.message_handler(state=Form.rd_date)
                 async def return_d_date(message: types.Message, state: FSMContext):
                     async with state.proxy() as data:
-                        data['d_date'] = message.text
-                    await Form.r_date.set()
+                        data['rd_date'] = message.text
+                    await Form.rr_date.set()
                     await message.answer("Please input return date in the format:\nDD/MM/YYYY")
 
-                @dp.message_handler(state=Form.r_date)
+                @dp.message_handler(state=Form.rr_date)
                 async def return_r_date(message: types.Message, state: FSMContext):
                     async with state.proxy() as data:
-                        data['r_date'] = message.text
+                        data['rr_date'] = message.text
                     await Form.incl_baggage.set()
                     await message.answer("Include checked baggage?", reply_markup=keyboard_yes_no)
 
