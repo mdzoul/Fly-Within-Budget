@@ -845,7 +845,7 @@ async def open_input(message: types.Message, state: FSMContext):
                     try:
                         origin_code = location_search(data["origin"])
                         city_code = location_search(data["city"])
-                        flight_response(origin_code, city_code, data["d_date"], data["r_date"], baggage, stopover)
+                        flight_response(origin_code, city_code, data["rd_date"], data["rr_date"], baggage, stopover)
                     except KeyError or json.decoder.JSONDecodeError:
                         asyncio.create_task(delete_message(load_msg))
                         await message.answer("Invalid date. Please restart")
