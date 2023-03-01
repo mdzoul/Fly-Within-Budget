@@ -720,8 +720,14 @@ async def open_input(message: types.Message, state: FSMContext):
     await Form.city.set()
     async with state.proxy() as data:
         data['city'] = message.text.upper()
-    await Form.origin.set()
-    await message.answer("Which city are you departing from?")
+    try:
+        location_search(data["city"])
+    except IndexError:
+        await message.answer(f"Unable to find {data['city']} on the map 🗺️")
+        await state.finish()
+    else:
+        await Form.origin.set()
+        await message.answer("Which city are you departing from?")
 
     @dp.message_handler(state=Form.origin)
     async def oneway_d_date(message: types.Message, state: FSMContext):
