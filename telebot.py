@@ -26,31 +26,27 @@ FLIGHT_DEALS = []
 
 # ----------------------- BROWSE ----------------------- #
 def search_geolocation(category, user_input=None):
-    location_list = []
     with open("location.csv", "r") as csvfile:
         location = csv.DictReader(csvfile)
-        for line in location:
-            location_list.append(line)
 
-    if category == "continent":
-        countries = []
-        for i in location_list:
-            if i[category] == user_input:
-                countries.append(i["country"])
-        country_list = '\n'.join(sorted(list(dict.fromkeys(countries))))
-        return f"{country_list}"
+        if category == "continent":
+            countries = set()
+            for line in location:
+                if line[category] == user_input:
+                    countries.add(line["country"])
+            country_list = '\n'.join(sorted(countries))
+            return country_list
 
-    elif category == "country":
-        cities = []
-        for i in location_list:
-            if i[category].lower() == user_input.lower():
-                cities.append(i["cityiataCode"])
-        cityiata_list = '\n'.join(sorted(list(dict.fromkeys(cities))))
-        return f"{cityiata_list}"
+        elif category == "country":
+            cities = set()
+            for line in location:
+                if line[category].lower() == user_input.lower():
+                    cities.add(line["cityiataCode"])
+            cityiata_list = '\n'.join(sorted(cities))
+            return cityiata_list
 
 
 # ----------------------- FLIGHT_SEARCH ----------------------- #
-
 def flight_response(fly_from, fly_to,
                     departure_date=TODAY.strftime("%d/%m/%Y"),
                     return_date=SIX_MONTHS_FROM_TODAY.strftime("%d/%m/%Y"),
@@ -156,8 +152,8 @@ def flight_response(fly_from, fly_to,
 
 
 # ----------------------- MULTICITY_SEARCH ----------------------- #
-city_list = ["SIN"]
-departure_list = []
+CITY_LIST = []
+DEPARTURE_LIST = []
 
 
 def multicity_search():
@@ -166,11 +162,11 @@ def multicity_search():
                f"to {city_to}-{fly_to}\n" \
                f"Departing on {local_depart}."
 
-    city_departure_list = list(zip(city_list[1:], departure_list))
+    city_DEPARTURE_LIST = list(zip(CITY_LIST[1:], DEPARTURE_LIST))
 
     dictionary = {}
-    for i in range(len(city_list) - 1):
-        dictionary[city_list[i]] = city_departure_list[i]
+    for i in range(len(CITY_LIST) - 1):
+        dictionary[CITY_LIST[i]] = city_DEPARTURE_LIST[i]
 
     li = []
     for key, value in dictionary.items():
@@ -178,6 +174,7 @@ def multicity_search():
                     "flyFrom": key,
                     "dateFrom": value[1],
                     "dateTo": value[1],
+                    "adult_hold_bag": 1,
                     "curr": "SGD"}
         li.append(response)
 
@@ -192,7 +189,7 @@ def multicity_search():
         }
     ).json()
 
-    price = r[0]["price"]
+    price = round(r[0]["price"], 2)
     url = rebrandly_link(r[0]["deep_link"])
 
     for i in range(len(li)):
@@ -208,8 +205,7 @@ def multicity_search():
 
     multicity_msg = '\n\n'.join(FLIGHT_DEALS)
 
-    return f"Only SGD{price}\n\n{multicity_msg}" \
-           f"\n\nClick on the link to book now!\n{url} "
+    return url, f"Only SGD{price}\n\n{multicity_msg}"
 
 
 # ----------------------- CURRENT_DEALS ----------------------- #
@@ -508,13 +504,13 @@ async def cancel_handler(message: types.Message, state: FSMContext):
 @dp.message_handler(commands="multicity")
 async def multi_search(message: types.CallbackQuery):
     await Form.multi_city.set()
-    await message.answer("You will be asked to input a list of destination cities and "
-                         "the corresponding departure dates for each city\n\n"
+    await message.answer("You will be asked to input a list of cities and the corresponding departure dates\n\n"
                          "Each city and date are to be separated by using the '>' symbol with no spaces\n\n"
-                         "For example, assuming you are visiting 2 cities and returning back to Singapore:\n"
-                         "Kuala Lumpur>Jakarta>Singapore\n"
+                         "E.g. assuming you are departing from Singapore, visiting 2 cities and "
+                         "returning back to Singapore:\n\n"
+                         "Singapore>Kuala Lumpur>London>Singapore\n"
                          "01/01/2023>09/01/2023>16/01/2023")
-    await message.answer("Please input list of destination cities", reply_markup=keyboard_cancel)
+    await message.answer("Please input list of cities", reply_markup=keyboard_cancel)
 
     @dp.message_handler(state=Form.multi_city)
     async def multi_city(message: types.Message, state: FSMContext):
@@ -534,17 +530,24 @@ async def multi_search(message: types.CallbackQuery):
                 iata_code = location_search(city)
             except IndexError:
                 asyncio.create_task(delete_message(load_msg))
-                await message.answer("Invalid destination city. Please restart")
+                await message.answer("Invalid input. Please restart")
                 await state.finish()
             else:
-                city_list.append(iata_code)
-        departure_list.extend(data['multi_date'].split(">"))
-        result = multicity_search()
+                CITY_LIST.append(iata_code)
+        DEPARTURE_LIST.extend(data['multi_date'].split(">"))
         asyncio.create_task(delete_message(load_msg))
-        await bot.send_message(message.chat.id, md.text(f"{result}"))
+        if len(DEPARTURE_LIST) == len(CITY_LIST) - 1:
+            link, text = multicity_search()
+            keyboard = InlineKeyboardMarkup()
+            button = InlineKeyboardButton(link, url=link)
+            keyboard.add(button)
+            await message.answer(text, reply_markup=keyboard)
+            await message.answer("Enjoy your travels, fellow wanderer!")
+        else:
+            await message.answer("Number of departure dates do not tally. Please restart")
         FLIGHT_DEALS.clear()
-        del city_list[1:]
-        departure_list.clear()
+        CITY_LIST.clear()
+        DEPARTURE_LIST.clear()
         await state.finish()
 
 
