@@ -483,7 +483,7 @@ async def help_(message: types.Message):
         "Available commands:\n"
         "/browse - Find your next travel destination\n"
         "/airline - Search flights by airline\n"
-        "/multicity - Search flights by multi-city flights\n"
+        "/multicity - Search multi-city flights\n"
         "/cancel - Cancel any action")
 
 
