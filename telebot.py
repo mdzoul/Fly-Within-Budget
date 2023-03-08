@@ -548,7 +548,6 @@ async def multi_search(message: types.CallbackQuery):
         await state.finish()
 
 
-# TODO: Include airline query to the last open input
 @dp.message_handler(commands="airline")
 async def airline_search(message: types.CallbackQuery):
     await Form.airline.set()
