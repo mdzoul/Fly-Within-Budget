@@ -421,7 +421,6 @@ class Form(StatesGroup):
     incl_baggage = State()
     city = State()
     d_date = State()
-    r_date = State()
     rd_date = State()
     rr_date = State()
     month_year = State()
@@ -434,7 +433,8 @@ class Form(StatesGroup):
     airline_city = State()
     airline_origin = State()
     airline_d_date = State()
-    airline_r_date = State()
+    airline_rd_date = State()
+    airline_rr_date = State()
 
 
 btn_cancel = InlineKeyboardButton(text="Cancel", callback_data="cancel")
@@ -655,22 +655,22 @@ async def airline_search(message: types.CallbackQuery):
                 await state.finish()
 
         elif query.data == "airline_return":
-            await Form.airline_d_date.set()
+            await Form.airline_rd_date.set()
             await query.message.answer("Return flight:")
             await query.message.answer("Please input departure date in the format:\nDD/MM/YYYY")
 
-            @dp.message_handler(state=Form.airline_d_date)
+            @dp.message_handler(state=Form.airline_rd_date)
             async def airline_r_search(message: types.Message, state: FSMContext):
                 async with state.proxy() as data:
-                    data['airline_d_date'] = message.text
-                await Form.airline_r_date.set()
+                    data['airline_rd_date'] = message.text
+                await Form.airline_rr_date.set()
                 await message.answer("Please input return date in the format:\nDD/MM/YYYY")
 
-                @dp.message_handler(state=Form.airline_r_date)
+                @dp.message_handler(state=Form.airline_rr_date)
                 async def airline_return_query(message: types.Message, state: FSMContext):
                     load_msg = await message.answer("Fetching data...")
                     async with state.proxy() as data:
-                        data['airline_r_date'] = message.text
+                        data['airline_rr_date'] = message.text
 
                         try:
                             city_code = location_search(data["airline_city"])
@@ -690,8 +690,8 @@ async def airline_search(message: types.CallbackQuery):
                                     data["airline"],
                                     origin_code,
                                     city_code,
-                                    data["airline_d_date"],
-                                    data["airline_r_date"]
+                                    data["airline_rd_date"],
+                                    data["airline_rr_date"]
                                 )
                             except IndexError:
                                 await message.answer(
