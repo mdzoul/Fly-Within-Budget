@@ -451,6 +451,7 @@ async def delete_message(message: types.Message):
 
 
 @dp.message_handler(commands="start")
+@dp.message_handler(Text(equals='start', ignore_case=False))
 async def welcome(message: types.Message):
     btn_about = InlineKeyboardButton(text="About Fly Within Budget (FWB)", callback_data="about")
     keyboard_about = InlineKeyboardMarkup().add(btn_about)
@@ -478,13 +479,14 @@ async def welcome(message: types.Message):
 
 
 @dp.message_handler(commands="help")
+@dp.message_handler(Text(equals='help', ignore_case=False))
 async def help_(message: types.Message):
     await message.answer(
         "Available commands:\n"
-        "/browse - Find your next travel destination\n"
-        "/airline - Search flights by airline\n"
-        "/multicity - Search multi-city flights\n"
-        "/cancel - Cancel any action")
+        "browse - Find your next travel destination\n"
+        "airline - Search flights by airline\n"
+        "multicity - Search multi-city flights\n"
+        "cancel - Cancel any action")
 
 
 @dp.message_handler(state='*', commands='cancel')
@@ -499,6 +501,7 @@ async def cancel_handler(message: types.Message, state: FSMContext):
 
 
 @dp.message_handler(commands="multicity")
+@dp.message_handler(Text(equals='multicity', ignore_case=False))
 async def multi_search(message: types.CallbackQuery):
     await Form.multi_city.set()
     await message.answer("You will be asked to input a list of cities and the corresponding departure dates\n\n"
@@ -549,6 +552,7 @@ async def multi_search(message: types.CallbackQuery):
 
 
 @dp.message_handler(commands="airline")
+@dp.message_handler(Text(equals='airline', ignore_case=False))
 async def airline_search(message: types.CallbackQuery):
     await Form.airline.set()
     await message.answer("Please input full airline name (e.g. Singapore Airlines) "
@@ -712,6 +716,7 @@ async def airline_search(message: types.CallbackQuery):
 
 
 @dp.message_handler(commands="browse")
+@dp.message_handler(Text(equals='browse', ignore_case=False))
 async def continent(message: types.Message):
     await Form.continent.set()
     await message.answer("Browse and find your next travel destination\n\n"
