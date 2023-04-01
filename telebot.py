@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+import os
 import requests
 import json
 import asyncio
@@ -14,8 +16,10 @@ from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
 
+load_dotenv(".env")
+
 SEARCH_HEADERS = {
-    "apikey": "fi7uUtSyu4MjJmFs_fBdi2PQu3nfj0GD",
+    "apikey": os.getenv("SEARCH_HEADERS"),
 }
 
 TODAY = datetime.now()
@@ -184,7 +188,7 @@ def multicity_search():
         url="https://api.tequila.kiwi.com/v2/flights_multi",
         json=parameters,
         headers={
-            "apikey": "4deR5aEQSpH_f3xlA1iRhaIgXi8FQc1s",
+            "apikey": os.getenv("MULTICITY_HEADERS"),
             "Content-Type": "application/json",
         }
     ).json()
@@ -298,7 +302,7 @@ def location_search(loc):
 # ----------------------- AIRLINE_SEARCH ----------------------- #
 airline_get = requests.get(
     url="https://api.sheety.co/f1810fe8ae8de2f741a0e4c58034e85c/flightDeals/airlines",
-    auth=("zoul", "#72rv+vaesj7t#"),
+    auth=("zoul", os.getenv("SHEETY_AUTH")),
 ).json()["airlines"]
 
 airline_iata_list = []
@@ -385,7 +389,7 @@ def airline_response(
 # ----------------------- SHORT_URL ----------------------- #
 HEADERS = {
     "Content-type": "application/json",
-    "apikey": "0cbd30c1b43d45e6842d72f5faa5675e",
+    "apikey": os.getenv("REBRANDLY_AUTH"),
 }
 
 
@@ -408,7 +412,7 @@ def rebrandly_link(link):
 
 
 # ----------------------- TELEGRAM_BOT ----------------------- #
-bot = Bot(token="5609440570:AAH944kRnv6ze3CCfGygK3I9fbRAyl7XIlc")
+bot = Bot(token=os.getenv("TELE_TOKEN"))
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
