@@ -1,7 +1,11 @@
+from dotenv import load_dotenv
+import os
 import requests
 
+load_dotenv(".env")
+
 airline_headers = {
-    "X-RapidAPI-Key": "78cff0cd39mshe26bf15ae20c3cbp149cf8jsn5b10c6c19240",
+    "X-RapidAPI-Key": os.getenv("X_RAPIDAPI_KEY"),
     "X-RapidAPI-Host": "iata-and-icao-codes.p.rapidapi.com"
 }
 
@@ -10,7 +14,7 @@ airline_response = requests.get(
     headers=airline_headers
 ).json()
 
-SHEETY_AUTH = ("zoul", "#72rv+vaesj7t#")
+SHEETY_AUTH = ("zoul", os.getenv("SHEETY_AUTH"))
 
 for i in range(len(airline_response)):
     sheety_params = {

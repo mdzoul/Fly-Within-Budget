@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+import os
 import os
 import requests
 import json
@@ -5,8 +7,10 @@ from urllib.parse import urlencode
 from ratelimit import limits
 from retry import retry
 
+load_dotenv(".env")
+
 # CONFIGURATION
-apiKey = "0cbd30c1b43d45e6842d72f5faa5675e"
+apiKey = os.getenv("REBRANDLY_AUTH")
 domainFullname = "flywithinbudget.link"
 
 # CONSTRAINTS
