@@ -474,7 +474,7 @@ async def welcome(message: types.Message):
             "and one-way, return or multi-city flights"
             "\n\nThinking of going someplace new on your next travel? "
             "Try /browse and see all available international airports"
-            "\n\nDo report any bugs experienced or features you want to see implemented @zoulaimi")
+            "\n\nEnjoy your travels, fellow wanderer!")
 
     await bot.send_message(
         message.chat.id,
