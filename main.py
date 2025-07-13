@@ -282,7 +282,6 @@ def cheapest_return(fly_from, fly_to, month, year, stay_len):
         url = rebrandly_link(link)
         FLIGHT_DEALS.append({f"{url}": f"{msg()}"})
 
-
 # ----------------------- LOCATION_SEARCH ----------------------- #
 def location_search(loc):
     parameters = {
