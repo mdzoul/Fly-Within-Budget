@@ -4,16 +4,56 @@
 #
 #    pip-compile requirements.in
 #
-aiogram==2.25.1
+aiofiles==24.1.0
+    # via aiogram
+aiogram==3.21.0
     # via -r requirements.in
+aiohappyeyeballs==2.6.1
+    # via aiohttp
+aiohttp==3.12.14
+    # via aiogram
+aiosignal==1.4.0
+    # via aiohttp
+annotated-types==0.7.0
+    # via pydantic
 asyncio==3.4.3
     # via -r requirements.in
+attrs==25.3.0
+    # via aiohttp
+certifi==2025.7.9
+    # via
+    #   aiogram
+    #   requests
+charset-normalizer==3.4.2
+    # via requests
 datetime==5.5
     # via -r requirements.in
 dateutils==0.6.12
     # via -r requirements.in
 dotenv==0.9.9
     # via -r requirements.in
+frozenlist==1.7.0
+    # via
+    #   aiohttp
+    #   aiosignal
+idna==3.10
+    # via
+    #   requests
+    #   yarl
+magic-filter==1.0.12
+    # via aiogram
+multidict==6.6.3
+    # via
+    #   aiohttp
+    #   yarl
+propcache==0.3.2
+    # via
+    #   aiohttp
+    #   yarl
+pydantic==2.11.7
+    # via aiogram
+pydantic-core==2.33.2
+    # via pydantic
 python-dateutil==2.9.0.post0
     # via
     #   -r requirements.in
@@ -24,15 +64,25 @@ python-dotenv==1.1.1
     #   dotenv
 pytz==2025.2
     # via
-    #   babel
     #   datetime
     #   dateutils
 requests==2.32.4
     # via -r requirements.in
 six==1.17.0
     # via python-dateutil
+typing-extensions==4.14.1
+    # via
+    #   aiogram
+    #   aiosignal
+    #   pydantic
+    #   pydantic-core
+    #   typing-inspection
+typing-inspection==0.4.1
+    # via pydantic
 urllib3==2.5.0
     # via requests
+yarl==1.20.1
+    # via aiohttp
 zope-interface==7.2
     # via datetime
 

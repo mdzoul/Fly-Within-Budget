@@ -4,17 +4,16 @@ import requests
 import json
 import asyncio
 import csv
-import aiogram.utils.markdown as md
 from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from contextlib import suppress
-from aiogram import Bot, Dispatcher, executor, types
+from aiogram import Bot, Dispatcher, types
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters import Text
-from aiogram.dispatcher.filters.state import State, StatesGroup
-from aiogram.utils.exceptions import MessageCantBeDeleted, MessageToDeleteNotFound
+from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.fsm.context import FSMContext
+from aiogram.filters import Command, StateFilter
+from aiogram.fsm.state import State, StatesGroup
+from aiogram.exceptions import TelegramAPIError
 
 load_dotenv(".env")
 
@@ -27,12 +26,10 @@ SIX_MONTHS_FROM_TODAY = TODAY + relativedelta(months=6)
 
 FLIGHT_DEALS = []
 
-
 # ----------------------- BROWSE ----------------------- #
 def search_geolocation(category, user_input=None):
     with open("location.csv", "r") as csvfile:
         location = csv.DictReader(csvfile)
-
         if category == "continent":
             countries = set()
             for line in location:
@@ -40,7 +37,6 @@ def search_geolocation(category, user_input=None):
                     countries.add(line["country"])
             country_list = '\n'.join(sorted(countries))
             return country_list
-
         elif category == "country":
             cities = set()
             for line in location:
@@ -48,7 +44,6 @@ def search_geolocation(category, user_input=None):
                     cities.add(line["cityiataCode"])
             cityiata_list = '\n'.join(sorted(cities))
             return cityiata_list
-
 
 # ----------------------- FLIGHT_SEARCH ----------------------- #
 def flight_response(fly_from, fly_to,
@@ -70,7 +65,11 @@ def flight_response(fly_from, fly_to,
         url="https://api.tequila.kiwi.com/v2/search",
         params=parameters,
         headers=SEARCH_HEADERS
-    ).json()["data"]
+    ).json().get("data", [])
+
+    if not r:
+        FLIGHT_DEALS.append({"error": "No flights found."})
+        return
 
     if return_date is not None:
         def msg():
@@ -82,9 +81,7 @@ def flight_response(fly_from, fly_to,
                    f"to {city_from}-{fly_from}\n" \
                    f"Departing on {destination_depart} (local time)."
 
-        for index in range(3):
-            flight_check = r[index]
-
+        for flight_check in r[:3]:
             price = round(flight_check["price"], 2)
             city_from = flight_check["cityFrom"]
             fly_from = flight_check["flyFrom"]
@@ -94,6 +91,8 @@ def flight_response(fly_from, fly_to,
                 flight_check["route"][0]["local_departure"],
                 '%Y-%m-%dT%H:%M:%S.%fZ')
             destination_depart = "[Error retrieving data]"
+            city_from_r = ""
+            fly_from_r = ""
             link = flight_check["deep_link"]
 
             for route in flight_check["route"]:
@@ -106,16 +105,16 @@ def flight_response(fly_from, fly_to,
                     city_from_r = city_to
                     fly_from_r = fly_to
                     break
-                else:
-                    if route["cityTo"] == city_to:
-                        j = flight_check["route"].index(route) + 1
+                elif route["cityTo"] == city_to:
+                    j = flight_check["route"].index(route) + 1
+                    if j < len(flight_check["route"]):
                         city_from_r = flight_check["route"][j]["cityFrom"]
                         fly_from_r = flight_check["route"][j]["flyFrom"]
                         destination_depart = datetime.strptime(
                             flight_check["route"][j]["local_departure"],
                             '%Y-%m-%dT%H:%M:%S.%fZ'
                         )
-                        break
+                    break
 
             url = rebrandly_link(link)
             FLIGHT_DEALS.append({f"{url}": f"{msg()}"})
@@ -127,9 +126,7 @@ def flight_response(fly_from, fly_to,
                    f"to {city_to}-{fly_to}\n" \
                    f"Departing on {local_depart}."
 
-        for index in range(3):
-            flight_check = r[index]
-
+        for flight_check in r[:3]:
             price = round(flight_check["price"], 2)
             city_from = flight_check["cityFrom"]
             fly_from = flight_check["flyFrom"]
@@ -145,20 +142,16 @@ def flight_response(fly_from, fly_to,
             if len(flight_check["route"]) == 1:
                 url = rebrandly_link(link)
                 FLIGHT_DEALS.append({f"{url}": f"{msg()}\n\nDirect flight. No stopovers."})
-
             elif len(flight_check["route"]) == 2:
                 url = rebrandly_link(link)
                 FLIGHT_DEALS.append({f"{url}": f"{msg()}\n\nFlight has 1 stopover, via {stopover}."})
-
             else:
                 url = rebrandly_link(link)
                 FLIGHT_DEALS.append({f"{url}": f"{msg()}\n\nMultiple stopovers."})
 
-
 # ----------------------- MULTICITY_SEARCH ----------------------- #
 CITY_LIST = []
 DEPARTURE_LIST = []
-
 
 def multicity_search():
     def msg():
@@ -167,7 +160,6 @@ def multicity_search():
                f"Departing on {local_depart}."
 
     city_DEPARTURE_LIST = list(zip(CITY_LIST[1:], DEPARTURE_LIST))
-
     dictionary = {}
     for i in range(len(CITY_LIST) - 1):
         dictionary[CITY_LIST[i]] = city_DEPARTURE_LIST[i]
@@ -193,6 +185,9 @@ def multicity_search():
         }
     ).json()
 
+    if not r or not r[0].get("route"):
+        return None, "No multicity flights found."
+
     price = round(r[0]["price"], 2)
     url = rebrandly_link(r[0]["deep_link"])
 
@@ -208,9 +203,7 @@ def multicity_search():
         FLIGHT_DEALS.append(f"{msg()}")
 
     multicity_msg = '\n\n'.join(FLIGHT_DEALS)
-
     return url, f"Only SGD{price}\n\n{multicity_msg}"
-
 
 # ----------------------- CURRENT_DEALS ----------------------- #
 def cheapest_return(fly_from, fly_to, month, year, stay_len):
@@ -224,7 +217,6 @@ def cheapest_return(fly_from, fly_to, month, year, stay_len):
                f"Departing on {destination_depart} (local time)."
 
     one_month_from_date = date(year, month, 1) + relativedelta(months=1)
-
     parameters = {
         "fly_from": fly_from,
         "fly_to": fly_to,
@@ -239,25 +231,26 @@ def cheapest_return(fly_from, fly_to, month, year, stay_len):
         url="https://api.tequila.kiwi.com/v2/search",
         params=parameters,
         headers=SEARCH_HEADERS
-    ).json()["data"]
+    ).json().get("data", [])
 
-    for index in range(3):
-        flight_check = r[index]
+    if not r:
+        FLIGHT_DEALS.append({"error": "No flights found."})
+        return
 
+    for flight_check in r[:3]:
         price = round(flight_check["price"], 2)
         link = flight_check["deep_link"]
-
         city_from = flight_check["cityFrom"]
         fly_from = flight_check["flyFrom"]
-
         city_to = flight_check["cityTo"]
         fly_to = flight_check["flyTo"]
-
         origin_depart = datetime.strptime(
             flight_check["route"][0]["local_departure"],
             '%Y-%m-%dT%H:%M:%S.%fZ'
         )
         destination_depart = "[Error retrieving data]"
+        city_from_r = ""
+        fly_from_r = ""
         for route in flight_check["route"]:
             if route["cityFrom"] == city_to:
                 i = flight_check["route"].index(route)
@@ -268,16 +261,16 @@ def cheapest_return(fly_from, fly_to, month, year, stay_len):
                 city_from_r = city_to
                 fly_from_r = fly_to
                 break
-            else:
-                if route["cityTo"] == city_to:
-                    j = flight_check["route"].index(route) + 1
+            elif route["cityTo"] == city_to:
+                j = flight_check["route"].index(route) + 1
+                if j < len(flight_check["route"]):
                     city_from_r = flight_check["route"][j]["cityFrom"]
                     fly_from_r = flight_check["route"][j]["flyFrom"]
                     destination_depart = datetime.strptime(
                         flight_check["route"][j]["local_departure"],
                         '%Y-%m-%dT%H:%M:%S.%fZ'
                     )
-                    break
+                break
 
         url = rebrandly_link(link)
         FLIGHT_DEALS.append({f"{url}": f"{msg()}"})
@@ -288,21 +281,24 @@ def location_search(loc):
         "term": loc,
         "location_types": tuple(location_type for location_type in ["airport", "city", "country"]),
     }
-
-    iata_code = requests.get(
+    response = requests.get(
         url="https://api.tequila.kiwi.com/locations/query",
         params=parameters,
         headers=SEARCH_HEADERS
-    ).json()["locations"][0]["code"]
-
+    ).json()
+    if not response["locations"]:
+        raise IndexError("No location found for input")
+    iata_code = response["locations"][0]["code"]
     return iata_code
 
-
 # ----------------------- AIRLINE_SEARCH ----------------------- #
-airline_get = requests.get(
-    url="https://api.sheety.co/f1810fe8ae8de2f741a0e4c58034e85c/flightDeals/airlines",
-    auth=("zoul", os.getenv("SHEETY_AUTH")),
-).json()["airlines"]
+try:
+    airline_get = requests.get(
+        url="https://api.sheety.co/f1810fe8ae8de2f741a0e4c58034e85c/flightDeals/airlines",
+        auth=("zoul", os.getenv("SHEETY_AUTH")),
+    ).json().get("airlines", [])
+except KeyError:
+    airline_get = []
 
 airline_iata_list = []
 airline_name_list = []
@@ -311,7 +307,6 @@ for airline in airline_get:
     airline_name_list.append(airline["airline"].upper())
 
 name_iata_dict = dict(zip(airline_iata_list, airline_name_list))
-
 
 def airline_response(
         flight_type,
@@ -323,14 +318,14 @@ def airline_response(
 ):
     def msg_oneway():
         return f"Only SGD{price}\n" \
-               f"With {name_iata_dict[air_line].title()} ({air_line})\n\n" \
+               f"With {name_iata_dict.get(air_line, air_line).title()} ({air_line})\n\n" \
                f"From {city_from}-{fly_from} " \
                f"to {city_to}-{fly_to}\n" \
                f"Departing on {origin_depart}."
 
     def msg_return():
         return f"Only SGD{price}\n" \
-               f"With {name_iata_dict[air_line].title()} ({air_line})\n\n" \
+               f"With {name_iata_dict.get(air_line, air_line).title()} ({air_line})\n\n" \
                f"From {city_from}-{fly_from} " \
                f"to {city_to}-{fly_to}\n" \
                f"Departing on {origin_depart}.\n\n" \
@@ -355,10 +350,13 @@ def airline_response(
         url="https://api.tequila.kiwi.com/v2/search",
         params=parameters,
         headers=SEARCH_HEADERS
-    ).json()["data"]
+    ).json().get("data", [])
 
-    for index in range(3):
-        flight_check = r[index]
+    if not r:
+        FLIGHT_DEALS.append({"error": "No flights found."})
+        return
+
+    for flight_check in r[:3]:
         price = round(flight_check["price"], 2)
         link = flight_check["deep_link"]
         city_from = flight_check["cityFrom"]
@@ -384,13 +382,11 @@ def airline_response(
         elif flight_type == "airline_return":
             FLIGHT_DEALS.append({f"{url}": f"{msg_return()}"})
 
-
 # ----------------------- SHORT_URL ----------------------- #
 HEADERS = {
     "Content-type": "application/json",
     "apikey": os.getenv("REBRANDLY_AUTH"),
 }
-
 
 def rebrandly_link(link):
     link_params = {
@@ -404,17 +400,19 @@ def rebrandly_link(link):
         data=json.dumps(link_params),
         headers=HEADERS
     )
-
     if rebranded_link_post.status_code == requests.codes.ok:
         short_link = rebranded_link_post.json()["shortUrl"]
         return f"https://{short_link}"
 
-
 # ----------------------- TELEGRAM_BOT ----------------------- #
 bot = Bot(token=os.getenv("TELE_TOKEN"))
-storage = MemoryStorage()
-dp = Dispatcher(bot, storage=storage)
+dp = Dispatcher()
+storage = MemoryStorage()  # Only needed if you use custom storage, but default is fine
 
+# When starting polling, pass bot and storage:
+async def main():
+    print("Bot is running and polling Telegram...")
+    await dp.start_polling(bot, storage=storage)
 
 class Form(StatesGroup):
     user = State()
@@ -438,522 +436,332 @@ class Form(StatesGroup):
     airline_d_date = State()
     airline_rd_date = State()
     airline_rr_date = State()
-
+    city_code = State()  # <-- add this
 
 btn_cancel = InlineKeyboardButton(text="Cancel", callback_data="cancel")
-keyboard_cancel = InlineKeyboardMarkup().add(btn_cancel)
+keyboard_cancel = InlineKeyboardMarkup(inline_keyboard=[[btn_cancel]])
 
 btn_direct_yes = InlineKeyboardButton(text="Yes", callback_data="yes")
 btn_direct_no = InlineKeyboardButton(text="No", callback_data="no")
-keyboard_yes_no = InlineKeyboardMarkup().add(btn_direct_no, btn_direct_yes).add(btn_cancel)
-
+keyboard_yes_no = InlineKeyboardMarkup(inline_keyboard=[[btn_direct_no, btn_direct_yes], [btn_cancel]])
 
 async def delete_message(message: types.Message):
-    with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
+    with suppress(TelegramAPIError):
         await message.delete()
 
-
-@dp.message_handler(commands="start")
-@dp.message_handler(Text(equals='start', ignore_case=False))
+@dp.message(Command("start"))
 async def welcome(message: types.Message):
     btn_about = InlineKeyboardButton(text="About Fly Within Budget (FWB)", callback_data="about")
     keyboard_about = InlineKeyboardMarkup().add(btn_about)
-    await bot.send_message(
-        message.chat.id,
-        md.text("Welcome to Fly Within Budget (FWB)"),
+    await message.answer(
+        "Welcome to Fly Within Budget (FWB)",
         reply_markup=keyboard_about
     )
+    await message.answer(
+        "Type a city or country to search for flights\n\n"
+        "Type /help to see available commands"
+    )
 
-    @dp.callback_query_handler(text="about")
-    async def about(query: types.CallbackQuery):
-        await query.message.answer(
-            "This service is currently in its alpha phase"
-            "\n\nFly Within Budget (FWB) shows the cheapest flight deals as of the current search"
-            "\n\nYou can search by airline, destination city/country, "
-            "and one-way, return or multi-city flights"
-            "\n\nThinking of going someplace new on your next travel? "
-            "Try /browse and see all available international airports"
-            "\n\nEnjoy your travels, fellow wanderer!")
+@dp.callback_query(lambda c: c.data == "about")
+async def about(query: types.CallbackQuery):
+    await query.message.answer(
+        "This service is currently in its alpha phase"
+        "\n\nFly Within Budget (FWB) shows the cheapest flight deals as of the current search"
+        "\n\nYou can search by airline, destination city/country, "
+        "and one-way, return or multi-city flights"
+        "\n\nThinking of going someplace new on your next travel? "
+        "Try /browse and see all available international airports"
+        "\n\nEnjoy your travels, fellow wanderer!"
+    )
 
-    await bot.send_message(
-        message.chat.id,
-        md.text("Type a city or country to search for flights\n\n"
-                "Type /help to see available commands"))
-
-
-@dp.message_handler(commands="help")
-@dp.message_handler(Text(equals='help', ignore_case=False))
+@dp.message(Command("help"))
 async def help_(message: types.Message):
     await message.answer(
         "Available commands:\n"
         "browse - Find your next travel destination\n"
         "airline - Search flights by airline\n"
         "multicity - Search multi-city flights\n"
-        "cancel - Cancel any action")
+        "cancel - Cancel any action"
+    )
 
-
-@dp.message_handler(state='*', commands='cancel')
-@dp.message_handler(Text(equals='cancel', ignore_case=True), state='*')
+@dp.message(Command("cancel"), StateFilter(None))
 async def cancel_handler(message: types.Message, state: FSMContext):
     current_state = await state.get_state()
     if current_state is None:
         await message.answer('No active action to cancel')
     else:
-        await state.finish()
+        await state.clear()
         await message.answer('Action cancelled')
 
+@dp.callback_query(lambda c: c.data == "cancel", StateFilter(None))
+async def cancel_callback(query: types.CallbackQuery, state: FSMContext):
+    await state.clear()
+    await query.message.answer('Action cancelled')
 
-@dp.message_handler(commands="multicity")
-@dp.message_handler(Text(equals='multicity', ignore_case=False))
-async def multi_search(message: types.CallbackQuery):
-    await Form.multi_city.set()
-    await message.answer("You will be asked to input a list of cities and the corresponding departure dates\n\n"
-                         "Each city and date are to be separated by using the '>' symbol with no spaces\n\n"
-                         "E.g. assuming you are departing from Singapore, visiting 2 cities and "
-                         "returning back to Singapore:\n\n"
-                         "Singapore>Kuala Lumpur>London>Singapore\n"
-                         "01/01/2023>09/01/2023>16/01/2023")
+@dp.message(Command("multicity"))
+async def multi_search(message: types.Message, state: FSMContext):
+    await state.set_state(Form.multi_city)
+    await message.answer(
+        "You will be asked to input a list of cities and the corresponding departure dates\n\n"
+        "Each city and date are to be separated by using the '>' symbol with no spaces\n\n"
+        "E.g. assuming you are departing from Singapore, visiting 2 cities and "
+        "returning back to Singapore:\n\n"
+        "Singapore>Kuala Lumpur>London>Singapore\n"
+        "01/01/2023>09/01/2023>16/01/2023"
+    )
     await message.answer("Please input list of cities", reply_markup=keyboard_cancel)
 
-    @dp.message_handler(state=Form.multi_city)
-    async def multi_city(message: types.Message, state: FSMContext):
-        async with state.proxy() as data:
-            data['multi_city'] = message.text
-        await Form.next()
-        await message.answer("Please input departure dates")
+@dp.message(StateFilter(Form.multi_city))
+async def multi_city_handler(message: types.Message, state: FSMContext):
+    await state.update_data(multi_city=message.text)
+    await state.set_state(Form.multi_date)
+    await message.answer("Please input departure dates")
 
-    @dp.message_handler(state=Form.multi_date)
-    async def multi_date(message: types.Message, state: FSMContext):
-        load_msg = await message.answer("Fetching data...")
-        async with state.proxy() as data:
-            data['multi_date'] = message.text
-        city_names = data['multi_city'].split(">")
-        for city in city_names:
-            try:
-                iata_code = location_search(city)
-            except IndexError:
-                asyncio.create_task(delete_message(load_msg))
-                await message.answer("Invalid input. Please restart")
-                await state.finish()
-            else:
-                CITY_LIST.append(iata_code)
-        DEPARTURE_LIST.extend(data['multi_date'].split(">"))
-        asyncio.create_task(delete_message(load_msg))
-        if len(DEPARTURE_LIST) == len(CITY_LIST) - 1:
-            link, text = multicity_search()
+@dp.message(StateFilter(Form.multi_date))
+async def multi_date_handler(message: types.Message, state: FSMContext):
+    load_msg = await message.answer("Fetching data...")
+    data = await state.get_data()
+    city_names = data['multi_city'].split(">")
+    for city in city_names:
+        try:
+            iata_code = location_search(city)
+        except IndexError:
+            asyncio.create_task(delete_message(load_msg))
+            await message.answer("Invalid input. Please restart")
+            await state.clear()
+            return
+        else:
+            CITY_LIST.append(iata_code)
+    DEPARTURE_LIST.extend(message.text.split(">"))
+    asyncio.create_task(delete_message(load_msg))
+    if len(DEPARTURE_LIST) == len(CITY_LIST) - 1:
+        link, text = multicity_search()
+        if link is None:
+            await message.answer(text)
+        else:
             keyboard = InlineKeyboardMarkup()
             button = InlineKeyboardButton(link, url=link)
             keyboard.add(button)
             await message.answer(text, reply_markup=keyboard)
             await message.answer("Enjoy your travels, fellow wanderer!")
-        else:
-            await message.answer("Number of departure dates do not tally. Please restart")
-        FLIGHT_DEALS.clear()
-        CITY_LIST.clear()
-        DEPARTURE_LIST.clear()
-        await state.finish()
-
-
-@dp.message_handler(commands="airline")
-@dp.message_handler(Text(equals='airline', ignore_case=False))
-async def airline_search(message: types.CallbackQuery):
-    await Form.airline.set()
-    await message.answer("Please input full airline name (e.g. Singapore Airlines) "
-                         "or airline code (e.g. SQ)", reply_markup=keyboard_cancel)
-
-    @dp.message_handler(state=Form.airline)
-    async def airline_city(message: types.Message, state: FSMContext):
-        async with state.proxy() as data:
-            data['airline'] = message.text.upper()
-        if len(data["airline"]) == 2:
-            if data["airline"] in airline_iata_list:
-                await Form.airline_city.set()
-                await message.answer("Please input destination city")
-            else:
-                await message.answer(f"'{data['airline']}' does not exist. Please restart")
-                await state.finish()
-        else:
-            if data["airline"] in airline_name_list:
-                for key, value in name_iata_dict.items():
-                    if data['airline'] == value:
-                        async with state.proxy() as data:
-                            data['airline'] = key
-                        await Form.airline_city.set()
-                        await message.answer("Please input destination city")
-            else:
-                await message.answer(f"'{data['airline']}' does not exist. Please restart")
-                await state.finish()
-
-    @dp.message_handler(state=Form.airline_city)
-    async def open_input(message: types.Message, state: FSMContext):
-        async with state.proxy() as data:
-            data['airline_city'] = message.text.upper()
-        try:
-            location_search(data["airline_city"])
-        except IndexError:
-            await message.answer(f"Unable to find {data['city']} on the map 🗺️")
-            await state.finish()
-        else:
-            await Form.airline_origin.set()
-            await message.answer("Which city are you departing from?")
-
-    @dp.message_handler(state=Form.airline_origin)
-    async def airline_flight(message: types.Message, state: FSMContext):
-        async with state.proxy() as data:
-            data['airline_origin'] = message.text.upper()
-
-        btn_airline_oneway = InlineKeyboardButton(text="One-way", callback_data="airline_oneway")
-        btn_airline_return = InlineKeyboardButton(text="Return", callback_data="airline_return")
-
-        keyboard_airline = InlineKeyboardMarkup().add(btn_airline_oneway, btn_airline_return)
-
-        await message.answer("Choose one-way or return flight",
-                             reply_markup=keyboard_airline)
-
-    @dp.callback_query_handler(text=["airline_oneway", "airline_return"], state=Form.airline_origin)
-    async def airline_oneway(query: types.CallbackQuery, state: FSMContext):
-        if query.data == "airline_oneway":
-            await Form.airline_d_date.set()
-            await query.message.answer("One-way flight:")
-            await query.message.answer("Please input date in the format:\nDD/MM/YYYY")
-
-            @dp.message_handler(state=Form.airline_d_date)
-            async def airline_oneway_d_date(message: types.Message, state: FSMContext):
-                load_msg = await message.answer("Fetching data...")
-                async with state.proxy() as data:
-                    data['airline_d_date'] = message.text
-
-                    try:
-                        city_code = location_search(data["airline_city"])
-                        origin_code = location_search(data["airline_origin"])
-                    except KeyError or json.decoder.JSONDecodeError:
-                        asyncio.create_task(delete_message(load_msg))
-                        await message.answer("Invalid date. Please restart")
-                        await state.finish()
-                    except IndexError:
-                        asyncio.create_task(delete_message(load_msg))
-                        await message.answer("Invalid destination city. Please restart")
-                        await state.finish()
-                    else:
-                        try:
-                            airline_response(
-                                "airline_oneway",
-                                data["airline"],
-                                origin_code,
-                                city_code,
-                                data["airline_d_date"])
-                        except IndexError:
-                            await message.answer(
-                                f"{name_iata_dict[data['airline']].title()} does not fly to {data['airline_city'].title()}"
-                            )
-                        else:
-                            asyncio.create_task(delete_message(load_msg))
-                            for flight in FLIGHT_DEALS:
-                                for link, text in flight.items():
-                                    keyboard = InlineKeyboardMarkup()
-                                    button = InlineKeyboardButton(link, url=link)
-                                    keyboard.add(button)
-                                    await message.answer(text, reply_markup=keyboard)
-                            await message.answer("Enjoy your travels, fellow wanderer!")
-                    finally:
-                        FLIGHT_DEALS.clear()
-
-                await state.finish()
-
-        elif query.data == "airline_return":
-            await Form.airline_rd_date.set()
-            await query.message.answer("Return flight:")
-            await query.message.answer("Please input departure date in the format:\nDD/MM/YYYY")
-
-            @dp.message_handler(state=Form.airline_rd_date)
-            async def airline_r_search(message: types.Message, state: FSMContext):
-                async with state.proxy() as data:
-                    data['airline_rd_date'] = message.text
-                await Form.airline_rr_date.set()
-                await message.answer("Please input return date in the format:\nDD/MM/YYYY")
-
-                @dp.message_handler(state=Form.airline_rr_date)
-                async def airline_return_query(message: types.Message, state: FSMContext):
-                    load_msg = await message.answer("Fetching data...")
-                    async with state.proxy() as data:
-                        data['airline_rr_date'] = message.text
-
-                        try:
-                            city_code = location_search(data["airline_city"])
-                            origin_code = location_search(data["airline_origin"])
-                        except KeyError or json.decoder.JSONDecodeError:
-                            asyncio.create_task(delete_message(load_msg))
-                            await message.answer("Invalid date. Please restart")
-                            await state.finish()
-                        except IndexError:
-                            asyncio.create_task(delete_message(load_msg))
-                            await message.answer("Invalid destination city. Please restart")
-                            await state.finish()
-                        else:
-                            try:
-                                airline_response(
-                                    "airline_return",
-                                    data["airline"],
-                                    origin_code,
-                                    city_code,
-                                    data["airline_rd_date"],
-                                    data["airline_rr_date"]
-                                )
-                            except IndexError:
-                                await message.answer(
-                                    f"{name_iata_dict[data['airline']].title()} does not fly to {data['airline_city'].title()}"
-                                )
-                            else:
-                                asyncio.create_task(delete_message(load_msg))
-                                for flight in FLIGHT_DEALS:
-                                    for link, text in flight.items():
-                                        keyboard = InlineKeyboardMarkup()
-                                        button = InlineKeyboardButton(link, url=link)
-                                        keyboard.add(button)
-                                        await message.answer(text, reply_markup=keyboard)
-                                await message.answer("Enjoy your travels, fellow wanderer!")
-                        finally:
-                            FLIGHT_DEALS.clear()
-
-                    await state.finish()
-
-
-@dp.message_handler(commands="browse")
-@dp.message_handler(Text(equals='browse', ignore_case=False))
-async def continent(message: types.Message):
-    await Form.continent.set()
-    await message.answer("Browse and find your next travel destination\n\n"
-                         "IMPORTANT:\nType the exact word for results")
-    await message.answer("Available continents:\n\n"
-                         "Africa 🌍\nAmericas 🌎\nAsia 🌏\nEurope 🌍\nOceania 🌏\n\n")
-    await message.answer("Enter a continent:", reply_markup=keyboard_cancel)
-
-    @dp.message_handler(state=Form.continent)
-    async def country(message_country: types.Message, state: FSMContext):
-        async with state.proxy() as data:
-            data['continent'] = message_country.text.title()
-        await Form.country.set()
-        await message_country.answer(f"Available countries in {data['continent']}:\n\n"
-                                     f"{search_geolocation('continent', data['continent'])}")
-        await message_country.answer("Enter a country:", reply_markup=keyboard_cancel)
-
-    @dp.message_handler(state=Form.country)
-    async def city(message_city: types.Message, state: FSMContext):
-        async with state.proxy() as data:
-            data['country'] = message_city.text.title()
-        await message_city.answer(f"Available cities in {data['country']}:\n\n"
-                                  f"{search_geolocation('country', data['country'])}",
-                                  reply_markup=keyboard_cancel)
-        await message_city.answer("Enter the 3-character city code:", reply_markup=keyboard_cancel)
-        await state.finish()
-
-
-@dp.message_handler()
-async def open_input(message: types.Message, state: FSMContext):
-    await Form.city.set()
-    async with state.proxy() as data:
-        data['city'] = message.text.upper()
-    try:
-        location_search(data["city"])
-    except IndexError:
-        await message.answer(f"Unable to find {data['city']} on the map 🗺️")
-        await state.finish()
     else:
-        await Form.origin.set()
+        await message.answer("Number of departure dates do not tally. Please restart")
+    FLIGHT_DEALS.clear()
+    CITY_LIST.clear()
+    DEPARTURE_LIST.clear()
+    await state.clear()
+
+@dp.message(Command("airline"))
+async def airline_search(message: types.Message, state: FSMContext):
+    await state.set_state(Form.airline)
+    await message.answer(
+        "Please input full airline name (e.g. Singapore Airlines) "
+        "or airline code (e.g. SQ)", reply_markup=keyboard_cancel
+    )
+
+@dp.message(StateFilter(Form.airline))
+async def airline_city_handler(message: types.Message, state: FSMContext):
+    airline = message.text.upper()
+    await state.update_data(airline=airline)
+    if len(airline) == 2:
+        if airline in airline_iata_list:
+            await state.set_state(Form.airline_city)
+            await message.answer("Please input destination city")
+        else:
+            await message.answer(f"'{airline}' does not exist. Please restart")
+            await state.clear()
+    else:
+        if airline in airline_name_list:
+            for key, value in name_iata_dict.items():
+                if airline == value:
+                    await state.update_data(airline=key)
+                    await state.set_state(Form.airline_city)
+                    await message.answer("Please input destination city")
+        else:
+            await message.answer(f"'{airline}' does not exist. Please restart")
+            await state.clear()
+
+@dp.message(StateFilter(Form.airline_city))
+async def airline_origin_handler(message: types.Message, state: FSMContext):
+    airline_city = message.text.upper()
+    await state.update_data(airline_city=airline_city)
+    try:
+        location_search(airline_city)
+    except IndexError:
+        await message.answer(f"Unable to find {airline_city} on the map 🗺️")
+        await state.clear()
+    else:
+        await state.set_state(Form.airline_origin)
         await message.answer("Which city are you departing from?")
 
-    @dp.message_handler(state=Form.origin)
-    async def oneway_d_date(message: types.Message, state: FSMContext):
-        async with state.proxy() as data:
-            data['origin'] = message.text.upper()
+@dp.message(StateFilter(Form.airline_origin))
+async def airline_flight_handler(message: types.Message, state: FSMContext):
+    airline_origin = message.text.upper()
+    await state.update_data(airline_origin=airline_origin)
+    btn_airline_oneway = InlineKeyboardButton(text="One-way", callback_data="airline_oneway")
+    btn_airline_return = InlineKeyboardButton(text="Return", callback_data="airline_return")
+    keyboard_airline = InlineKeyboardMarkup().add(btn_airline_oneway, btn_airline_return)
+    await message.answer("Choose one-way or return flight", reply_markup=keyboard_airline)
 
-        btn_airline_oneway = InlineKeyboardButton(text="One-way", callback_data="oneway")
-        btn_airline_return = InlineKeyboardButton(text="Return", callback_data="return")
-        btn_deals = InlineKeyboardButton(text="Current Deals", callback_data="deals")
+@dp.callback_query(lambda c: c.data in ["airline_oneway", "airline_return"], StateFilter(Form.airline_origin))
+async def airline_type_handler(query: types.CallbackQuery, state: FSMContext):
+    if query.data == "airline_oneway":
+        await state.set_state(Form.airline_d_date)
+        await query.message.answer("One-way flight:")
+        await query.message.answer("Please input date in the format:\nDD/MM/YYYY")
+    elif query.data == "airline_return":
+        await state.set_state(Form.airline_rd_date)
+        await query.message.answer("Return flight:")
+        await query.message.answer("Please input departure date in the format:\nDD/MM/YYYY")
 
-        keyboard_other = InlineKeyboardMarkup().add(btn_airline_oneway).add(btn_airline_return).add(btn_deals).add(
-            btn_cancel)
+@dp.message(StateFilter(Form.airline_d_date))
+async def airline_oneway_date_handler(message: types.Message, state: FSMContext):
+    load_msg = await message.answer("Fetching data...")
+    data = await state.get_data()
+    try:
+        city_code = location_search(data["airline_city"])
+        origin_code = location_search(data["airline_origin"])
+        airline_response(
+            "airline_oneway",
+            data["airline"],
+            origin_code,
+            city_code,
+            message.text
+        )
+    except Exception:
+        asyncio.create_task(delete_message(load_msg))
+        await message.answer("Invalid input. Please restart")
+        await state.clear()
+        return
+    else:
+        asyncio.create_task(delete_message(load_msg))
+        for flight in FLIGHT_DEALS:
+            for link, text in flight.items():
+                keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text=link, url=link)]])
+                await message.answer(text, reply_markup=keyboard)
+        await message.answer("Enjoy your travels, fellow wanderer!")
+    FLIGHT_DEALS.clear()
+    await state.clear()
 
-        await message.answer(
-            f"Choose one-way or return flight, or see current deals from {data['origin']} to {data['city']}",
-            reply_markup=keyboard_other)
+@dp.message(StateFilter(Form.airline_rd_date))
+async def airline_return_departure_handler(message: types.Message, state: FSMContext):
+    await state.update_data(airline_rd_date=message.text)
+    await state.set_state(Form.airline_rr_date)
+    await message.answer("Please input return date in the format:\nDD/MM/YYYY")
 
-        @dp.callback_query_handler(text=["oneway", "return", "deals"], state=Form.origin)
-        async def callback(query: types.CallbackQuery, state: FSMContext):
-            if query.data == "oneway":
-                await Form.d_date.set()
-                await query.message.answer("One-way flight:")
-                await query.message.answer("Please input date in the format:\nDD/MM/YYYY")
+@dp.message(StateFilter(Form.airline_rr_date))
+async def airline_return_date_handler(message: types.Message, state: FSMContext):
+    load_msg = await message.answer("Fetching data...")
+    data = await state.get_data()
+    try:
+        city_code = location_search(data["airline_city"])
+        origin_code = location_search(data["airline_origin"])
+        airline_response(
+            "airline_return",
+            data["airline"],
+            origin_code,
+            city_code,
+            data["airline_rd_date"],
+            message.text
+        )
+    except Exception:
+        asyncio.create_task(delete_message(load_msg))
+        await message.answer("Invalid input. Please restart")
+        await state.clear()
+        return
+    else:
+        asyncio.create_task(delete_message(load_msg))
+        for flight in FLIGHT_DEALS:
+            for link, text in flight.items():
+                keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(link, url=link)]])
+                await message.answer(text, reply_markup=keyboard)
+        await message.answer("Enjoy your travels, fellow wanderer!")
+    FLIGHT_DEALS.clear()
+    await state.clear()
 
-                @dp.message_handler(state=Form.d_date)
-                async def oneway_d_date(message: types.Message, state: FSMContext):
-                    async with state.proxy() as data:
-                        data['d_date'] = message.text
-                    await Form.incl_baggage.set()
-                    await message.answer("Include checked baggage?", reply_markup=keyboard_yes_no)
+@dp.message(Command("browse"))
+async def continent(message: types.Message, state: FSMContext):
+    await state.set_state(Form.continent)
+    await message.answer(
+        "Browse and find your next travel destination\n\n"
+        "IMPORTANT:\nType the exact word for results"
+    )
+    await message.answer(
+        "Available continents:\n\n"
+        "Africa 🌍\nAmericas 🌎\nAsia 🌏\nEurope 🌍\nOceania 🌏\n\n"
+    )
+    await message.answer("Enter a continent:", reply_markup=keyboard_cancel)
 
-                @dp.callback_query_handler(text=("yes", "no"), state=Form.incl_baggage)
-                async def oneway_baggage_query(query: types.CallbackQuery, state: FSMContext):
-                    async with state.proxy() as data:
-                        data["incl_baggage"] = query.data
-                    await Form.search_direct_flight_qn.set()
-                    await message.answer("Search for direct flights only?", reply_markup=keyboard_yes_no)
+@dp.message(StateFilter(Form.continent))
+async def country_handler(message: types.Message, state: FSMContext):
+    continent = message.text.title()
+    await state.update_data(continent=continent)
+    await state.set_state(Form.country)
+    await message.answer(
+        f"Available countries in {continent}:\n\n"
+        f"{search_geolocation('continent', continent)}"
+    )
+    await message.answer("Enter a country:", reply_markup=keyboard_cancel)
 
-                @dp.callback_query_handler(text=("yes", "no"), state=Form.search_direct_flight_qn)
-                async def oneway_direct_flight_query(query: types.CallbackQuery, state: FSMContext):
-                    load_msg = await query.message.answer("Fetching data...")
-                    async with state.proxy() as data:
-                        data["search_direct_flight_qn"] = query.data
-                    if data["search_direct_flight_qn"] == "yes":
-                        stopover = 0
-                    else:
-                        stopover = None
+@dp.message(StateFilter(Form.country))
+async def city_handler(message: types.Message, state: FSMContext):
+    country = message.text.title()
+    await message.answer(
+        f"Available cities in {country}:\n\n"
+        f"{search_geolocation('country', country)}",
+        reply_markup=keyboard_cancel
+    )
+    await message.answer("Enter the 3-character city code:", reply_markup=keyboard_cancel)
+    await state.set_state(Form.city_code)  # <-- set state for city code input
 
-                    if data["incl_baggage"] == "yes":
-                        baggage = 1
-                    else:
-                        baggage = 0
+@dp.message(StateFilter(Form.city_code))
+async def city_code_handler(message: types.Message, state: FSMContext):
+    city_code = message.text.strip().upper()
+    load_msg = await message.answer("Searching for cheapest flights...")
+    try:
+        # You may want to use a default origin, or ask for it earlier in the flow
+        origin_code = "SIN"  # Example: Singapore as origin
+        flight_response(origin_code, city_code)
+        if not FLIGHT_DEALS or (len(FLIGHT_DEALS) == 1 and "error" in FLIGHT_DEALS[0]):
+            await message.answer("No flights found.")
+        else:
+            for flight in FLIGHT_DEALS:
+                for link, text in flight.items():
+                    keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text=link, url=link)]])
+                    await message.answer(text, reply_markup=keyboard)
+            await message.answer("Enjoy your travels, fellow wanderer!")
+    except Exception as e:
+        await message.answer(f"Error searching flights: {e}")
+    finally:
+        FLIGHT_DEALS.clear()
+        await state.clear()
+        asyncio.create_task(delete_message(load_msg))
 
-                    try:
-                        origin_code = location_search(data["origin"])
-                        city_code = location_search(data["city"])
-                        flight_response(origin_code, city_code, data["d_date"], None, baggage, stopover)
-                    except KeyError or json.decoder.JSONDecodeError:
-                        asyncio.create_task(delete_message(load_msg))
-                        await message.answer("Invalid date. Please restart")
-                        await state.finish()
-                    except IndexError:
-                        asyncio.create_task(delete_message(load_msg))
-                        await message.answer(f"No direct flights to {data['city']}. Please restart")
-                        await state.finish()
-                    else:
-                        asyncio.create_task(delete_message(load_msg))
-                        for flight in FLIGHT_DEALS:
-                            for link, text in flight.items():
-                                keyboard = InlineKeyboardMarkup()
-                                button = InlineKeyboardButton(link, url=link)
-                                keyboard.add(button)
-                                await message.answer(text, reply_markup=keyboard)
-                        await message.answer("Enjoy your travels, fellow wanderer!")
-                    finally:
-                        FLIGHT_DEALS.clear()
+@dp.message()
+async def handle_text(message: types.Message, state: FSMContext):
+    text = message.text.strip().lower()
+    if text == "start":
+        await welcome(message)
+    elif text == "help":
+        await help_(message)
+    elif text == "cancel":
+        await cancel_handler(message, state)
+    elif text == "multicity":
+        await multi_search(message, state)
+    elif text == "airline":
+        await airline_search(message, state)
+    elif text == "browse":
+        await continent(message, state)
+    else:
+        await message.answer("Sorry, I didn't understand that. Type /help for available commands.")
 
-                    await state.finish()
+# TODO: Check all API endpoints (Tequila, Sheety, Rebrandly) for reliability and error handling
+# TODO: Migrate location.csv data to a MySQL database for future-proofing
+# TODO: Refactor location.csv usage to use database queries instead
 
-            elif query.data == "return":
-                await Form.rd_date.set()
-                await query.message.answer("Return flight:")
-                await query.message.answer("Please input departure date in the format:\nDD/MM/YYYY")
+async def main():
+    print("Bot is running and polling Telegram...")
+    await dp.start_polling(bot, storage=storage)
 
-                @dp.message_handler(state=Form.rd_date)
-                async def return_d_date(message: types.Message, state: FSMContext):
-                    async with state.proxy() as data:
-                        data['rd_date'] = message.text
-                    await Form.rr_date.set()
-                    await message.answer("Please input return date in the format:\nDD/MM/YYYY")
-
-                @dp.message_handler(state=Form.rr_date)
-                async def return_r_date(message: types.Message, state: FSMContext):
-                    async with state.proxy() as data:
-                        data['rr_date'] = message.text
-                    await Form.incl_baggage.set()
-                    await message.answer("Include checked baggage?", reply_markup=keyboard_yes_no)
-
-                @dp.callback_query_handler(text=("yes", "no"), state=Form.incl_baggage)
-                async def oneway_baggage_query(query: types.CallbackQuery, state: FSMContext):
-                    async with state.proxy() as data:
-                        data["incl_baggage"] = query.data
-                    await Form.search_direct_flight_qn.set()
-                    await message.answer("Search for direct flights only?", reply_markup=keyboard_yes_no)
-
-                @dp.callback_query_handler(text=("yes", "no"), state=Form.search_direct_flight_qn)
-                async def return_query(query: types.CallbackQuery, state: FSMContext):
-                    load_msg = await query.message.answer("Fetching data...")
-                    async with state.proxy() as data:
-                        data["search_direct_flight_qn"] = query.data
-                    if data["search_direct_flight_qn"] == "yes":
-                        stopover = 0
-                    else:
-                        stopover = None
-
-                    if data["incl_baggage"] == "yes":
-                        baggage = 1
-                    else:
-                        baggage = 0
-
-                    try:
-                        origin_code = location_search(data["origin"])
-                        city_code = location_search(data["city"])
-                        flight_response(origin_code, city_code, data["rd_date"], data["rr_date"], baggage, stopover)
-                    except KeyError or json.decoder.JSONDecodeError:
-                        asyncio.create_task(delete_message(load_msg))
-                        await message.answer("Invalid date. Please restart")
-                        await state.finish()
-                    except IndexError:
-                        asyncio.create_task(delete_message(load_msg))
-                        await message.answer("Invalid destination city. Please restart")
-                        await state.finish()
-                    else:
-                        asyncio.create_task(delete_message(load_msg))
-                        for flight in FLIGHT_DEALS:
-                            for link, text in flight.items():
-                                keyboard = InlineKeyboardMarkup()
-                                button = InlineKeyboardButton(link, url=link)
-                                keyboard.add(button)
-                                await message.answer(text, reply_markup=keyboard)
-                        await message.answer("Enjoy your travels, fellow wanderer!")
-                    finally:
-                        FLIGHT_DEALS.clear()
-
-                    await state.finish()
-
-            elif query.data == "deals":
-                await Form.month_year.set()
-                await query.message.answer("Current deals:")
-                await query.message.answer("Please input month and year of interest:\nMM/YYYY")
-
-                @dp.message_handler(state=Form.month_year)
-                async def month_year(message: types.Message, state: FSMContext):
-                    async with state.proxy() as data:
-                        data['month_year'] = message.text
-                        data['city'] = data['city']
-                    await Form.stay_length.set()
-                    await message.answer(f"Number of days staying in {data['city']}")
-
-                @dp.message_handler(state=Form.stay_length)
-                async def return_d_date(message: types.Message, state: FSMContext):
-                    load_msg = await query.message.answer("Fetching data...")
-                    async with state.proxy() as data:
-                        data['stay_length'] = int(message.text)
-
-                    month = int(data['month_year'].split("/")[0])
-                    year = int(data['month_year'].split("/")[1])
-
-                    try:
-                        cheapest_return(location_search(data['origin']), location_search(data['city']), month, year,
-                                        data['stay_length'])
-                    except IndexError:
-                        asyncio.create_task(delete_message(load_msg))
-                        await query.message.answer(f"No current deals to {data['city']}")
-                        await state.finish()
-                    else:
-                        asyncio.create_task(delete_message(load_msg))
-                        for flight in FLIGHT_DEALS:
-                            for link, text in flight.items():
-                                keyboard = InlineKeyboardMarkup()
-                                button = InlineKeyboardButton(link, url=link)
-                                keyboard.add(button)
-                                await message.answer(text, reply_markup=keyboard)
-                        await message.answer("Enjoy your travels, fellow wanderer!")
-                    finally:
-                        FLIGHT_DEALS.clear()
-                    await state.finish()
-
-
-@dp.callback_query_handler(state='*', text='cancel')
-async def cancel_handler(query: types.CallbackQuery, state: FSMContext):
-    await state.finish()
-    await query.message.answer('Action cancelled')
-
-
-executor.start_polling(dp)
+if __name__ == "__main__":
+    asyncio.run(main())
